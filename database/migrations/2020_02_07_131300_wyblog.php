@@ -34,6 +34,7 @@ class Wyblog extends Migration
             $table->string('author')
                   ->default('')
                   ->comment('作者');
+            $table->primary('id');
 
         });
     }
