@@ -14,3 +14,18 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+//路由前缀
+Route::prefix('blog')->group(function(){
+	
+	Route::get('create', 'Blog\CreateBlogController@createBlog');
+
+	Route::get('delete', function () {
+    	return 'Hello delete';
+	});
+
+	Route::get('show', function () {
+    	return 'Hello show';
+	});
+});

@@ -35,7 +35,7 @@ class Wyblog extends Migration
                   ->default('')
                   ->comment('作者');
             $table->primary('id');
-
+// $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
         });
     }
 
