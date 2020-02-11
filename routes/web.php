@@ -21,11 +21,9 @@ Route::prefix('blog')->group(function(){
 	
 	Route::get('create', 'Blog\CreateBlogController@createBlog');
 
-	Route::get('delete', function () {
-    	return 'Hello delete';
-	});
+	Route::get('delete/{blogId}', 'Blog\DeleteBlogController@deleteBlog');
 
-	Route::get('show', function () {
-    	return 'Hello show';
-	});
+	Route::get('show/{blogId}', 'Blog\ShowBlogController@showBlog');
+
+	Route::get('update/{blogId}', 'Blog\UpdateBlogController@updateBlog');
 });

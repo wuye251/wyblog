@@ -13,7 +13,7 @@ class CreateBlogController extends Controller
 	{
 		// $users = DB::table('users')->get();
 
-		 $users = \DB::table('tblblog')->get();
+		$users = \DB::table('tblblog')->get();
 		 
 		$addDate[] = [
 			'title' => "吴烨第一个博客标题",
