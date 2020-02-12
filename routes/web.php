@@ -25,5 +25,5 @@ Route::prefix('blog')->group(function(){
 
 	Route::get('show/{blogId}', 'Blog\ShowBlogController@showBlog');
 
-	Route::get('update/{blogId}', 'Blog\UpdateBlogController@updateBlog');
+	Route::get('update', 'Blog\UpdateBlogController@updateBlog');
 });
