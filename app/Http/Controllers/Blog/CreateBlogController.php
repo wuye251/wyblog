@@ -46,16 +46,6 @@ class CreateBlogController extends Controller
 			// 'max'	  => ':attribute最大长度不能超过:max',
 		];
 
-		$attributes = [
-        	'title' 		=>	'标题',
-			'content'		=>	'内容',
-			'status'		=>	'状态',
-			'create_time'	=>	'创建时间',
-			'update_time'	=>  '修改时间',
-			'author'		=>	'文章作者',
-			'deleted'		=>	'删除标志',
-    	];
-
 		return Validator::make($data, $rules, $messages);
 
 	}
@@ -72,13 +62,8 @@ class CreateBlogController extends Controller
 			return $errors;
 		}
 
-		// $users = DB::table('users')->get();
-
 		$users = \DB::table('tblblog')->get();
 		
-		$time = date("Y-m-d H:i:s",time());
-		$showtime=date("Y-m-d H:i:s");
-		print($showtime);exit;
 		$addDate[] = [
 			'title' => $param['title'],
 			'content'=> $param['content'],
