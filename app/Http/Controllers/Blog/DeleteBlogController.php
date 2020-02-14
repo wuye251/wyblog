@@ -13,7 +13,7 @@ class DeleteBlogController extends Controller
 
 	public function deleteBlog($blogId)
 	{
-		$users = \DB::select('select * from tblblog where id = ? and status = ?', [$blogId, 0]);
+		$users = \DB::select('select * from tblblog where id = ? and status = ?', [$blogId, 1]);
 		//符合数据为空 直接返回
 
 		if (!$users) return 'delete success but content is null';

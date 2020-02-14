@@ -31,12 +31,13 @@ class UpdateBlogController extends Controller
 
 		//参数验证字段
 		$rules = [
-			'title' 		=>	'required',
-			'content'		=>	'required',
+			// 'id'            =>  'required',
+			'title' 		=>	'nullable',
+			'content'		=>	'nullable',
 			'status'		=>	'required',
 			'create_time'	=>  'nullable',
 			'update_time'	=>  'nullable',
-			'author'		=>	'required',
+			'author'		=>	'nullable',
 			'deleted'		=>	'nullable',
 		];
 
@@ -48,6 +49,29 @@ class UpdateBlogController extends Controller
 		];
 
 		return Validator::make($data, $rules, $messages);
+	}
+
+	/*
+	 *更新字段过滤  防注入
+	 */
+	public function columnFilter($arrInput)
+	{
+		$updateId = $arrInput['blogId'];
+
+		$updateFields = [];
+		if (isset($arrInput['titile'])) {
+			$updateFields['titile'] = $arrInput['titile'];
+		}
+		if (isset($arrInput['content'])) {
+			$updateFields['content'] = $arrInput['$content'];
+		}
+		if (isset($arrInput['status'])) {
+			$updateFields['status'] = $arrInput['status'];
+		}
+		$boolUpdate = \DB::table('tblblog')
+					->where('id', $updateId)
+					->update($updateFields);
+		return $boolUpdate;
 	}
 
 	public function updateBlog(Request $request)
@@ -70,8 +94,10 @@ class UpdateBlogController extends Controller
 			return $errors;
 		}
 
-		
+		$boolRetUpdate = $this->columnFilter($param);
+		if (!$boolRetUpdate) {
+			return 'update failed [update fields：' . "$param" . ']'; 
+		}
+		return 'update success';
 	}
-	
-
 }
