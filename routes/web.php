@@ -18,7 +18,12 @@ Route::get('/', function () {
 
 //路由前缀
 Route::prefix('blog')->group(function(){
-	
+	//入口页面
+	Route::get('/', function(){
+		// return view('blog/app', ['id' => 'www.alalalala.com']);
+		return view('blog/blog');
+	});
+
 	Route::get('create', 'Blog\CreateBlogController@createBlog');
 
 	Route::get('delete/{blogId}', 'Blog\DeleteBlogController@deleteBlog');

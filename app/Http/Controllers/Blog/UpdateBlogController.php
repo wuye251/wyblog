@@ -68,6 +68,7 @@ class UpdateBlogController extends Controller
 		if (isset($arrInput['status'])) {
 			$updateFields['status'] = $arrInput['status'];
 		}
+		$updateFields['update_time'] = date('Y-m-d H:i:s', time());
 		$boolUpdate = \DB::table('tblblog')
 					->where('id', $updateId)
 					->update($updateFields);
