@@ -35,7 +35,7 @@
     </div>
 
     <div>
-        <form action="">    
+        <form action="{{url('/blog/create')}}" method="GET">   
             <table width="50%" algin="right" cellpadding="10" border="30">
                 <tr>
                     <td>
@@ -56,6 +56,9 @@
                 <!-- submit必须要和上面表单放在一起 -->
                 <!-- 下面添加div是让其居中 -->
             <div style="text-align:center">
+                <!-- 临时作者框 -->
+                作者<input name="author" type="text">
+
                 <input id="submitDisplay" type="submit" value="createBlog" style=" border:10px solid #DC143C">
             </div>
         </form>
