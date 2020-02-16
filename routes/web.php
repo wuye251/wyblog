@@ -20,8 +20,11 @@ Route::get('/', function () {
 Route::prefix('blog')->group(function(){
 	//入口页面
 	Route::get('/', function(){
-		// return view('blog/app', ['id' => 'www.alalalala.com']);
-		return view('blog/blog');
+		// return view('blog/template');
+		return view('blog/createBlog');
+		// return view('blog/html', ['id' => 'www.alalalala.com']);
+		// return view('blog/css', ['id' => 'www.alalalala.com']);
+		// return view('blog/blog');
 	});
 
 	Route::get('create', 'Blog\CreateBlogController@createBlog');
@@ -32,3 +35,5 @@ Route::prefix('blog')->group(function(){
 
 	Route::get('update', 'Blog\UpdateBlogController@updateBlog');
 });
+
+
