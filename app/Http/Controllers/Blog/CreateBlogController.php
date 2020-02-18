@@ -47,7 +47,6 @@ class CreateBlogController extends Controller
 		];
 
 		return Validator::make($data, $rules, $messages);
-
 	}
 
 	public function createBlog(Request $request)
