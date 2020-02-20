@@ -27,6 +27,8 @@ Route::prefix('blog')->group(function(){
 		// return view('blog/blog');
 	});
 
+	Route::get('showAll/', 'Blog\ShowBlogController@showAll');
+
 	Route::get('create', 'Blog\CreateBlogController@createBlog');
 
 	Route::get('delete/{blogId}', 'Blog\DeleteBlogController@deleteBlog');
