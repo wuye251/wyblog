@@ -32,6 +32,7 @@ Route::prefix('blog')->group(function(){
 	Route::get('delete/{blogId}', 'Blog\DeleteBlogController@deleteBlog');
 
 	Route::get('show/{blogId}', 'Blog\ShowBlogController@showBlog');
+	Route::get('ormShowBlog/{blogId}', 'Blog\ShowBlogController@ormShowBlog');
 
 	Route::get('update', 'Blog\UpdateBlogController@updateBlog');
 });

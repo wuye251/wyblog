@@ -7,6 +7,10 @@ namespace App\Http\Controllers\Blog;
 use Illuminate\Http\Request;
 //入参字段验证
 use Illuminate\Support\Facades\Validator;
+//DB连接
+use Illuminate\Support\Facades\DB;
+//Models
+use App\Models\Blog;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
@@ -61,19 +65,32 @@ class CreateBlogController extends Controller
 			return $errors;
 		}
 
-		$users = \DB::table('tblblog')->get();
+		$blog = new Blog;
 		
-		$addDate[] = [
-			'title' => $param['title'],
-			'content'=> $param['content'],
-			'status' => isset($param['status']) ? $param['status'] : 1,
-			'author' => isset($param['author']) ? $param['author'] : '吴烨',
-			'create_time' => date('Y-m-d H:i:s', time()),
-			'update_time' => date('Y-m-d H:i:s', time()),
-		];
+		// $users = DB::table('tblblog')->get();
 		
-		$boolInsert = \DB::table('tblblog')->insert($addDate);
+		$blog->title   = $param['title'];
+		$blog->content = $param['content'];
+		$blog->status  = isset($param['status']) ? $param['status'] : 1;
+		$blog->author  = $param['author'];
+		
+		$boolInsert = $blog->save();
+		
+
+		// $addDate[] = [
+		// 	'title' => $param['title'],
+		// 	'content'=> $param['content'],
+		// 	'status' => isset($param['status']) ? $param['status'] : 1,
+		// 	'author' => isset($param['author']) ? $param['author'] : '吴烨',
+		// 	// 自动赋值
+		// 	// 'create_time' => date('Y-m-d H:i:s', time()),
+		// 	// 'update_time' => date('Y-m-d H:i:s', time()),
+		// ];
+		
+		//获取插入结果 
+		// $boolInsert = DB::table('tblblog')->insertGetId($addDate);
 		if ($boolInsert) return 'insert success';
+		// $boolInsert = Blog::create($addDate);
 
 		return 'insert failed';
 	}

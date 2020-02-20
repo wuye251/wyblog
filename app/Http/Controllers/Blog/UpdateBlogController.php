@@ -8,6 +8,10 @@ namespace App\Http\Controllers\Blog;
 use Illuminate\Http\Request;
 //入参字段验证
 use Illuminate\Support\Facades\Validator;
+//DB连接
+use Illuminate\Support\Facades\DB;
+//Models
+use App\Models\Blog;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
@@ -35,8 +39,6 @@ class UpdateBlogController extends Controller
 			'title' 		=>	'nullable',
 			'content'		=>	'nullable',
 			'status'		=>	'required',
-			'create_time'	=>  'nullable',
-			'update_time'	=>  'nullable',
 			'author'		=>	'nullable',
 			'deleted'		=>	'nullable',
 		];
@@ -56,11 +58,10 @@ class UpdateBlogController extends Controller
 	 */
 	public function columnFilter($arrInput)
 	{
-		$updateId = $arrInput['blogId'];
 
 		$updateFields = [];
-		if (isset($arrInput['titile'])) {
-			$updateFields['titile'] = $arrInput['titile'];
+		if (isset($arrInput['title'])) {
+			$updateFields['title'] = $arrInput['title'];
 		}
 		if (isset($arrInput['content'])) {
 			$updateFields['content'] = $arrInput['$content'];
@@ -68,11 +69,12 @@ class UpdateBlogController extends Controller
 		if (isset($arrInput['status'])) {
 			$updateFields['status'] = $arrInput['status'];
 		}
-		$updateFields['update_time'] = date('Y-m-d H:i:s', time());
-		$boolUpdate = \DB::table('tblblog')
-					->where('id', $updateId)
-					->update($updateFields);
-		return $boolUpdate;
+		// $updateFields['update_time'] = date('Y-m-d H:i:s', time());
+		// $boolUpdate = DB::table('tblblog')
+		// 			->where('id', $updateId)
+		// 			->update($updateFields);
+		// return $boolUpdate;
+		return $updateFields;
 	}
 
 	public function updateBlog(Request $request)
@@ -80,12 +82,18 @@ class UpdateBlogController extends Controller
 		$param = $request->all();
 		
 		if (!isset($param['blogId'])) return 'id missed';
+		if (!isset($param['status'])) return 'status missed';
 
 		$blogId = $param['blogId'];
 		//数据是否存在
-		$users = \DB::select('select * from tblblog where id = ? and status = ?', [$blogId, 0]);
-		
-		if (!$users) return 'blogId not exists';
+		// $users = DB::select('select * from tblblog where id = ? and status = ?', [$blogId, 0]);
+		$users = Blog::where(['id' => $blogId, 
+							  'status' => $param['status'],
+							  'deleted' => 0]
+							)
+					 ->get();
+
+		if (!count($users)) return 'blogId not exists';
 
 		//参数验证
     	$validator = $this->rule($param);
@@ -95,9 +103,14 @@ class UpdateBlogController extends Controller
 			return $errors;
 		}
 
-		$boolRetUpdate = $this->columnFilter($param);
+		//字段验证过滤
+		$updateFields = $this->columnFilter($param);
+
+		$boolRetUpdate = Blog::where(['id' => $blogId, 'deleted' => 0])
+							 ->update($updateFields);
+
 		if (!$boolRetUpdate) {
-			return 'update failed [update fields：' . "$param" . ']'; 
+			return 'update failed [update fields：' . $param . ']'; 
 		}
 		return 'update success';
 	}
