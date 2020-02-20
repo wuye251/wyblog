@@ -18,15 +18,11 @@ Route::get('/', function () {
 
 //路由前缀
 Route::prefix('blog')->group(function(){
-	//入口页面
-	Route::get('/', function(){
-		// return view('blog/template');
-		return view('blog/createBlog');
-		// return view('blog/html', ['id' => 'www.alalalala.com']);
-		// return view('blog/css', ['id' => 'www.alalalala.com']);
-		// return view('blog/blog');
-	});
-
+	/*php逻辑处理*/
+	// Route::get('/{home?}', function(){
+	// 	return view('blog/showAllBlog');
+	// });
+	
 	Route::get('showAll/', 'Blog\ShowBlogController@showAll');
 
 	Route::get('create', 'Blog\CreateBlogController@createBlog');
@@ -34,9 +30,17 @@ Route::prefix('blog')->group(function(){
 	Route::get('delete/{blogId}', 'Blog\DeleteBlogController@deleteBlog');
 
 	Route::get('show/{blogId}', 'Blog\ShowBlogController@showBlog');
-	Route::get('ormShowBlog/{blogId}', 'Blog\ShowBlogController@ormShowBlog');
 
 	Route::get('update', 'Blog\UpdateBlogController@updateBlog');
+
+	/*视图界面*/
+	Route::prefix('view')->group(function(){
+		Route::view('home', 'blog/showAllBlog');
+		Route::view('showAll', 'blog/showAllBlog');
+		Route::view('create', 'blog/createBlog');
+		Route::view('update', 'blog/updateBlog');
+	});
 });
+
 
 
