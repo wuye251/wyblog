@@ -17,6 +17,10 @@
 			height: 5%;
 			background-color: black;
 			color : white;
+			/*滚动页面，实现导航栏固定在顶部（吸顶效果）*/
+			position: sticky;
+			position: -webkit-sticky;
+			top: 0;
 		}
 		#content_menu {
 			width: 25%;
@@ -119,7 +123,7 @@
 			</div>
 
 			<div id="userView">
-				<input id="isLogin" type="button" name="isLogin" value="登录/注册">
+				<input id="isLogin" type="button" name="isLogin" onclick="location.href='http://www.baidu.com'" value="登录/注册">
 			</div>
 		</div>
 		<div id="content_menu">左侧用户信息</div>
