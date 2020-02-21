@@ -11,17 +11,16 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
+Route::get('/', 'Home\IndexController@index');
 
 //路由前缀
 Route::prefix('blog')->group(function(){
 	/*php逻辑处理*/
-	// Route::get('/{home?}', function(){
-	// 	return view('blog/showAllBlog');
-	// });
+	Route::get('/{home?}', 'Home\IndexController@index');
 	
 	Route::get('showAll/', 'Blog\ShowBlogController@showAll');
 
@@ -35,7 +34,7 @@ Route::prefix('blog')->group(function(){
 
 	/*视图界面*/
 	Route::prefix('view')->group(function(){
-		Route::view('home', 'blog/showAllBlog');
+		// Route::view('home', 'blog/showAllBlog');
 		Route::view('showAll', 'blog/showAllBlog');
 		Route::view('create', 'blog/createBlog');
 		Route::view('update', 'blog/updateBlog');

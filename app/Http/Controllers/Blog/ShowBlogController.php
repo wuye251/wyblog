@@ -62,7 +62,8 @@ class ShowBlogController extends Controller
 					 ->offset($index)
 					 ->limit(self::PAGE_COUNT)
 					 ->get();
-
-		return $arrRet;
+		$jsRet = json_encode($arrRet);
+		//直接访问目录
+		return view('blog.showAllBlog')->with('blogsInfo', $jsRet);
 	}
 }

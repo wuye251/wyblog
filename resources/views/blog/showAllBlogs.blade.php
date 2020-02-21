@@ -4,33 +4,40 @@
 <meta charset="utf-8">
 <title>wyblogs查看</title>
 <meta name="viewpoint" content="width=device-width, initial-sacle=1">
-
+<!-- <base href="wyblog/blog/"> -->
 <style>
 	body {
-		margin: 0;
+		margin: 0 0 0 0;
 	}
 	.header {
-		background-color: #f1f1f1;
-  		padding: 1;
-  		text-align: center;
-	}
-	.title {
 		background-color: #000000;
 		padding: 1;
 		text-align: center;
+		
 	}
+	.title {
+		background-color: #f1f1f1;
+  		padding: 1;
+  		text-align: center;
+  		display: block;
+	}
+	/*初始颜色*/
+	a:visited {color:white;}
+	/*鼠标悬浮*/
+	a:hover {color:green;}
 </style>
 </head>
 
 <body>
 
 	<div class="header">
-		<h1>头部区域</h1>
+		<a href="showAll">博客</a></span>
 	</div>
 
 	<div class="title">
-		<h2>横栏内容</h2>
+		<span><a href="">横栏内容</a></span>
 	</div>
+		hello , {{ $blogsInfo }}
 </body>
 </head>
 </html>
