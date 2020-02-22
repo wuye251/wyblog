@@ -1,0 +1,106 @@
+body {
+	margin: 0;
+}
+
+#container {
+	width: 100%;
+	height: 950px;
+	background-color: white;
+}
+#heading {
+	width: 100%;
+	height: 5%;
+	background-color: black;
+	color : white;
+	/*滚动页面，实现导航栏固定在顶部（吸顶效果）*/
+	position: sticky;
+	position: -webkit-sticky;
+	top: 0;
+}
+#content_menu {
+	width: 25%;
+	height: 40%;
+	background-color: green;
+	float: left;
+	margin-top:30px;
+}		
+#content_body {
+	width: 60%;
+	height: 90%;
+	background-color: yellow;
+	float: left;
+	margin-top:30px;
+}
+#content_sidebar {
+	width: 15%;
+	height: 70%;
+	background-color: pink;
+	float: left;
+	margin-top:30px;
+}
+#footing {
+	width:100%;
+	height: 5%;
+	background-color: blue;
+	clear: both;
+}
+/*头部 欢迎词*/
+#welcome {
+	margin-top:	5px;
+	font-size: 120%;
+	margin-left: 20px;
+	display: inline-block;
+}
+/*搜索框*/
+#search {
+	width: 20%;
+	height: 70%;
+	margin-left: 40px;
+	margin-top: 4px;
+	/*并行*/
+	display: inline-block;
+	/*框的形状设置 设置边框圆角效果 */
+	border-radius: 5px;
+	/*字体设置*/
+	font-size: 18px;
+	font-family: "verdana";
+
+}
+/*头部各个栏目*/
+#container_kindView {
+	margin-left: 40px;
+	color: white;
+	display: inline-block;
+	width: 50%;
+}
+/*以下几个是各个栏目字体及间距设置*/
+/*#container_kindView:visited {color:white;}*/
+#container_blog {
+	margin-left: 10px;
+	color: white;
+}
+#container_veiw2 {
+	margin-left: 10px;
+	color: blue;
+}
+#container_veiw3 {
+	margin-left: 10px;
+	color: green;
+}
+#container_veiw4 {
+	margin-left: 10px;
+	color: pink;
+}
+#container_veiw5 {
+	margin-left: 10px;
+	color: red;
+}
+
+/*title右侧用户信息*/
+#userView {
+	display: inline-block;
+}
+#isLogin {
+	width: 100px;
+	height: 5%;
+}

@@ -30,13 +30,11 @@
 
 <body>
 
-	<div class="header">
-		<a href="showAll">博客</a></span>
+	<div class="header"></div>
+
 	</div>
 
-	<div class="title">
-		<span><a href="">横栏内容</a></span>
-	</div>
+	<
 		hello , {{ $blogsInfo }}
 </body>
 </head>

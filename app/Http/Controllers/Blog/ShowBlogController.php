@@ -64,6 +64,6 @@ class ShowBlogController extends Controller
 					 ->get();
 		$jsRet = json_encode($arrRet);
 		//直接访问目录
-		return view('blog.showAllBlog')->with('blogsInfo', $jsRet);
+		return view('blog.showAll')->with('blogsInfo', $jsRet);
 	}
 }

@@ -15,14 +15,15 @@
 //     return view('welcome');
 // });
 
+//网站入口首页
 Route::get('/', 'Home\IndexController@index');
 
-//路由前缀
+//blog路由
 Route::prefix('blog')->group(function(){
 	/*php逻辑处理*/
-	Route::get('/{home?}', 'Home\IndexController@index');
+	Route::get('', 'Home\IndexController@index');
 	
-	Route::get('showAll/', 'Blog\ShowBlogController@showAll');
+	Route::get('showAll', 'Blog\ShowBlogController@showAll');
 
 	Route::get('create', 'Blog\CreateBlogController@createBlog');
 
@@ -35,7 +36,7 @@ Route::prefix('blog')->group(function(){
 	/*视图界面*/
 	Route::prefix('view')->group(function(){
 		// Route::view('home', 'blog/showAllBlog');
-		Route::view('showAll', 'blog/showAllBlog');
+		Route::view('showAll', 'blog/showAll');
 		Route::view('create', 'blog/createBlog');
 		Route::view('update', 'blog/updateBlog');
 	});
