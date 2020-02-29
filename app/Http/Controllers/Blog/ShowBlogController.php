@@ -33,8 +33,8 @@ class ShowBlogController extends Controller
 		$param = $request->all();
 		$arrRet = [];
 		//传参验证
-		if (!isset($param['pageIndex'])) $arrRet['pageIndex'] = 0;
-		else $arrRet['pageIndex'] = $param['pageIndex'];
+		// if (!isset($param['page'])) $arrRet['page'] = 0;
+		// else $arrRet['page'] = $param['page'];
 
 		//查找条件处理
 		$defaultParam = [
@@ -44,26 +44,40 @@ class ShowBlogController extends Controller
 						];
 
 		//符合条件总数获取
-		$count = Blog::where($defaultParam)
-						->count();
+		// $count = Blog::where($defaultParam)
+		// 				->count();
 		
-		$arrRet['count']     = $count;
+		// $arrRet['count']     = $count;
 
-		if (($arrRet['pageIndex']+1) * self::PAGE_COUNT >= $count) {
-			$arrRet['nextPage'] = -1;
-		} else { 
-			$arrRet['nextPage'] = $arrRet['pageIndex'] + 1;
-		}
+		//每页固定博客数量
+		$pageCount = isset($param['pageCount']) 
+						 ? $param['pageCount'] 
+						 : self::PAGE_COUNT;
+
+		//如果刚好够成整页   否则%不为0 总页+1
+		// $arrRet['pageCount']   = ($count%$pageCount) 
+		// 					 ? (intval($count / $pageCount) + 1)
+		// 					 :($count / $pageCount);
+						 
+		// if (($arrRet['pageIndex']+1) * $pageCount >= $count) {
+		// 	$arrRet['nextPage'] = -1;
+		// } else { 
+		// 	$arrRet['nextPage'] = $arrRet['pageIndex'] + 1;
+		// }
 		
-		$index = $arrRet['pageIndex'] * self::PAGE_COUNT;
+		$curPage = isset($param['page']) ? $param['page'] : 0;
+		$index = $curPage * $pageCount;
 
 		$arrRet['fields'] = Blog::where($defaultParam)
 					 ->orderby('updated_at', 'desc')
 					 ->offset($index)
-					 ->limit(self::PAGE_COUNT)
-					 ->get();
+					 // ->limit($pageCount)
+					 ->paginate($pageCount);
+					 // ->get();
+
 		// $jsRet = json_encode($arrRet);
 		//直接访问目录
+		// return $arrRet;
 		return view('blog.showAll')->with('blogsInfo', $arrRet);
 	}
 }

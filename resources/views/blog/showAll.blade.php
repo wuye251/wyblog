@@ -19,15 +19,15 @@
 		@endforeach
 	</div>
 		<ul class="showAllBlogs_content_pagination">
+			<li>{{$blogsInfo['fields']->links()}}</li>
+
+<!-- 			<li><a href="{{$blogsInfo['fields']['first_page_url']}}">首页</button>
 		    <li><a href="{}">«</a></li>
 		    <li><a href="#">1</a></li>
 		    <li><a class="active" href="#">2</a></li>
 		    <li><a href="#">3</a></li>
-		    <li><a href="#">4</a></li>
-		    <li><a href="#">5</a></li>
-		    <li><a href="#">6</a></li>
-		    <li><a href="#">7</a></li>
-		    <li><a href="#">»</a></li>
+			<li><a href="{{$blogsInfo['fields']['last_page_url']}}">尾页</button>
+ -->
 @endsection
 
 <!-- 右侧评论内容 -->
