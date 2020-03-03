@@ -12,10 +12,23 @@
 @section('content_body')
 	<div class="showAllBlogs_content_body">
 		@foreach($blogsInfo['fields'] as $k => $v)
-			<div class="showAllBlogs_content_body_title">{{ $v['title'] }}</div>
-			<div class="showAllBlogs_content_body_timeInfo">{{$v['updated_at']}}  {{$v['author']}}</p><br></div>
-			<div class="showAllBlogs_content_body_summary">写死的摘要内容</p></div>
-			<hr>
+			<div class="showAllBlogs_content_body_allInfo">
+				<div class="showAllBlogs_content_body_title">
+					<!-- <a class="showAllBlogs_content_body_link" href="{{ $v['url'] }}" target="view_window">
+						{{ $v['title'] }}
+					</a> -->
+					<a class="showAllBlogs_content_body_link" href="{{ $v['id'] }}" target="view_window">
+						{{ $v['title'] }}
+					</a>
+				</div>
+				<div class="showAllBlogs_content_body_timeInfo">
+					<p>{{$v['updated_at']}}  {{$v['author']}}</p>
+				</div>
+				<div class="showAllBlogs_content_body_summary">
+					<p>写死的摘要内容</p>
+				</div>
+				<hr>
+			<div>
 		@endforeach
 	</div>
 		<ul class="showAllBlogs_content_pagination">
