@@ -1,4 +1,4 @@
-body {
+	body {
 	margin: 0;
 }
 
@@ -7,6 +7,7 @@ body {
 	height: 950px;
 	background-color: white;
 }
+/*顶部布局*/
 #heading {
 	width: 100%;
 	height: 5%;
@@ -15,7 +16,11 @@ body {
 	/*滚动页面，实现导航栏固定在顶部（吸顶效果）*/
 	position: sticky;
 	position: -webkit-sticky;
-	top: 0;
+}
+#heading-body {
+	margin-top: 0px;
+	padding-top : 5px;
+	height: 80%;
 }
 #content_menu {
 	width: 25%;
@@ -26,7 +31,7 @@ body {
 }		
 #content_body {
 	width: 60%;
-	/*height: 90%;*/
+	height: 90%;
 	background-color: yellow;
 	float: left;
 	margin-top:30px;
@@ -40,7 +45,7 @@ body {
 }
 #footing {
 	width:100%;
-	height: 5%;
+	height: 30%;
 	background-color: blue;
 	clear: both;
 }
@@ -95,13 +100,10 @@ body {
 	margin-left: 10px;
 	color: red;
 }
-
 /*title右侧用户信息*/
 #userView {
 	display: inline-block;
 }
+/*登录按钮*/
 #isLogin {
-	width: 100px;
-	height: 75px;
 }
-

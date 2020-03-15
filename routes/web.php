@@ -11,15 +11,11 @@
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+
 
 //网站入口首页
 Route::get('/', 'Home\IndexController@index');
 
-//学习
-Route::view('js', 'test/jsstudy');
 //blog路由
 Route::prefix('blog')->group(function(){
 	/*php逻辑处理*/
