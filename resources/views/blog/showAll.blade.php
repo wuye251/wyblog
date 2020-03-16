@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="/css/showAllBlogs.css">
+<link rel="stylesheet" href="css/showAllBlogs.css">
 
 @extends('layouts.home')
 
