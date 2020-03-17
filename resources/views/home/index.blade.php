@@ -1,5 +1,4 @@
 <link rel="stylesheet" href="/css/showAllBlogs.css">
-
 @extends('layouts.home')
 
 <!-- 博客页面左侧用户信息 -->
@@ -27,7 +26,7 @@
 					<p>写死的摘要内容</p>
 				</div>
 				<hr>
-			<div>
+			</div>
 		@endforeach
 	</div>
 		<ul class="showAllBlogs_content_pagination">
@@ -45,5 +44,9 @@
 <!-- 右侧评论内容 -->
 @section('content_sidebar')
 	右侧评论
+@endsection
+
+@section('footing')
+	底部栏
 @endsection
 

@@ -2,11 +2,18 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>wyblog</title>
+<title>	wyblog
+</title>
+	<!-- <img src="/image/home/title.png"/> -->
+	<!-- title中加入照片 -->
+	<link rel="shortcut icon" href="/images/home/favicon.ico">
+
+
 <link rel="stylesheet" href="/css/index.css">
 
 <body>
-	<div id="container">		
+
+	<div id="container">
 		<div id="heading">
 			<div id="heading-body">
 				<p id="welcome">欢迎来到wyblog</p>
@@ -23,12 +30,16 @@
 					<input id="isLogin" type="button" name="isLogin" onclick="location.href='http://www.baidu.com'" value="登录/注册">
 				</div>
 			</div>	
-		</div>
+		</div><!-- header end -->
 
-		<div id="content_menu">@yield('content_menu')</div>
-		<div id="content_body">@yield('content_body')</div>
-		<div id="content_sidebar">@yield('content_sidebar')右侧栏</div>
+		<div class="content">	
+			<div id="content_menu">@yield('content_menu')</div>
+			<div id="content_body">@yield('content_body')</div>
+			<div id="content_sidebar">@yield('content_sidebar')右侧栏</div>
+		</div><!-- content end -->
+
+		<div id="footing">@yield('footing')底部栏</div>	
+
 	</div>
-	<div id="footing">@yield('footing')底部栏</div>	
 </body>
 </html>
