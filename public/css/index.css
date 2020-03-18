@@ -91,6 +91,11 @@ body {
 }
 /*以下几个是各个栏目字体及间距设置*/
 /*#container_kindView:visited {color:white;}*/
+#container_home {
+	margin-left: 10px;
+	color: 	#C0C0C0;
+	/*color: yellow;*/
+}
 #container_blog {
 	margin-left: 10px;
 	color: white;

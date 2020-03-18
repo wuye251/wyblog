@@ -1,0 +1,38 @@
+.showBlog_content_body {
+}
+
+.showBlog_content_body_allInfo {
+
+}
+/*文章标题*/
+.showBlog_content_body_title {
+	font-size: 50px;
+	text-align:center;
+}
+/*标题下 更新时间和作者等信息整体布局*/
+.showBlog_content_body_summary {
+	font-size: 15px;
+	margin-top: 0px;
+}
+/*作者信息*/
+.showAllBlogs_content_body_authorInfo {
+	/*float: left;*/
+	/*float 和 display在并行时的差别*/
+	/*为什么上一div设置float影响的是下一个div*/
+	/*div之间用inline不能实现并行?*/
+	/*display: inline;*/
+	float: left;
+	margin-left: 100px;
+}
+.showAllBlogs_content_body_timeInfo {
+	float: left;
+	margin-left: 100px;
+}
+
+.showAllBlogs_content_body_category {
+	margin-left: 100px;
+	float: left;
+}
+/*博客内容布局*/
+.showBlog_content_body_content {
+}

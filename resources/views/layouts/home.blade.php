@@ -6,7 +6,7 @@
 </title>
 	<!-- <img src="/image/home/title.png"/> -->
 	<!-- title中加入照片 -->
-	<link rel="shortcut icon" href="/images/home/favicon.ico">
+	<link rel="shortcut icon" href="/images/home/title.ico">
 
 
 <link rel="stylesheet" href="/css/index.css">
@@ -19,11 +19,11 @@
 				<p id="welcome">欢迎来到wyblog</p>
 				<input id="search" type="text" name="search" placeholder="Search or jump to">
 				<div id="container_kindView">
-					<a id="container_blog"  href="http://wyblog/blog/showAll">博客</a>
+					<a id="container_home"  href="/">首页</a>
+					<a id="container_blog"  href="/blog/index">博客</a>
 					<a id="container_veiw2" href="http://www.baidu.com">view2</a>
 					<a id="container_veiw3" href="http://www.baidu.com">view3</a>
 					<a id="container_veiw4" href="http://www.baidu.com">view4</a>
-					<a id="container_veiw5" href="http://www.baidu.com">view5</a>
 				</div>
 
 				<div id="userView">

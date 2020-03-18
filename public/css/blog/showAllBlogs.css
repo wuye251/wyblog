@@ -1,3 +1,9 @@
+/*文章标题*/
+.showAllBlogs_content_body_title {
+  font-size: 20px;
+}
+
+
 ul.showAllBlogs_content_pagination {
     /*display: inline-block;
     padding: 0;
@@ -30,7 +36,6 @@ ul.showAllBlogs_content_pagination li a:hover {
     background-color: #ffcc00;
     color: #fff;
 }
-
 
 
 

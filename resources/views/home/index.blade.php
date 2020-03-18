@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="/css/showAllBlogs.css">
+<link rel="stylesheet" href="/css/blog/showAllBlogs.css">
 @extends('layouts.home')
 
 <!-- 博客页面左侧用户信息 -->
@@ -12,12 +12,9 @@
 		@foreach($articles as $k => $v)
 			<div class="showAllBlogs_content_body_allInfo">
 				<div class="showAllBlogs_content_body_title">
-					<!-- <a class="showAllBlogs_content_body_link" href="{{ $v['url'] }}" target="view_window">
+					<a class="showAllBlogs_content_body_link" href="http://wyblog/blog/article/{{$v['id']}}" target="view_window">
 						{{ $v['title'] }}
-					</a> -->
-					<a class="showAllBlogs_content_body_link" href="{{ $v['id'] }}" target="view_window">
-						{{ $v['title'] }}
-					</a>
+					</a> <!-- 打印标题 并且赋值超链接 -->
 				</div>
 				<div class="showAllBlogs_content_body_timeInfo">
 					<p>{{$v['updated_at']}}  {{$v['author']}}</p>

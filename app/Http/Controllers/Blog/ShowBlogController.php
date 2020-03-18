@@ -18,13 +18,9 @@ class ShowBlogController extends Controller
 	
 	public function showBlog($blogId)
 	{
-		// $users = DB::select('select * from tblblog where id = ? and status = ? and deleted = ?', [$blogId, 0, 0]);
-		// return $users;
-
-		// $blog = Blog::where('id', $blogId)
-					// ->get()
+		
 		$blog = Blog::findOrFail($blogId);
-		return $blog;
+		return view('blog.showBlog')->with('blog', $blog);
 	}
 
 	public function showAll(Request $request)
