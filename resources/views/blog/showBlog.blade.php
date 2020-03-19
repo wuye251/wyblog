@@ -34,6 +34,16 @@
 				<hr>
 				<div class="showBlog_content_body_content">
 					11这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据 
+				</div> <!-- content end -->
+				<div class="showBlog_content_body_comment">
+					<hr>
+					<span class="comment_title">咖啡厅</span>
+					<br />
+					<div class="comment_contentAndSumit">
+						<textarea class="comment_content" placeholder="火钳刘明(●'◡'●)"></textarea>
+						<br />
+						<input class="conmment_submit" type="submit" value="提交">
+					</div>
 				</div>
 			</div>
 	</div>		

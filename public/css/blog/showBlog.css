@@ -36,3 +36,35 @@
 /*博客内容布局*/
 .showBlog_content_body_content {
 }
+
+
+/*评论框布局*/
+.showBlog_content_body_comment {
+	margin-top: 100px;
+}
+
+/*评论标题*/
+.comment_title {
+	margin-left: 10px;
+	color: blue;
+	font-size: 20px;
+}
+/*评论框位置*/
+.comment_contentAndSumit {
+	margin-left: 50px;
+	margin-top: 50px;
+}
+/*评论区内容*/ 
+.comment_content {
+	height: 70px;
+	width: 90%;
+
+}
+/*提交评论按钮*/
+.conmment_submit {
+	float: right;
+	margin-right: 10%;
+	width: 10%;
+	height: 40px;
+	background-color: #1E90FF;
+}
