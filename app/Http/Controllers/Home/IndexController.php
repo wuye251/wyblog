@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 //Models
 use App\Models\Blog;
+use App\Models\Comments;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
@@ -36,7 +37,6 @@ class IndexController extends Controller
 					 // ->limit($pageCount)
 					 ->paginate(self::PAGE_COUNT);
 					 // ->get();
-		
 
 
 		$assign = [

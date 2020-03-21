@@ -9,7 +9,9 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\DB;
 //Blog Model
 use App\Models\Blog;
-
+use App\Models\Comments;
+//markdown
+use Parsedown;
 
 class ShowBlogController extends Controller
 {
@@ -18,9 +20,28 @@ class ShowBlogController extends Controller
 	
 	public function showBlog($blogId)
 	{
-		
+
+		//博文
 		$blog = Blog::findOrFail($blogId);
-		return view('blog.showBlog')->with('blog', $blog);
+
+		//评论
+		$comments = new Comments;
+		$param = [			
+		    'article_id' => $blogId,
+			'status'     => 1,
+ 			'deleted'    => 0,
+		];
+		$comments = Comments::where($param)
+							->orderby('create_time','desc')
+							->get();
+		// $assign = [
+		// 	'blog'     => $blog,
+		// 	'comments' => $comments,
+		// ];
+
+		$assign = compact('blog', 'comments');
+
+		return view('blog.showBlog', $assign);
 	}
 
 	public function showAll(Request $request)

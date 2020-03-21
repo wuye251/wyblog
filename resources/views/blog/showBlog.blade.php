@@ -33,17 +33,29 @@
 				<div style="clear: both;"></div>
 				<hr>
 				<div class="showBlog_content_body_content">
-					11这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据这是一个假数据 
+					{{$blog['content']}}
 				</div> <!-- content end -->
 				<div class="showBlog_content_body_comment">
 					<hr>
 					<span class="comment_title">咖啡厅</span>
 					<br />
 					<div class="comment_contentAndSumit">
-						<textarea class="comment_content" placeholder="火钳刘明(●'◡'●)"></textarea>
-						<br />
-						<input class="conmment_submit" type="submit" value="提交">
+						<form action="/blog/comment/create/{{$blog['id']}}" method="get" class="comment_commit">	
+							<textarea class="comment_content" name="commentContent" placeholder="火钳刘明(●'◡'●)"></textarea>
+							<br />
+							<input class="conmment_submit" type="submit" value="提交">
+						</form>
 					</div>
+					<br />
+					<hr>
+
+					<div class="comment_list">
+						@foreach($comments as $commentKey => $commentValue)
+							{{$commentValue['create_time']}}
+							{{$commentValue['content']}}
+							<hr>
+						@endforeach
+					</div> <!-- 评论列表展示结束 -->
 				</div>
 			</div>
 	</div>		

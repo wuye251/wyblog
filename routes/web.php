@@ -16,6 +16,7 @@
 //网站入口首页
 Route::get('/', 'Home\IndexController@index');
 
+
 //blog路由
 Route::prefix('blog')->group(function(){
 	/*php逻辑处理*/
@@ -25,6 +26,14 @@ Route::prefix('blog')->group(function(){
 	//当前博文的内容
 	Route::get('article/{article}', 'Blog\ShowBlogController@showBlog');
 
+	//引入评论
+	Route::get('comment', 'Blog\CommentController@index');
+	//提交评论
+	Route::get('comment/create/{blogId}', 'Blog\CommentController@create');
+	//删除评论
+	Route::get('comment/delete', 'Blog\CommentController@delete');
+	//修改评论
+	Route::get('comment/update', 'Blog\CommentController@update');
 
 	Route::get('create', 'Blog\CreateBlogController@createBlog');
 
@@ -34,13 +43,6 @@ Route::prefix('blog')->group(function(){
 
 	Route::get('update', 'Blog\UpdateBlogController@updateBlog');
 
-	/*视图界面*/
-	Route::prefix('view')->group(function(){
-		// Route::view('home', 'blog/showAllBlog');
-		Route::view('showAll', 'blog/showAll');
-		Route::view('create', 'blog/createBlog');
-		Route::view('update', 'blog/updateBlog');
-	});
 });
 
 
