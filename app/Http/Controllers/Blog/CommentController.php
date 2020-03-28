@@ -19,7 +19,6 @@ class CommentController extends Controller
 
 		$queryWhere = [
 			'article_id' => $blogId,
- 			'deleted'    => 0,
 			'status'     => 1,
 		];
 		$comments = Comments::where($queryWhere)
@@ -54,8 +53,8 @@ class CommentController extends Controller
 
 	}
 
-	public function delete()
+	public function delete($Request $request)
 	{
-
+		
 	}
 }

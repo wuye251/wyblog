@@ -17,6 +17,7 @@
 Route::get('/', 'Home\IndexController@index');
 
 
+
 //blog路由
 Route::prefix('blog')->group(function(){
 	/*php逻辑处理*/
@@ -35,14 +36,17 @@ Route::prefix('blog')->group(function(){
 	//修改评论
 	Route::get('comment/update', 'Blog\CommentController@update');
 
-	Route::get('create', 'Blog\CreateBlogController@createBlog');
+	Route::post('create', 'Blog\CreateBlogController@createBlog');
 
 	Route::get('delete/{blogId}', 'Blog\DeleteBlogController@deleteBlog');
 
 	Route::get('show/{blogId}', 'Blog\ShowBlogController@showBlog');
 
 	Route::get('update', 'Blog\UpdateBlogController@updateBlog');
-
+	
+	Route::get('view/createBlog', function(){
+		return view('blog.createBlog');
+	});
 });
 
 

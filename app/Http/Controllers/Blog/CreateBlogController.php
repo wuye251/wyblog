@@ -89,7 +89,7 @@ class CreateBlogController extends Controller
 		
 		//获取插入结果 
 		// $boolInsert = DB::table('tblblog')->insertGetId($addDate);
-		if ($boolInsert) return 'insert success';
+		if ($boolInsert) return redirect('blog/index');
 		// $boolInsert = Blog::create($addDate);
 
 		return 'insert failed';

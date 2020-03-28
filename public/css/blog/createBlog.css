@@ -1,0 +1,24 @@
+body {
+    background-color: #F5F5F5;
+}
+.title {
+/*      background-color: blue;
+    height: 200px;*/
+    text-align: center;
+}
+table, td, th
+{
+    /*border:10px solid #FFFFFF;*/
+    margin: auto;
+}
+/*定义标题输入框大小*/
+#titleInput {
+    height: 25px;
+}
+/*id形式的用#来表示
+  class用.表示
+ */
+#contentInput {
+    font-size: 20px;
+    color : #000000;/*纯黑*/
+}

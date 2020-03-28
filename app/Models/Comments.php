@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Comments extends Model
 {
@@ -17,7 +18,10 @@ class Comments extends Model
 	//因为没有设置update_at 自动维护会报错
 	public $timestamps = false;
 
+	//软删除
+	use SoftDeletes;
 
+	$dates = ['delete_at'];
 	/*
 		id 主键id
 		return 符合行信息

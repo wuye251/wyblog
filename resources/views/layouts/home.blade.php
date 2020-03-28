@@ -26,6 +26,8 @@
 					<a id="container_veiw4" href="http://www.baidu.com">view4</a>
 				</div>
 
+				<a class="editBlog" href='/blog/view/createBlog'>创建博客</a>
+
 				<div id="userView">
 					<input id="isLogin" type="button" name="isLogin" onclick="location.href='http://www.baidu.com'" value="登录/注册">
 				</div>
