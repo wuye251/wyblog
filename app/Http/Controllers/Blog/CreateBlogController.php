@@ -77,20 +77,7 @@ class CreateBlogController extends Controller
 		$boolInsert = $blog->save();
 		
 
-		// $addDate[] = [
-		// 	'title' => $param['title'],
-		// 	'content'=> $param['content'],
-		// 	'status' => isset($param['status']) ? $param['status'] : 1,
-		// 	'author' => isset($param['author']) ? $param['author'] : '吴烨',
-		// 	// 自动赋值
-		// 	// 'create_time' => date('Y-m-d H:i:s', time()),
-		// 	// 'update_time' => date('Y-m-d H:i:s', time()),
-		// ];
-		
-		//获取插入结果 
-		// $boolInsert = DB::table('tblblog')->insertGetId($addDate);
 		if ($boolInsert) return redirect('blog/index');
-		// $boolInsert = Blog::create($addDate);
 
 		return 'insert failed';
 	}

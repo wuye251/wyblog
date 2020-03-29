@@ -17,6 +17,22 @@
 Route::get('/', 'Home\IndexController@index');
 
 
+Route::namespace('Home')->prefix('home')->group(function(){
+		Route::get('/', 'IndexController@index');
+		//blog
+		Route::prefix('blog')->group(function(){
+			Route::get('/', 'BlogController@index');
+			Route::get('{page}','BlogController@show');
+			Route::get('comment/index', 'CommentController@index');
+			Route::get('comment/{blogId}', 'CommentController@create');
+		});
+});
+
+
+Route::namespace('Admin')->prefix('admine')->group(function(){
+	
+});
+
 
 //blog路由
 Route::prefix('blog')->group(function(){

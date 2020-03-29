@@ -47,14 +47,4 @@ class CommentController extends Controller
 
 		return '123123123';
 	}
-
-	public function update()
-	{
-
-	}
-
-	public function delete($Request $request)
-	{
-		
-	}
 }
