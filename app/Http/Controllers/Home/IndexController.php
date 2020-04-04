@@ -33,16 +33,14 @@ class IndexController extends Controller
 
 		$articles = Blog::where($defaultParam)
 					 ->orderby('updated_at', 'desc')
-					 // ->offset($index)
-					 // ->limit($pageCount)
 					 ->paginate(self::PAGE_COUNT);
-					 // ->get();
-
 
 		$assign = [
-			'articles' => $articles,
+			'blogs' => $articles,
 		];
+		
+		// return view('home.index', $assign);
+		return view('home.home', $assign);
 
-		return view('home.index', $assign);
 	}
 }

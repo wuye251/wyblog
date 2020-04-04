@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Blog;
 use App\Models\Comments;
-class BlogController extends Controller
+class IndexController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,22 +15,20 @@ class BlogController extends Controller
      */
     public function index()
     {
-                //查找条件处理
+        //查找条件处理
         $defaultParam = [
                             'author' => '吴烨',
                             'status' =>  1,
                             'deleted'=>  0,
                         ];
 
-        $articles = Blog::where($defaultParam)
+        $blogs = Blog::where($defaultParam)
                      ->orderby('updated_at', 'desc')
-                     ->paginate(self::PAGE_COUNT);
+                     ->paginate(10);
 
-        $assign = [
-            'blogs' => $articles,
-        ];
+        $assign = compact('blogs');
         
-        return view('home.index', $assign);
+        return view('admin.home', $assign);
     }
 
     /**
@@ -51,21 +49,7 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-        //获取入参
-        $param = $request->all();
-
-        $blog = new Blog;
-        $blog->title   = $param['title'];
-        $blog->content = $param['content'];
-        $blog->status  = isset($param['status']) ? $param['status'] : 1;
-        $blog->author  = $param['author'];
-        
-        $boolInsert = $blog->save();
-        
-
-        if ($boolInsert) return redirect('blog/index');
-
-        return 'insert failed';
+        //
     }
 
     /**
@@ -74,10 +58,9 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($blogId)
+    public function show($id)
     {
         //
-        return redirect('')
     }
 
     /**

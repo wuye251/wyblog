@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Blog;
+namespace App\Http\Controllers\Home;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -39,11 +39,6 @@ class CommentController extends Controller
 		$comments->content = $content;
 		$comments->article_id = $blogId;
 		$comments->save();
-
-		// Comments::create(array(
-		// 	'content' => $content,
-		// 	'article_id' => $blogId,
-		// ));
 
 		return '123123123';
 	}

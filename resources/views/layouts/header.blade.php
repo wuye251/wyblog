@@ -9,7 +9,7 @@
 </head>
 
 <body>
-	<div id="heading">
+	<div class="head">
 		<p id="welcome">欢迎来到wyblog</p>
 		<input id="search" type="text" name="search" placeholder="Search or jump to">
 		<div id="container_kindView">

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Http\Controllers\Blog;
+namespace App\Http\Controllers\Blogs;
 
 //入参获取
 use Illuminate\Http\Request;

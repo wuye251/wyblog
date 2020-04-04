@@ -1,0 +1,30 @@
+.home_home_main_content{
+	margin-top: 10px;
+}
+
+.public_home_body{
+	height: 100%;
+	width: 100%;
+}
+
+/*椤堕儴甯冨眬*/
+.public_home_head{
+	width: 100%;
+	height: 50px;
+	background-color: black;
+	color : white;
+	/*婊氬姩椤甸潰锛屽疄鐜板鑸爮鍥哄畾鍦ㄩ《閮紙鍚搁《鏁堟灉锛�*/
+	position: sticky;
+	position: -webkit-sticky;
+}
+
+.public_home_content{
+	height: 1000px; 
+	border: solid;
+}
+
+.public_home_foot{
+	margin-top: 100px;
+	height: 200px;
+	border: solid;
+}

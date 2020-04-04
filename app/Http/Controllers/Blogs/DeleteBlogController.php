@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Http\Controllers\Blog;
+namespace App\Http\Controllers\Blogs;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;

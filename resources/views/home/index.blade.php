@@ -9,7 +9,7 @@
 <!-- 博客内容列表侧内容 -->
 @section('content_body')
 	<div class="showAllBlogs_content_body">
-		@foreach($articles as $k => $v)
+		@foreach($blogs as $k => $v)
 			<div class="showAllBlogs_content_body_allInfo">
 				<div class="showAllBlogs_content_body_title">
 					<a class="showAllBlogs_content_body_link" href="http://wyblog/blog/article/{{$v['id']}}" target="view_window">
@@ -27,15 +27,9 @@
 		@endforeach
 	</div>
 		<ul class="showAllBlogs_content_pagination">
-			<li>{{$articles->links()}}</li>
+			<li>{{$blogs->links()}}</li>
 
-<!-- 			<li><a href="{{$articles['fields']['first_page_url']}}">首页</button>
-		    <li><a href="{}">«</a></li>
-		    <li><a href="#">1</a></li>
-		    <li><a class="active" href="#">2</a></li>
-		    <li><a href="#">3</a></li>
-			<li><a href="{{$articles['fields']['last_page_url']}}">尾页</button>
- -->
+
 @endsection
 
 <!-- 右侧评论内容 -->

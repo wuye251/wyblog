@@ -1,0 +1,4 @@
+@extends('layouts.public.home')
+
+
+	

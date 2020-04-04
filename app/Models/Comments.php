@@ -21,7 +21,7 @@ class Comments extends Model
 	//软删除
 	use SoftDeletes;
 
-	$dates = ['delete_at'];
+	protected $dates = ['delete_at'];
 	/*
 		id 主键id
 		return 符合行信息
@@ -31,7 +31,6 @@ class Comments extends Model
 		$param = [			
 		    'article_id' => $id,
 			'status'     => 1,
- 			'deleted'    => 0,
 		];
 		DB::connection()->enableQueryLog();
 		$comments = Comments::where($param)

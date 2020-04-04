@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Home;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Blog;
+use App\Models\Comments;
 
 class BlogController extends Controller
 {
@@ -26,7 +28,7 @@ class BlogController extends Controller
                      ->paginate(10);
 
         $assign = [
-            'articles' => $articles,
+            'blogs' => $articles,
         ];
 
         return view('home.index', $assign);
@@ -48,7 +50,6 @@ class BlogController extends Controller
         $param = [          
             'article_id' => $blogId,
             'status'     => 1,
-            'deleted'    => 0,
         ];
         $comments = Comments::where($param)
                             ->orderby('create_time','desc')
@@ -56,6 +57,6 @@ class BlogController extends Controller
 
         $assign = compact('blog', 'comments');
 
-        return view('blog.showBlog', $assign);
+        return view('home.blog', $assign);
     }
 }
