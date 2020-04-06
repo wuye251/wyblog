@@ -12,7 +12,7 @@
 		@foreach($blogs as $k => $v)
 			<div class="showAllBlogs_content_body_allInfo">
 				<div class="showAllBlogs_content_body_title">
-					<a class="showAllBlogs_content_body_link" href="http://wyblog/blog/article/{{$v['id']}}" target="view_window">
+					<a class="showAllBlogs_content_body_link" href="http://wyblog/blog/{{$v['id']}}" target="view_window">
 						{{ $v['title'] }}
 					</a> <!-- 打印标题 并且赋值超链接 -->
 				</div>
