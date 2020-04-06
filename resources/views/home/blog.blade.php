@@ -1,8 +1,13 @@
 <link rel="stylesheet" href="/css/blog/showBlog.css">
 
 @extends('layouts.home')
+@extends('layouts.public.head')
+@section('title', 'wyblog')
 
+@section('view1', '博客')
 
+@section('view2', 'GitHub')
+@section('view2_url', 'https://github.com/wuye251')
 <!-- 博客页面左侧用户信息 -->
 @section('content_menu')
 	个人博客用户信息

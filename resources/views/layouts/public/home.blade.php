@@ -3,8 +3,12 @@
 <head>
 <meta charset="utf-8">
 <title>	@yield('title')</title>
+</head>
 
 <link rel="stylesheet" href="/css/public/home.css">
+<link rel="stylesheet" href="/css/public/head.css">
+<link rel="stylesheet" href="/css/public/content.css">
+<link rel="stylesheet" href="/css/public/foot.css">
 
 
 <body class="public_home_body">
@@ -18,3 +22,5 @@
 		@include('layouts.public.foot')
 	</div>
 </body>
+
+</html>

@@ -1,1 +1,3 @@
-<div>@yield('content')</div>
+<div class="public_content">
+	@yield('content')
+</div>

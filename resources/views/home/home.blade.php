@@ -1,8 +1,8 @@
 <link rel="stylesheet" href="/css/home/index.css">
-
+<link rel="stylesheet" href="/css/blog/showAllBlogs.css">
 @extends('layouts.public.home')
 
-@section('title', 'wyblog-admin')
+@section('title', 'wyblog')
 
 @section('view1', '博客')
 
@@ -10,9 +10,33 @@
 @section('view2_url', 'https://github.com/wuye251')
 
 @section('content')
+	<div class="home_home_left_content">
+		asdasd
+	</div>
 	<div class="home_home_main_content">
-<!-- 		@foreach($blogs as $k => $v)
-			{{$v['title']}}
-		@endforeach -->
+		<div class="showAllBlogs_content_body">
+		@foreach($blogs as $k => $v)
+			<div class="showAllBlogs_content_body_allInfo">
+				<div class="showAllBlogs_content_body_title">
+					<a class="showAllBlogs_content_body_link" href="http://wyblog/blog/article/{{$v['id']}}" target="view_window">
+						{{ $v['title'] }}
+					</a> <!-- 打印标题 并且赋值超链接 -->
+				</div>
+				<div class="showAllBlogs_content_body_timeInfo">
+					<p>{{$v['updated_at']}}  {{$v['author']}}</p>
+				</div>
+				<div class="showAllBlogs_content_body_summary">
+					<p>写死的摘要内容</p>
+				</div>
+			</div>
+			<div class="showAllBlogs_content_body_hr"></div>
+		@endforeach
+	</div>
+		<ul class="showAllBlogs_content_pagination">
+			<li>{{$blogs->links()}}</li>
+	</div>
+
+	<div class="home_home_right_content">
+		asdsad
 	</div>
 @endsection
