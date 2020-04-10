@@ -1,0 +1,35 @@
+/*文章标题*/
+.showAllBlogs_content_body_title {
+    font-size: 20px;
+}
+/*one of the blog style*/
+.showAllBlogs_content_body_allInfo{
+    height: 200px;
+    text-align: center;
+}
+/*hr style between blog*/
+.showAllBlogs_content_body_hr{
+    height: 20px;
+    background-color: red;
+    border: solid;
+}
+
+.showAllBlogs_content_body_operate{
+	position:relative;
+	border:solid;
+	float: right;
+	margin-right: 50px;
+	font-size: 20px;
+}
+.showAllBlogs_content_body_operate_view{
+	display: inline-block;
+	color: gray;
+
+}
+.showAllBlogs_content_body_operate_edit{
+	margin-left: 20px;
+	margin-right: 20px;
+	display: inline-block;
+	color: gray;
+
+}

@@ -1,34 +1,3 @@
-.public_home_body{
-	height: 100%;
-	width: 100%;
-}
-
-/*顶部布局*/
-.public_home_head{
-	width: 100%;
-	height: 50px;
-	background-color: black;
-	color : white;
-	/*滚动页面，实现导航栏固定在顶部（吸顶效果）*/
-	position: sticky;
-	position: -webkit-sticky;
-}
-
-.admin_home_content{
-	/*注释高度之后可以自适应*/
-	/*height: 100%; */
-	width: 89%;
-	margin-left: 10%;	
-	border: solid;
-}
-
-.admin_home_conten_bloglist {
-	margin-left: 5%;
-	width: 80%;
-	border:solid;
-}
-
-
 ul.showAllBlogs_content_pagination {
     /*display: inline-block;
     padding: 0;
@@ -62,5 +31,3 @@ ul.showAllBlogs_content_pagination li a:hover {
     color: #fff;
 }
 
-
-/*content main*/

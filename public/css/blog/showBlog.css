@@ -12,8 +12,10 @@
 /*标题下 更新时间和作者等信息整体布局*/
 .showBlog_content_body_summary {
 	font-size: 15px;
-	margin-top: 0px;
+	text-align: center;
 }
+
+
 /*作者信息*/
 .showAllBlogs_content_body_authorInfo {
 	/*float: left;*/
@@ -21,17 +23,22 @@
 	/*为什么上一div设置float影响的是下一个div*/
 	/*div之间用inline不能实现并行?*/
 	/*display: inline;*/
-	float: left;
 	margin-left: 100px;
+	display: inline-block;
+
 }
 .showAllBlogs_content_body_timeInfo {
-	float: left;
+	display: inline-block;
 	margin-left: 100px;
 }
 
 .showAllBlogs_content_body_category {
+	display: inline-block;
 	margin-left: 100px;
-	float: left;
+}
+.showBlog_content_body_operate{
+	display: inline-block;
+	margin-left: 100px;
 }
 /*博客内容布局*/
 .showBlog_content_body_content {

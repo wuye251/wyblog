@@ -29,15 +29,29 @@ Route::namespace('Home')->group(function(){
 		});
 });
 
+// 后台登录页面
+Route::namespace('Admin')->prefix('admin')->group(function () {
+    Route::redirect('/', url('admin/login/index'));
+    Route::prefix('login')->group(function () {
+        // 登录页面
+        Route::get('index', 'LoginController@index')->middleware('admin.login');
+        // 退出
+        Route::get('logout', 'LoginController@logout');
+    });
+});
 
+// Route::namespace('Admin')->prefix('admin')->middleware('admin.auth')->group(function(){
 Route::namespace('Admin')->prefix('admin')->group(function(){
+
 		Route::get('/','IndexController@index');
 
 		Route::prefix('blog')->group(function(){
 			Route::get('/', 'BlogController@index');
+			Route::get('{blogId}', 'BlogController@show');
 			Route::get('create', 'BlogController@create');
 			Route::post('store', 'BlogController@store');
-			Route::get('update', 'BlogController@update');
+			Route::get('edit/{blogId}', 'BlogController@edit');
+			Route::get('update/{blogId}', 'BlogController@update');
 			Route::get('delete', 'BlogController@destroy');
 		});
 });
@@ -76,3 +90,7 @@ Route::namespace('Admin')->prefix('admin')->group(function(){
 
 
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

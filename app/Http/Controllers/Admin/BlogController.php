@@ -24,13 +24,13 @@ class BlogController extends Controller
 
         $articles = Blog::where($defaultParam)
                      ->orderby('updated_at', 'desc')
-                     ->paginate(self::PAGE_COUNT);
+                     ->paginate(20);
 
         $assign = [
             'blogs' => $articles,
         ];
         
-        return view('home.index', $assign);
+        return view('admin.home', $assign);
     }
 
     /**
@@ -76,8 +76,22 @@ class BlogController extends Controller
      */
     public function show($blogId)
     {
-        //
-        return redirect('')
+        //博文
+        $blog = Blog::findOrFail($blogId);
+
+        //评论
+        $comments = new Comments;
+        $param = [          
+            'article_id' => $blogId,
+            'status'     => 1,
+        ];
+        $comments = Comments::where($param)
+                            ->orderby('create_time','desc')
+                            ->get();
+
+        $assign = compact('blog', 'comments');
+
+        return view('admin.blog.show', $assign);
     }
 
     /**
@@ -89,6 +103,7 @@ class BlogController extends Controller
     public function edit($id)
     {
         //
+        var_dump("asd");
     }
 
     /**
@@ -98,9 +113,10 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $blogId)
     {
-        //
+        //加载对应内容  和创建文章相同
+
     }
 
     /**
