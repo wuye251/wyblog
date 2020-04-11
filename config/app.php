@@ -177,6 +177,7 @@ return [
 
         /*markdown require*/
         YuanChao\Editor\EndaEditorServiceProvider::class,
+        // YuanChao\Editor\Parsedown::class,
     ],
 
     /*
@@ -229,6 +230,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         'EndaEditor' => YuanChao\Editor\Facade\EndaEditorFacade::class,
+        // 'MdParsedowe'=> YuanChao\Editor\Parsedown::class,
 
     ],
 

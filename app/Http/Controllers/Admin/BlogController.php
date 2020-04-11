@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Blog;
 use App\Models\Comments;
+use EndaEditor;
+use App\Common\MarkDowner;
+
 class BlogController extends Controller
 {
     /**
@@ -41,6 +44,7 @@ class BlogController extends Controller
     public function create()
     {
         //
+        return view('admin.blog.create');
     }
 
     /**
@@ -53,17 +57,18 @@ class BlogController extends Controller
     {
         //获取入参
         $param = $request->all();
-
+        
         $blog = new Blog;
-        $blog->title   = $param['title'];
-        $blog->content = $param['content'];
-        $blog->status  = isset($param['status']) ? $param['status'] : 1;
-        $blog->author  = $param['author'];
-        
-        $boolInsert = $blog->save();
-        
+        $markdown = new MarkDowner; 
 
-        if ($boolInsert) return redirect('blog/index');
+        $blog->title   = $param['title'];
+        $blog->content = $markdown->convertMarkdownToHtml($param['content']);
+        $blog->status  = isset($param['status']) ? $param['status'] : 1;
+        $blog->author  = '吴烨';
+
+        $boolInsert = $blog->save();
+
+        if ($boolInsert) return redirect('admin/blog');
 
         return 'insert failed';
     }
@@ -100,10 +105,18 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($blogId)
     {
         //
-        var_dump("asd");
+        $blog = Blog::findOrFail($blogId);
+
+        $markdown = new MarkDowner; 
+
+        $blog['content'] = $markdown->convertHtmlToMarkdown($blog['content']); 
+
+        $assign = compact('blog');
+
+        return view('admin.blog.edit', $assign);
     }
 
     /**
@@ -115,10 +128,26 @@ class BlogController extends Controller
      */
     public function update(Request $request, $blogId)
     {
-        //加载对应内容  和创建文章相同
+        $param = $request->all();
 
+        $markdown = new MarkDowner;
+        
+        $content = $markdown->convertMarkdownToHtml($param['content']);
+
+        //加载对应内容  和创建文章相同
+        $bool = Blog::where('id',$blogId)
+                    ->update(['title'  => $param['title'],
+                              'content'=> $content,
+                            ]);
+
+        return redirect('admin/blog');
     }
 
+    //图片上传
+    public function uploadImage()
+    {
+        //
+    }
     /**
      * Remove the specified resource from storage.
      *

@@ -16,9 +16,6 @@
 //网站入口首页
 Route::get('/', 'Home\IndexController@index');
 
-Route::get('md', function(){
-	return view('edit');
-});
 
 Route::namespace('Home')->group(function(){
 		Route::get('/', 'IndexController@index');
@@ -50,15 +47,16 @@ Route::namespace('Admin')->prefix('admin')->group(function(){
 
 		Route::prefix('blog')->group(function(){
 			Route::get('/', 'BlogController@index');
-			Route::get('{blogId}', 'BlogController@show');
+			/*create 必须在{blogId}上*/
 			Route::get('create', 'BlogController@create');
 			Route::post('store', 'BlogController@store');
 			Route::get('edit/{blogId}', 'BlogController@edit');
-			Route::get('update/{blogId}', 'BlogController@update');
+			Route::post('uploadImage', 'BlogController@uploadImage');
+			Route::post('update/{blogId}', 'BlogController@update');
 			Route::get('delete', 'BlogController@destroy');
+			Route::get('{blogId}', 'BlogController@show');
 		});
 });
-
 
 // //blog路由
 // Route::prefix('blog')->group(function(){

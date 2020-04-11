@@ -75,6 +75,11 @@
 	margin-left: 10px;
 	color: red;
 }
+.createBlog {
+	float: right;
+	margin-right: 100px;
+	
+}
 /*title右侧用户信息*/
 .userView {
 	display: inline-block;
