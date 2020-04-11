@@ -16,6 +16,9 @@
 //网站入口首页
 Route::get('/', 'Home\IndexController@index');
 
+Route::get('md', function(){
+	return view('edit');
+});
 
 Route::namespace('Home')->group(function(){
 		Route::get('/', 'IndexController@index');
