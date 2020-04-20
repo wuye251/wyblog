@@ -6,14 +6,18 @@
 
 @section('title', 'wyblog-admin')
 
-@section('view1', '博客管理')
 
+
+@section('home_url', 'http://wyblog/admin')
+
+@section('view1', '博客管理')
+@section('blog_url', 'http://wyblog/admin/blog')
 
 @section('view2', 'GitHub')
 @section('view2_url', 'https://github.com/wuye251')
 
 @section('createBlog', '创建文章')
-@section('createBlog_url', './blog/create')
+@section('createBlog_url', 'http://wyblog/admin/blog/create')
 
 @section('content')
 	<div class="admin_home_content">
