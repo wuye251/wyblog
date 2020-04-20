@@ -17,15 +17,17 @@
 .admin_home_content{
 	/*注释高度之后可以自适应*/
 	/*height: 100%; */
-	width: 89%;
-	margin-left: 10%;	
-	border: solid;
+	width: 70%;
+	margin-left: 15%;	
+	/*border: solid;*/
+
 }
 
 .admin_home_conten_bloglist {
-	margin-left: 5%;
+	margin-left: 10%;
 	width: 80%;
-	border:solid;
+	/*border:solid;*/
+
 }
 
 

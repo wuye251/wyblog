@@ -87,7 +87,7 @@ class BlogController extends Controller
         //评论
         $comments = new Comments;
         $param = [          
-            'article_id' => $blogdId,
+            'article_id' => $blogId,
             'status'     => 1,
         ];
         $comments = Comments::where($param)
@@ -133,7 +133,6 @@ class BlogController extends Controller
         
         $content = $markdown->convertMarkdownToHtml($param['content']);
 
-        dd($content);exit;
         //加载对应内容  和创建文章相同
         $bool = Blog::where('id',$blogId)
                     ->update(['title'  => $param['title'],

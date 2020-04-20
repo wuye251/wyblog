@@ -4,7 +4,10 @@
 }
 /*one of the blog style*/
 .showAllBlogs_content_body_allInfo{
-    height: 200px;
+    text-align: center;
+    padding: 12px 24px;
+    background-color: rgb(255, 255, 255);
+    margin: 10px;
 }
 /*hr style between blog*/
 .showAllBlogs_content_body_hr{

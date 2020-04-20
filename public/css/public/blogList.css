@@ -4,19 +4,21 @@
 }
 /*one of the blog style*/
 .showAllBlogs_content_body_allInfo{
-    height: 200px;
     text-align: center;
+    padding: 12px 24px;
+    background-color: rgb(255, 255, 255);
+    margin: 10px;
 }
 /*hr style between blog*/
 .showAllBlogs_content_body_hr{
     height: 20px;
     background-color: red;
-    border: solid;
+    /*border: solid;*/
 }
 
 .showAllBlogs_content_body_operate{
 	position:relative;
-	border:solid;
+	/*border:solid;*/
 	float: right;
 	margin-right: 50px;
 	font-size: 20px;
@@ -31,5 +33,4 @@
 	margin-right: 20px;
 	display: inline-block;
 	color: gray;
-
 }

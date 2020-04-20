@@ -1,5 +1,7 @@
 <link rel="stylesheet" href="/css/home/index.css">
-<link rel="stylesheet" href="/css/blog/showAllBlogs.css">
+<link rel="stylesheet" href="/css/public/blogList.css">
+<link rel="stylesheet" href="/css/public/paginate.css">
+
 @extends('layouts.public.home')
 
 @section('title', 'wyblog')
@@ -29,7 +31,6 @@
 					<p>写死的摘要内容</p>
 				</div>
 			</div>
-			<div class="showAllBlogs_content_body_hr"></div>
 		@endforeach
 	</div>
 		<ul class="showAllBlogs_content_pagination">

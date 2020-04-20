@@ -37,19 +37,17 @@
 					<div class="showAllBlogs_content_body_summary">
 						<p>写死的摘要内容</p>
 					</div>
-					<div class="showAllBlogs_content_body_operate">
-						<a class="showAllBlogs_content_body_operate_view" href="http://wyblog/admin/blog/{{$v['id']}}">查看<a>
+						<div class="showAllBlogs_content_body_operate_view" href="http://wyblog/admin/blog/{{$v['id']}}">查看</div>
 						<div class="showAllBlogs_content_body_operate_edit">编辑</div>
-					</div>
 				</div>
-				<div class="showAllBlogs_content_body_hr"></div>
 			@endforeach
 			</div>
 			</div>
 		</div>
 		<div>
 			<ul class="showAllBlogs_content_pagination">
-			<li>{{$blogs->links()}}</li>
+				<li>{{$blogs->links()}}</li>
+			</ul>
 		</div>
 	</div>
 @endsection
