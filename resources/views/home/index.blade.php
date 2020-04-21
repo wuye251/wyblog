@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="/css/public/blogList.css">
 
 
-@extends('layouts.home')
+@extends('layouts.home.home')
 
 <!-- 博客页面左侧用户信息 -->
 @section('content_menu')

@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="css/blog/showBlog.css">
 
-@extends('layouts.home')
+@extends('layouts.home.home')
 
 
 <!-- 博客页面左侧用户信息 -->

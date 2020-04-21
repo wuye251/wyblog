@@ -2,18 +2,10 @@
 <link rel="stylesheet" href="/css/public/blogList.css">
 <link rel="stylesheet" href="/css/public/paginate.css">
 
-@extends('layouts.public.home')
-
-@section('title', 'wyblog')
-
-@section('view1', '博客')
-
-@section('view2', 'GitHub')
-@section('view2_url', 'https://github.com/wuye251')
+@extends('layouts.home.home')
 
 @section('content')
 	<div class="home_home_left_content">
-		asdasd
 	</div>
 	<div class="home_home_main_content">
 		<div class="showAllBlogs_content_body">
@@ -38,6 +30,5 @@
 	</div>
 
 	<div class="home_home_right_content">
-		asdsad
 	</div>
 @endsection

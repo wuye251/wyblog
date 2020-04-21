@@ -110,7 +110,6 @@ class BlogController extends Controller
         $blog = Blog::findOrFail($blogId);
 
         $markdown = new MarkDowner; 
-
         $blog['content'] = $markdown->convertHtmlToMarkdown($blog['content']); 
 
         $assign = compact('blog');

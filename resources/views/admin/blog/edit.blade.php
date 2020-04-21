@@ -3,14 +3,7 @@
 
 <script src="/js/app.js"></script>
 
-@extends('layouts.public.home')
-
-@section('title', 'wyblog-admin')
-
-@section('view1', '博客管理')
-	
-@section('view2', 'GitHub')
-@section('view2_url', 'https://github.com/wuye251')
+@extends('layouts.admin.home')
 
 @section('content')
 
