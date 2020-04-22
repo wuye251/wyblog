@@ -11,8 +11,8 @@
 
 
 @section('content')
-	<div class="home_home_left_content">
-	</div>
+	<div class="home_home_left_content"></div>
+	
 	<div class="home_home_main_content">
 		<div class="showAllBlogs_content_body">
 		@foreach($blogs as $k => $v)
@@ -30,11 +30,13 @@
 				</div>
 			</div>
 		@endforeach
-	</div>
-		<ul class="showAllBlogs_content_pagination">
-			<li>{{$blogs->links()}}</li>
+
+		</div>
+		<div style="position: relative;">
+			<ul class="showAllBlogs_content_pagination">
+				<li>{{$blogs->links()}}</li>
+			</div>
 	</div>
 
-	<div class="home_home_right_content">
-	</div>
+	<div class="home_home_right_content"></div>
 @endsection
