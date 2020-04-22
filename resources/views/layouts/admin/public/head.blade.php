@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="/css/admin/head.css">
+
 @section('home_url', 'http://wyblog/admin')
 
 @section('title', 'wyblog-admin')

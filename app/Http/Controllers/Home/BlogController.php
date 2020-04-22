@@ -44,7 +44,6 @@ class BlogController extends Controller
     {
         //博文
         $blog = Blog::findOrFail($blogId);
-
         //评论
         $comments = new Comments;
         $param = [          

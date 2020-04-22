@@ -27,7 +27,7 @@ class IndexController extends Controller
                      ->paginate(10);
 
         $assign = compact('blogs');
-        return view('admin.home', $assign);
+        return view('admin.index', $assign);
     }
 
     /**

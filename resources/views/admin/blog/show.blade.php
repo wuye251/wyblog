@@ -1,7 +1,7 @@
-<link rel="stylesheet" href="/css/admin/home.css">
+<link rel="stylesheet" href="/css/admin/index.css">
 <link rel="stylesheet" href="/css/blog/showBlog.css">
 
-@extends('layouts.admin.home')
+@extends('layouts.admin.index')
 
 @section('content')
 	<div class="showBlog_content_body">

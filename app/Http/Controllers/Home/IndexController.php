@@ -40,7 +40,7 @@ class IndexController extends Controller
 		];
 		
 		// return view('home.index', $assign);
-		return view('home.home', $assign);
+		return view('home.index', $assign);
 
 	}
 }

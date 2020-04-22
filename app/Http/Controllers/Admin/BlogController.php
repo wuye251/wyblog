@@ -33,7 +33,7 @@ class BlogController extends Controller
             'blogs' => $articles,
         ];
         
-        return view('admin.home', $assign);
+        return view('admin.index', $assign);
     }
 
     /**

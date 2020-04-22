@@ -1,0 +1,11 @@
+.createBlog {
+	background: #E33E33;
+	line-height: 32px;
+	height: 32px;
+	width: 92px;
+	color: #fff;
+	float: right;
+	font-size: 14px;	
+	text-align: center;
+	margin-top: -3px;
+}

@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="/css/blog/showBlog.css">
 
+@extends('layouts.home.index')
 
 <!-- 博客页面左侧用户信息 -->
 @section('content_menu')
@@ -7,7 +8,7 @@
 @endsection
 
 <!-- 博客内容列表侧内容 -->
-@section('content_body')
+@section('content')
 	<div class="showBlog_content_body">
 			<div class="showBlog_content_body_allInfo">
 				<div class="showBlog_content_body_title">

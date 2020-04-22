@@ -1,9 +1,9 @@
-<link rel="stylesheet" href="/css/admin/home.css">
+<link rel="stylesheet" href="/css/admin/index.css">
 <link rel="stylesheet" href="/css/admin/create.css">
 
 <script src="/js/app.js"></script>
 
-@extends('layouts.admin.home')
+@extends('layouts.admin.index')
 
 
 @section('content')

@@ -1,8 +1,8 @@
-<link rel="stylesheet" href="/css/admin/home.css">
+<link rel="stylesheet" href="/css/admin/index.css">
 <link rel="stylesheet" href="/css/public/paginate.css">
 <link rel="stylesheet" href="/css/public/blogList.css">
 
-@extends('layouts.admin.home')
+@extends('layouts.admin.index')
 
 
 @section('content')
