@@ -40,8 +40,8 @@ Route::namespace('Admin')->prefix('admin')->group(function () {
     });
 });
 
-// Route::namespace('Admin')->prefix('admin')->middleware('admin.auth')->group(function(){
-Route::namespace('Admin')->prefix('admin')->group(function(){
+Route::namespace('Admin')->prefix('admin')->middleware('auth')->group(function(){
+// Route::namespace('Admin')->prefix('admin')->group(function(){
 
 		Route::get('/','IndexController@index');
 

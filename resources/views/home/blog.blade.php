@@ -32,7 +32,7 @@
 				<div style="clear: both;"></div>
 				<hr>
 				<div class="showBlog_content_body_content">
-					{{$blog['content']}}
+					{!! htmlspecialchars_decode($blog['html'],ENT_QUOTES) !!}
 				</div> <!-- content end -->
 				<div class="showBlog_content_body_comment">
 					<hr>

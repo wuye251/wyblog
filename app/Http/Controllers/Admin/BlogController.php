@@ -62,7 +62,8 @@ class BlogController extends Controller
         $markdown = new MarkDowner; 
 
         $blog->title   = $param['title'];
-        $blog->content = $markdown->convertMarkdownToHtml($param['content']);
+        $blog->html    = $markdown->convertMarkdownToHtml($param['content']);
+        $blog->markdown= $param['content'];
         $blog->status  = isset($param['status']) ? $param['status'] : 1;
         $blog->author  = '吴烨';
 
@@ -109,8 +110,6 @@ class BlogController extends Controller
         //
         $blog = Blog::findOrFail($blogId);
 
-        $markdown = new MarkDowner; 
-        $blog['content'] = $markdown->convertHtmlToMarkdown($blog['content']); 
 
         $assign = compact('blog');
 
@@ -130,12 +129,13 @@ class BlogController extends Controller
 
         $markdown = new MarkDowner;
         
-        $content = $markdown->convertMarkdownToHtml($param['content']);
+        $html = $markdown->convertMarkdownToHtml($param['content']);
 
         //加载对应内容  和创建文章相同
         $bool = Blog::where('id',$blogId)
-                    ->update(['title'  => $param['title'],
-                              'content'=> $content,
+                    ->update(['title'   => $param['title'],
+                              'html'    => $html,
+                              'markdown'=> $param['content']
                             ]);
 
         return redirect('admin/blog');

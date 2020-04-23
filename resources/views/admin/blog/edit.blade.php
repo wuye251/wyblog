@@ -16,9 +16,7 @@
 		@include('editor::head')
 		<!-- 重定义 markdown大小 -->
 		<div class="editor" style="width: 100%;height: 1000px;">
-    	<textarea id='myEditor' name="content" placeholder="请输入内容">
-    			{{ $blog['content'] }}
-    	</textarea>
+    	<textarea id='myEditor' name="content" placeholder="请输入内容">{{ $blog['markdown'] }}</textarea>
 		</div>
 
 		<div class="publish_setting">
