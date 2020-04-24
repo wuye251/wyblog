@@ -1,5 +1,5 @@
 <?php
-
+ 
 namespace App\Common;
 
 use Parsedown;
