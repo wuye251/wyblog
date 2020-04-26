@@ -13,8 +13,11 @@
 
 
 
-//网站入口首页
+//web index
 Route::get('/', 'Home\IndexController@index');
+
+//forbidden create user 
+Auth::routes(['register' => false]);
 
 
 Route::namespace('Home')->group(function(){
@@ -29,18 +32,23 @@ Route::namespace('Home')->group(function(){
 		});
 });
 
+
 // 后台登录页面
 Route::namespace('Admin')->prefix('admin')->group(function () {
+
     Route::redirect('/', url('admin/login/index'));
     Route::prefix('login')->group(function () {
         // 登录页面
         Route::get('index', 'LoginController@index')->middleware('admin.login');
         // 退出
         Route::get('logout', 'LoginController@logout');
+
     });
 });
 
-Route::namespace('Admin')->prefix('admin')->middleware('auth')->group(function(){
+
+
+Route::namespace('Admin')->prefix('admin')->middleware('admin')->group(function(){
 // Route::namespace('Admin')->prefix('admin')->group(function(){
 
 		Route::get('/','IndexController@index');
@@ -57,6 +65,9 @@ Route::namespace('Admin')->prefix('admin')->middleware('auth')->group(function()
 			Route::get('{blogId}', 'BlogController@show');
 		});
 });
+
+
+
 
 // //blog路由
 // Route::prefix('blog')->group(function(){
@@ -92,6 +103,3 @@ Route::namespace('Admin')->prefix('admin')->middleware('auth')->group(function()
 
 
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
