@@ -17,7 +17,14 @@
 		<!-- <a class="editBlog" href='/blog/view/createBlog'>创建博客</a> -->
 
 		<div class="userView">
-			<input id="isLogin" type="button" name="isLogin" onclick="location.href='http://www.baidu.com'" value="登录/注册">
+            @if (!Auth::guard('admin')->check())
+				<input id="isLogin" type="button" name="isLogin" onclick="location.href='http://www.baidu.com'" value="登录/注册">
+			@else
+				<span style="color: #fff;"> {{ auth()->guard('admin')->user()->name }}</span> 
+				
+				<a style="color: #337ab7;"href="{{ route('adminLogout') }}">退 出</a>
+            @endif
+
 		</div>
 	</div>	
 </div><!-- header end -->

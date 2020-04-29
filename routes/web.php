@@ -36,23 +36,20 @@ Route::namespace('Home')->group(function(){
 // 后台登录页面
 Route::namespace('Admin')->prefix('admin')->group(function () {
 
-    Route::redirect('/', url('admin/login/index'));
-    Route::prefix('login')->group(function () {
-        // 登录页面
-        Route::get('index', 'LoginController@index')->middleware('admin.login');
-        // 退出
-        Route::get('logout', 'LoginController@logout');
+    Route::get('login', 'LoginController@index');
+    // 退出
+    Route::get('logout', 'LoginController@logout')->name('adminLogout');
 
-    });
 });
 
-
+Route::post('auth/admin/login', 'Auth\AdminController@login')->name('adminLogin');
 
 Route::namespace('Admin')->prefix('admin')->middleware('admin')->group(function(){
 // Route::namespace('Admin')->prefix('admin')->group(function(){
 
 		Route::get('/','IndexController@index');
-
+		Route::get('index','IndexController@index');
+		
 		Route::prefix('blog')->group(function(){
 			Route::get('/', 'BlogController@index');
 			/*create 必须在{blogId}上*/
