@@ -33,6 +33,34 @@ Route::namespace('Home')->group(function(){
 });
 
 
+//前台登录
+Route::namespace('Home')->prefix('home')->group(function (){
+
+	Route::get('login',  'OAuthController@index')->name('OAuthLogin');
+	
+	Route::get('logout', 'OAuthController@logout')->name('OAuthLogout');
+
+	Route::get('login/{action}', 'OAuthController@login')->name('OAuthGetInfo');
+});
+
+
+//第三方 信息设置
+Route::namespace('Admin')->prefix('admin')->group(function (){
+
+	Route::prefix('oauth/client')->group(function () {
+		Route::get('/', 'OAuthClientController@index');
+		Route::get('create', 'OAuthClientController@add');
+		Route::get('store',  'OAuthClientController@store');
+		Route::get('edit/{id}', 'OAuthClientController@edit');
+		Route::get('update', 'OAuthClientController@update');
+		Route::get('del', 'OAuthClientController@destroy');
+	});
+
+});
+
+Route::post('auth/oauth/login', 'Auth\OAuthController@login')->name('OAuthLoginIndex');
+
+
 // 后台登录页面
 Route::namespace('Admin')->prefix('admin')->group(function () {
 

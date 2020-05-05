@@ -178,6 +178,7 @@ return [
         /*markdown require*/
         YuanChao\Editor\EndaEditorServiceProvider::class,
         // YuanChao\Editor\Parsedown::class,
+        Overtrue\LaravelSocialite\ServiceProvider::class,
     ],
 
     /*
@@ -231,7 +232,7 @@ return [
 
         'EndaEditor' => YuanChao\Editor\Facade\EndaEditorFacade::class,
         // 'MdParsedowe'=> YuanChao\Editor\Parsedown::class,
-
+        'Socialite'  => Overtrue\LaravelSocialite\ServiceProvider::class,
     ],
 
 ];

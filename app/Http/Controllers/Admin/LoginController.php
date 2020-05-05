@@ -12,13 +12,14 @@ class LoginController extends Controller
 {
 
     public function index()
-    {
+    {	
+    	//调用第三方
     	return view('home');
     }
 
     public function logout()
     {
-    	Auth::guard('admin')->logout();
+    	Auth::guard('oauth')->logout();
 
     	return redirect('admin/login');
     }
