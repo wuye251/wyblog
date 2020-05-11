@@ -54,7 +54,7 @@ return [
 
         'oauth' => [
             'driver'   => 'session',
-            'provider' => 'users',
+            'provider' => 'oauth',
         ],
     ],
 
@@ -87,10 +87,10 @@ return [
         //     'model'  => App\Models\Admin::class,
         // ],
 
-        // 'admin' => [
-        //     'driver' => 'eloquent',
-        //     'model' => App\Models\OAuth::class,
-        // ],
+        'oauth' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\OAuth::class,
+        ],
         
         // 'users' => [
         //     'driver' => 'database',

@@ -35,12 +35,14 @@ Route::namespace('Home')->group(function(){
 
 //前台登录
 Route::namespace('Home')->prefix('home')->group(function (){
-
+	//登录选择
 	Route::get('login',  'OAuthController@index')->name('OAuthLogin');
-	
+	//登出
 	Route::get('logout', 'OAuthController@logout')->name('OAuthLogout');
-
+	//第三方登录
 	Route::get('login/{action}', 'OAuthController@login')->name('OAuthGetInfo');
+	//回调
+	Route::get('callBack', 'OAuthController@handleProviderCallback')->name('callBack');
 });
 
 

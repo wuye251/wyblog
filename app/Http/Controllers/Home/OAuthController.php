@@ -8,57 +8,70 @@ use Illuminate\Http\Request;
 use App\Models\OAuthClient;
 use Auth;
 use Socialite;
-use OAuth;
+use App\Models\OAuth as OAuth;
+use URL;
+use Exception;
 
+            
 class OAuthController extends Controller
 {
+
 
 	public function __construct()
 	{}
 
-    public function index()
-    {
+	public function index()
+	{
 
-    	return view('home/test');
-    }
+		return view('home/test');
+	}
 
-   	public function login($action)
-   	{
-   		$action = $action;
+	public function login($action = 'github')
+	{
+		$action = $action;
 
-   		$res = OAuthClient::where('name', $action)->first();
+		$res = OAuthClient::where('name', $action)->first();
 
-   		if (!$res) return '404';
+		if (!$res) return '404';
 
-   		return Socialite::driver('github')->redirect();
-   	}
+		return Socialite::driver('github')->redirect();
+	}
 
-   	 public function handleProviderCallback()
-    {
-        $github_user = Socialite::driver('github')->user();
+	public function handleProviderCallback(Request $request)
+	{
+		if (!$request->has('code')) {
+		    return '404';
+		}
 
-        dd($github_user);
-        $user=OAuth::where('name',$github_user->name)->first();
-        if(empty($user)){
-            $user = OAuth::create([
-                'name'=>$github_user->name,
-                'email'=>$github_user->email,
-                'github_name'=>$github_user->name,
-                // 'avatar'=>$github_user->avatar,
-            ]);
-        }
-        return Redirect()->guest('/');
-    }
+		try {
+			 $github_user = Socialite::driver('github')->user();
+		} catch (Exception $e) {
+			 $github_user = Socialite::driver('github')->stateless()->user();
+		}
 
-    public function getAction()
-    {}
+		$user = OAuth::where('name',$github_user->name)->first();
 
+		if (!$user) {
+			 $userId = OAuth::create([
+			     'name'         => $github_user->name,
+			     'email'        => (string) $github_user->email,
+			     'openId'       => $github_user->id,
+			     'access_token' => $github_user->token,
+		  	])->id;
+		} else {
+			$userId = $user->id;
+		}
+		Auth::guard('oauth')->loginUsingId($userId);
 
+    	if (!Auth::guard('oauth')->check()) return -1;
 
-    public function logout()
-    {
-    	Auth::guard('oauth')->logout();
+		return redirect('/');
+	}
 
-    	return redirect('/');
-    }
+	public function logout()
+	{
+		Auth::guard('oauth')->logout();
+
+		return redirect('/');
+	}
 }

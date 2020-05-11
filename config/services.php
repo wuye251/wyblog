@@ -33,7 +33,8 @@ return [
     'github' => [
         'client_id' => 'ccd8443e49ee58c167ed',
         'client_secret' => '69b3e98836e1f372111e4342b95cdffcb9ded689',
-        'redirect' => 'http://localhost/index',
+        'redirect' => 'http://wyblog/home/callBack',
+        // 'redirect'   => 'http://localhost/blog/public/home/callBack',
     ],
 
 ];

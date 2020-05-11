@@ -8,3 +8,16 @@
 
 @section('view3', 'GitHub')
 @section('view3_url', 'https://github.com/wuye251')
+
+
+@section('loginCheck')
+	@if (auth()->guard('oauth')->check())
+		<span style="color: #fff;"> {{ auth()->guard('oauth')->user()->name }}</span> 
+		
+		<a style="color: #337ab7;" href="{{ route('OAuthLogout') }}">退 出</a>
+	@else
+
+		<a id="isLogin" style="color: white" name="isLogin" href="{{ route('OAuthGetInfo', 'github') }}" >登 陆</a>
+
+    @endif
+@endsection
