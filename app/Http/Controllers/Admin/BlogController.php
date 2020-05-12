@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Blog;
 use App\Models\Comments;
+use App\Models\Category;
+
 use EndaEditor;
 use App\Common\MarkDowner;
 
@@ -44,7 +46,12 @@ class BlogController extends Controller
     public function create()
     {
         //
-        return view('admin.blog.create');
+        //分类列表
+        $category = Category::orderBy('sort', 'ASC')->get();
+
+        $assign = compact('category');
+        
+        return view('admin.blog.create', $assign);
     }
 
     /**

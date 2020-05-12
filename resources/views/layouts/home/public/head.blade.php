@@ -17,7 +17,8 @@
 		<a style="color: #337ab7;" href="{{ route('OAuthLogout') }}">退 出</a>
 	@else
 
-		<a id="isLogin" style="color: white" name="isLogin" href="{{ route('OAuthGetInfo', 'github') }}" >登 陆</a>
+		<!-- <a id="isLogin" style="color: white" name="isLogin" href="{{ route('OAuthGetInfo', 'github') }}" >登 陆</a> -->
+		<a id="isLogin" style="color: white" type="name="isLogin" href="{{ route('OAuthGetInfo', 'github') }}" >登 陆</a>
 
     @endif
 @endsection

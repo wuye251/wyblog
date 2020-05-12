@@ -22,5 +22,5 @@
 		@include('layouts.public.foot')
 	</div>
 </body>
-
+@yield('js')
 </html>

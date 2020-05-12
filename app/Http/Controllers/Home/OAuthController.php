@@ -16,7 +16,6 @@ use Exception;
 class OAuthController extends Controller
 {
 
-
 	public function __construct()
 	{}
 
@@ -26,10 +25,8 @@ class OAuthController extends Controller
 		return view('home/test');
 	}
 
-	public function login($action = 'github')
+	public function login($action)
 	{
-		$action = $action;
-
 		$res = OAuthClient::where('name', $action)->first();
 
 		if (!$res) return '404';

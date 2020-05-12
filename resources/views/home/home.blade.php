@@ -25,8 +25,13 @@
 			</div>
 		@endforeach
 	</div>
-		<ul class="showAllBlogs_content_pagination">
-			<li>{{$blogs->links()}}</li>
+		<div class="showAllBlogs_content_pagination large">
+			<div class='pagination'>
+			<ul>
+				<li>{{$blogs->links()}}</li>
+			</ul>
+			</div>
+		</div>
 	</div>
 
 	<div class="home_home_right_content">
