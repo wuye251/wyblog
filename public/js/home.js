@@ -1,20 +1,9 @@
-function loginWindow(){
-	var popUp = document.getElementById("tanchuang");
-	//  设置获取对象的上距离
-	    popUp.style.top = "140px";
-	//  设置获取对象的左距离
-	    popUp.style.left = "415px";
-	//  设置获取对象的宽度(像素)
-	    popUp.style.width = w + "px";
-	//  设置获取对象的高度(像素)
-	    popUp.style.height = h + "px";
-	//  设置获是否显示对象  
-	    popUp.style.visibility = "visible";
-	}
-	//创建一个删除方法
-	function hidePopup(){
-	//  获取操作对象的id
-	var popUp = document.getElementById("tanchuang");
-	//  设置对象隐藏
-	popUp.style.visibility = "hidden";
-}
+layer.open({
+  type: 1,
+  shade: false,
+  title: false, //不显示标题
+  content: $('.layer_notice'), //捕获的元素，注意：最好该指定的元素要存放在body最外层，否则可能被其它的相对元素所影响
+  cancel: function(){
+    layer.msg('捕获就是从页面已经存在的元素上，包裹layer的结构', {time: 5000, icon:6});
+  }
+});

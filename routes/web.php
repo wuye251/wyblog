@@ -12,7 +12,9 @@
 */
 
 
-
+Route::get('/123', function(){
+	return view('test');
+});
 //web index
 Route::get('/', 'Home\IndexController@index');
 
@@ -90,6 +92,17 @@ Route::namespace('Admin')->prefix('admin')->middleware('admin')->group(function(
 			Route::post('update/{blogId}', 'BlogController@update');
 			Route::get('delete', 'BlogController@destroy');
 			Route::get('{blogId}', 'BlogController@show');
+		});
+
+		//分类管理
+		Route::prefix('category')->group(function(){
+			Route::get('index', 'CategoryController@index');
+			Route::get('create', 'CategoryController@create');
+			Route::get('show/{id}', 'CategoryController@show');
+			Route::get('edit/{id}', 'CategoryController@edit');
+			Route::get('update/{id}', 'CategoryController@update');
+			Route::get('destroy/{id}', 'CategoryController@destroy');
+			
 		});
 });
 
