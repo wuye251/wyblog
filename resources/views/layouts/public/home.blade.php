@@ -3,7 +3,10 @@
 <head>
 <meta charset="utf-8">
 <title>	@yield('title')</title>
+<link rel="shortcut icon" href="/images/home/title.ico">
 </head>
+
+
 
 <link rel="stylesheet" href="/css/public/home.css">
 <link rel="stylesheet" href="/css/public/head.css">

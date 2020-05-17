@@ -13,7 +13,7 @@
 
 
 Route::get('/123', function(){
-	return view('test');
+	return view('test.tanchuang');
 });
 //web index
 Route::get('/', 'Home\IndexController@index');
