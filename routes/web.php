@@ -87,11 +87,11 @@ Route::namespace('Admin')->prefix('admin')->middleware('admin')->group(function(
 			/*create 必须在{blogId}上*/
 			Route::get('create', 'BlogController@create');
 			Route::post('store', 'BlogController@store');
-			Route::get('edit/{blogId}', 'BlogController@edit');
-			Route::post('uploadImage', 'BlogController@uploadImage');
+			Route::get('edit/{blogId}', 'BlogController@edit')->name('editBlog');
+			Route::post('upload', 'BlogController@upload');
 			Route::post('update/{blogId}', 'BlogController@update');
 			Route::get('delete', 'BlogController@destroy');
-			Route::get('{blogId}', 'BlogController@show');
+			Route::get('{blogId}', 'BlogController@show')->name('showBlog');
 		});
 
 		//分类管理

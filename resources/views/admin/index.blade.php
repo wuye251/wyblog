@@ -1,7 +1,7 @@
+<link href="{{ asset('css/app.css') }}" rel="stylesheet">
 <link rel="stylesheet" href="/css/admin/index.css">
 <link rel="stylesheet" href="/css/public/paginate.css">
 <link rel="stylesheet" href="/css/public/blogList.css">
-
 @extends('layouts.admin.index')
 
 
@@ -13,7 +13,7 @@
 			@foreach($blogs as $k => $v)
 				<div class="showAllBlogs_content_body_allInfo">
 					<div class="showAllBlogs_content_body_title">
-						<a class="showAllBlogs_content_body_link" href="http://wyblog/admin/blog/{{$v['id']}}" target="view_window">
+						<a class="showAllBlogs_content_body_link" href="{{route('showBlog', $v['id'])}}" target="view_window">
 							{{ $v['title'] }}
 						</a> <!-- 打印标题 并且赋值超链接 -->
 					</div>
@@ -23,8 +23,8 @@
 					<div class="showAllBlogs_content_body_summary">
 						<p>写死的摘要内容</p>
 					</div>
-						<div class="showAllBlogs_content_body_operate_view" href="http://wyblog/admin/blog/{{$v['id']}}">查看</div>
-						<div class="showAllBlogs_content_body_operate_edit">编辑</div>
+						<a class="showAllBlogs_content_body_operate_view" href="http://wyblog/admin/blog/{{$v['id']}}">查 看</a>
+						<a class="showAllBlogs_content_body_operate_edit" href="{{route('editBlog', $v['id'])}}">编 辑</a>
 				</div>
 			@endforeach
 			</div>

@@ -149,9 +149,13 @@ class BlogController extends Controller
     }
 
     //图片上传
-    public function uploadImage()
+    public function upload()
     {
         //
+        // path 为 public 下面目录，比如我的图片上传到 public/uploads 那么这个参数你传uploads 就行了
+
+        $data = EndaEditor::uploadImgFile('statistics/blog');
+        return json_encode($data);
     }
     /**
      * Remove the specified resource from storage.
