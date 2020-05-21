@@ -11,7 +11,9 @@
 |
 */
 
-
+Route::get('/1234', function(){
+	return view('test.bootstrap');
+});
 Route::get('/123', function(){
 	return view('test.tanchuang');
 });
@@ -98,6 +100,7 @@ Route::namespace('Admin')->prefix('admin')->middleware('admin')->group(function(
 		Route::prefix('category')->group(function(){
 			Route::get('index', 'CategoryController@index');
 			Route::get('create', 'CategoryController@create');
+			Route::get('store', 'CategoryController@store');
 			Route::get('show/{id}', 'CategoryController@show');
 			Route::get('edit/{id}', 'CategoryController@edit');
 			Route::get('update/{id}', 'CategoryController@update');

@@ -20,7 +20,7 @@
 @section('createBlog_url', 'http://wyblog/admin/blog/create')
 
 @section('createBlog')
-	<a class="container_createBlog" href="@yield('createBlog_url')">@yield('createBlog')</a>
+	<a class="btn container_createBlog" href="@yield('createBlog_url')">@yield('createBlog')</a>
 @endsection
 
 

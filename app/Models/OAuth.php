@@ -13,7 +13,7 @@ class OAuth extends Authenticatable
 	const CREATE_AT = 'created_time';
 	const UPDATE_AT = 'updated_time';
 
-	  protected $fillable = [
+	protected $fillable = [
       'name', 'access_token', 'openId', 'mail'
  	 ];
 }

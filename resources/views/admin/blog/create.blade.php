@@ -20,6 +20,13 @@
     	<textarea id='myEditor' name="content" placeholder="请输入内容"></textarea>
 		</div>
 
+		<div class="form-group">
+			@foreach($category as $item => $info)
+            <label class="checkbox-inline">
+                <input type="checkbox"  value="{{$info['id']}}" name="category">{{$info['name']}}
+            </label> 
+			 @endforeach
+		</div>
 		<div class="publish_setting">
 			<button class="publish_publishbtn">
 				<span>发布博文</span>

@@ -3,7 +3,7 @@
 <div class="head">
 	<div class="head-body">
 		<p class="welcome">欢迎来到wyblog</p>
-		<input class="search" type="text" name="search" placeholder="Search or jump to">
+<!-- 		<input class="search" type="text" name="search" placeholder="Search or jump to"> -->
 		<div class="container_kindView">
 			<a class="container_home"  href="@yield('view1_url')">@yield('view1')</a>
 			<a class="container_blog"  href="@yield('view2_url')">@yield('view2')</a>

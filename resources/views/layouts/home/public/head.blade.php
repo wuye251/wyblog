@@ -23,7 +23,7 @@
 	@else
 
 		<!-- <a id="isLogin" style="color: white" name="isLogin" href="{{ route('OAuthGetInfo', 'github') }}" >登 陆</a> -->
-		<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#login-modal">
+		<button class="btn btn-primary login-btn" data-toggle="modal" data-target="#login-modal">
 			登 陆
 		</button>
 
