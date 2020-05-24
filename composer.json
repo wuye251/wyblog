@@ -17,7 +17,8 @@
         "league/html-to-markdown": "^4.9",
         "mews/purifier": "^3.1",
         "overtrue/laravel-socialite": "~2.0",
-        "yuanchao/laravel-5-markdown-editor": "dev-master"
+        "yuanchao/laravel-5-markdown-editor": "dev-master",
+        "components/highlightjs": "^9.16"
     },
     "require-dev": {
         "facade/ignition": "^1.4",

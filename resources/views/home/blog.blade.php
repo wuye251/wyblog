@@ -1,4 +1,8 @@
 <link rel="stylesheet" href="/css/blog/showBlog.css">
+<script src="{{ asset('js/highlight.pack.js') }}"></script>
+<link href="{{ asset('css/highlight/monokai-sublime.css') }}" rel="stylesheet">
+
+<script >hljs.initHighlightingOnLoad();</script> 
 
 @extends('layouts.home.index')
 

@@ -11,12 +11,20 @@
 |
 */
 
+Route::get('/12345', function(){
+	return view('layouts.home.index');
+});
+
 Route::get('/1234', function(){
 	return view('test.bootstrap');
 });
 Route::get('/123', function(){
 	return view('test.tanchuang');
 });
+
+
+
+
 //web index
 Route::get('/', 'Home\IndexController@index');
 
