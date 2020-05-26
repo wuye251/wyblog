@@ -18,7 +18,7 @@
               <div class="row">
                   <div class="col-xs-12 col-md-12 col-lg-12 login-icon" > 
                     <a class="fa fa-github" href="{{ url('home/login/github') }}" alt="GitHub" title="给他哈勃"></a>
-                    <div class="fa fa-qq" title="QQ"></div>
+                    <!-- <div class="fa fa-qq" title="QQ"></div> -->
                   </div>
               </div>
         </div><!-- /.modal-content -->

@@ -30,7 +30,7 @@
 					</div>
 					
 					<div class="showAllBlogs_content_body_category">
-						<p>php练习生日常</p>
+						<p></p>
 					</div>
 				</div><!-- summary end -->
 				<div style="clear: both;"></div>
@@ -40,26 +40,25 @@
 				</div> <!-- content end -->
 				<div class="showBlog_content_body_comment">
 					<hr>
-					<span class="comment_title">咖啡厅</span>
-					<br />
-					<div class="comment_contentAndSumit">
+					<!-- <span class="comment_title">咖啡厅</span> -->
+					<!-- <br /> -->
+<!-- 					<div class="comment_contentAndSumit">
 						<form action="/blog/comment/{{$blog['id']}}" method="POST" class="comment_commit">	
 							@csrf
 							<textarea class="comment_content" name="commentContent" placeholder="火钳刘明(●'◡'●)"></textarea>
-							<br />
 							<input class="conmment_submit" type="submit" value="提交">
 						</form>
-					</div>
-					<br />
-					<hr>
+					</div> -->
+					<!-- <br /> -->
+					<!-- <hr> -->
 
 					<div class="comment_list">
-						@foreach($comments as $commentKey => $commentValue)
+<!-- 						@foreach($comments as $commentKey => $commentValue)
 							{{$commentValue['create_time']}}
 							{{$commentValue['content']}}
 							<hr>
 						@endforeach
-					</div> <!-- 评论列表展示结束 -->
+ -->					</div> <!-- 评论列表展示结束 -->
 				</div>
 			</div>
 	</div>		

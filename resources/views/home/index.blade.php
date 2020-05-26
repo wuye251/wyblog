@@ -26,7 +26,7 @@
 					<p>{{$v['updated_at']}}  {{$v['author']}}</p>
 				</div>
 				<div class="showAllBlogs_content_body_summary">
-					<p>写死的摘要内容</p>
+					<p></p>
 				</div>
 			</div>
 		@endforeach

@@ -26,7 +26,7 @@
 					</div>
 					
 					<div class="showAllBlogs_content_body_category">
-						<p>php练习生日常</p>
+						<!-- <p>php练习生日常</p> -->
 					</div>
 					<div class="showBlog_content_body_operate">
 						<a class="showAllBlogs_content_body_link" href="http://wyblog/admin/blog/edit/{{$blog['id']}}" target="_self">编辑</a>
@@ -38,7 +38,7 @@
 				<div class="showBlog_content_body_content">
 					{!! htmlspecialchars_decode($blog['html'],ENT_QUOTES) !!}
 				</div> <!-- content end -->
-				<div class="showBlog_content_body_comment">
+				<!-- <div class="showBlog_content_body_comment">
 					<hr>
 					<span class="comment_title">咖啡厅</span>
 					<br />
@@ -50,7 +50,7 @@
 						</form>
 					</div>
 					<br />
-					<hr>
+ -->					<hr>
 
 					<div class="comment_list">
 						@foreach($comments as $commentKey => $commentValue)
