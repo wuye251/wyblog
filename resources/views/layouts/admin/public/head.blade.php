@@ -1,3 +1,6 @@
+<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+
+
 <link rel="stylesheet" href="/css/admin/head.css">
 
 @section('home_url', 'http://wyblog/admin')
