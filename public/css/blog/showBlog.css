@@ -27,7 +27,7 @@
 	/*为什么上一div设置float影响的是下一个div*/
 	/*div之间用inline不能实现并行?*/
 	/*display: inline;*/
-	margin-left: 100px;
+	/*margin-left: 100px;*/
 	display: inline-block;
 
 }

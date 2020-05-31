@@ -19,15 +19,17 @@
 			<div class="showAllBlogs_content_body_allInfo">
 				<div class="showAllBlogs_content_body_title">
 					<a class="showAllBlogs_content_body_link" href="http://wyblog/blog/{{$v['id']}}" target="view_window">
-						{{ $v['title'] }}
+						<h2 class="blog-titile">{{ $v['title'] }} </h2>
 					</a> <!-- 打印标题 并且赋值超链接 -->
 				</div>
+
 				<div class="showAllBlogs_content_body_timeInfo">
-					<p>{{$v['updated_at']}}  {{$v['author']}}</p>
+					<p class="fa fa-user">  {{$v['author']}} </p> 
+					<p class="fa fa-calendar"> {{$v['updated_at']}} </p>
+					<p class="fa fa-tags">  {{($v->category)['name']}} </p>
 				</div>
-				<div class="showAllBlogs_content_body_summary">
-					<p></p>
-				</div>
+				
+
 			</div>
 		@endforeach
 

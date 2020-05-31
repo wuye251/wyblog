@@ -2,9 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class Category extends Base
 {
     /**
      * @param int  id    		主键
@@ -14,9 +13,15 @@ class Category extends Model
      */
     protected $table = 'categories';
 
-	protected $primaryKey = 'id';
-   	
-   	protected $fillable = [
+    protected $primaryKey = 'id';
+    	
+    	protected $fillable = [
       'name', 'description'
- 	 ];
+      ];
+
+    // 一对多 关联博客
+    public function blogs()
+    {
+     return $this->hasMany(Blog::class);   
+    }
 }

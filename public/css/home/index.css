@@ -16,12 +16,14 @@
 
 .public_home_content{
 }
+
 .home_home_left_content{
 	width: 25%;
 	height: 50%;
 	float: left;
 	/*background-color: pink;*/
 }
+
 .home_home_main_content{
 	width: 50%;
 	float: left;
@@ -29,12 +31,29 @@
 	/*border: solid;*/
 	/*background-color: red;*/
 }
+
 .home_home_right_content{
 	width:25%;
 	float: right;
 	height: 50%;
 	/*background-color: yellow;*/
 }
+
+.showAllBlogs_content_body_timeInfo {
+	padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.blog-titile {
+	margin-top: 0;
+}
+
+.showAllBlogs_content_body_timeInfo p {
+    display: inline;
+    float: left;
+    width: 30%;
+}
+
 
 /*.public_foot{
 	clear: both;

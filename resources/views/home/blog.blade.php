@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="/css/blog/showBlog.css">
+<link rel="shortcut icon" href="/images/home/title.ico">
 <script src="{{ asset('js/highlight.pack.js') }}"></script>
 <link href="{{ asset('css/highlight/monokai-sublime.css') }}" rel="stylesheet">
-
 <script >hljs.initHighlightingOnLoad();</script> 
 
 @extends('layouts.home.index')
@@ -22,15 +22,15 @@
 
 				<div class="showBlog_content_body_summary">
 					<div class="showAllBlogs_content_body_authorInfo">
-						<p>{{$blog['author']}}   </p>
+						<p class="fa fa-user">{{$blog['author']}}   </p>
 					</div>
 
 					<div class="showAllBlogs_content_body_timeInfo">
-						<p>{{$blog['updated_at']}}</p>
+						<p class="fa fa-calendar">{{$blog['updated_at']}}</p>
 					</div>
 					
 					<div class="showAllBlogs_content_body_category">
-						<p></p>
+						<p class="fa fa-calendar">{{$category['name']}}</p>
 					</div>
 				</div><!-- summary end -->
 				<div style="clear: both;"></div>

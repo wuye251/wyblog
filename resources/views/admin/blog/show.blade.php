@@ -26,7 +26,7 @@
 					</div>
 					
 					<div class="showAllBlogs_content_body_category">
-						<!-- <p>php练习生日常</p> -->
+						<p>{{$category['name']}}</p>
 					</div>
 					<div class="showBlog_content_body_operate">
 						<a class="showAllBlogs_content_body_link" href="http://wyblog/admin/blog/edit/{{$blog['id']}}" target="_self">编辑</a>

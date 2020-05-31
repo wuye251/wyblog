@@ -1,10 +1,7 @@
 <?php
 
 namespace App\Models;
-//Eloquent 模型建立
-use Illuminate\Database\Eloquent\Model;
-// //软删除
-// use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 /**
  * Class Blog
@@ -14,9 +11,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $content     内容
  * @property string $author      作者
  *
- * @author  hanmeimei
  */
-class Blog extends Model
+class Blog extends Base
 {
 	//指定表名
 	protected $table = 'tblblog';
@@ -38,4 +34,11 @@ class Blog extends Model
 	// protected $attributes = [
         // 'deleted' => 0,
     // ];
+
+	public function category()
+	{
+		/* 将blog category_id字段 和 category表的id关联 */
+		return $this->belongsTo(Category::class, 'category_id');
+	}
+
 }

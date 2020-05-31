@@ -10,12 +10,20 @@
 	display: inline-block;
 	font-size: 16px;
 }
+
+a:hover {
+	text-decoration: none;
+}
+
+
 .head-body {
 	margin-top: 0px;
 	padding-top : 5px;
 	height: 80%;
 }
-
+.public_home_body a:hover {
+	text-decoration: none;
+}
 /*头部 欢迎词*/
 .welcome {
 	margin-top:	5px;

@@ -92,16 +92,21 @@ class BlogController extends Controller
         //博文
         $blog = Blog::findOrFail($blogId);
 
+        //分类标签
+        $category = $blog->category;
+
         //评论
         $comments = new Comments;
         $param = [          
             'article_id' => $blogId,
             'status'     => 1,
         ];
+
+
         $comments = Comments::where($param)
                             ->orderby('create_time','desc')
                             ->get();
-        $assign = compact('blog', 'comments');
+        $assign = compact('blog', 'comments', 'category');
 
         return view('admin.blog.show', $assign);
     }

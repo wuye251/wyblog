@@ -22,13 +22,19 @@
 						</a> <!-- 打印标题 并且赋值超链接 -->
 					</div>
 					<div class="showAllBlogs_content_body_timeInfo">
-						<p>{{$v['updated_at']}}  {{$v['author']}}</p>
+					<p class="fa fa-user">  {{$v['author']}} </p> 
+					<p class="fa fa-calendar"> {{$v['updated_at']}} </p>
+					<p class="fa fa-tags">  {{($v->category)['name']}} </p>
 					</div>
 					<div class="showAllBlogs_content_body_summary">
-						<p>写死的摘要内容</p>
+						<p></p>
 					</div>
+
+					<div class="blog-operate">
 						<a class="showAllBlogs_content_body_operate_view" href="http://wyblog/admin/blog/{{$v['id']}}">查 看</a>
 						<a class="showAllBlogs_content_body_operate_edit" href="{{route('editBlog', $v['id'])}}">编 辑</a>
+					</div>
+
 				</div>
 			@endforeach
 			</div>
