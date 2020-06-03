@@ -29,7 +29,7 @@ class BlogController extends Controller
 
         $articles = Blog::where($defaultParam)
                      ->orderby('updated_at', 'desc')
-                     ->paginate(20);
+                     ->paginate(10);
 
         $assign = [
             'blogs' => $articles,
@@ -122,8 +122,11 @@ class BlogController extends Controller
         //
         $blog = Blog::findOrFail($blogId);
 
+        $category = $blog->category;
 
-        $assign = compact('blog');
+        $categoryList   = Category::all();
+
+        $assign = compact('blog', 'category', 'categoryList');
 
         return view('admin.blog.edit', $assign);
     }
@@ -147,7 +150,8 @@ class BlogController extends Controller
         $bool = Blog::where('id',$blogId)
                     ->update(['title'   => $param['title'],
                               'html'    => $html,
-                              'markdown'=> $param['content']
+                              'markdown'=> $param['content'],
+                              'category'=> $param['category'],
                             ]);
 
         return redirect('admin/blog');
