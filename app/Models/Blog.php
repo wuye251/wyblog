@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-
+use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * Class Blog
  *
@@ -20,8 +20,9 @@ class Blog extends Base
 	//指定主键
 	protected $primaryKey = 'id';
 
-	// //软删除
-	// use SoftDeletes;
+	//软删除 Base.php中已引入
+	use SoftDeletes;
+	protected $dates = ['deleted_at'];
 
 	const CREATE_AT = 'create_time';
 	const UPDATE_AT = 'update_time';

@@ -17,13 +17,8 @@ class BlogController extends Controller
     public function index()
     {
         //查找条件处理
-        $defaultParam = [
-                            'author' => '吴烨',
-                            'status' =>  1,
-                            'deleted'=>  0,
-                        ];
-
-        $articles = Blog::where($defaultParam)
+        $articles = Blog::withTrashed()
+                     ->where('status',1)
                      ->orderby('updated_at', 'desc')
                      ->paginate(10);
 

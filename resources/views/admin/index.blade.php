@@ -18,13 +18,20 @@
 				<div class="showAllBlogs_content_body_allInfo">
 					<div class="showAllBlogs_content_body_title">
 						<a class="showAllBlogs_content_body_link" href="{{route('showBlog', $v['id'])}}" target="view_window">
-							{{ $v['title'] }}
+							<h2 class="blog-titile">{{ $v['title'] }} </h2>
 						</a> <!-- 打印标题 并且赋值超链接 -->
 					</div>
 					<div class="showAllBlogs_content_body_timeInfo">
 					<p class="fa fa-user">  {{$v['author']}} </p> 
 					<p class="fa fa-calendar"> {{$v['updated_at']}} </p>
-					<p class="fa fa-tags">  {{($v->category)['name']}} </p>
+					<p class="fa fa-tags">  
+						@if (!$v->category['name']) 
+						   暂无分类
+						@else
+						{{($v->category)['name']}} 
+						@endif
+					</p>
+					
 					</div>
 					<div class="showAllBlogs_content_body_summary">
 						<p></p>
@@ -40,7 +47,7 @@
 			</div>
 			</div>
 		</div>
-		<div>
+		<div style="position: relative;">
 			<ul class="showAllBlogs_content_pagination">
 				<li>{{$blogs->links()}}</li>
 			</ul>

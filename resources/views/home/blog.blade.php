@@ -30,7 +30,7 @@
 					</div>
 					
 					<div class="showAllBlogs_content_body_category">
-						<p class="fa fa-calendar">{{$category['name']}}</p>
+						<p class="fa fa-tags">{{$category['name']}}</p>
 					</div>
 				</div><!-- summary end -->
 				<div style="clear: both;"></div>

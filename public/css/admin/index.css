@@ -33,20 +33,17 @@
 .showAllBlogs_content_body_timeInfo p {
     display: inline;
     float: left;
-    width: 30%;
+    width: 33%;
 }
 
+
+    
 .showAllBlogs_content_body_timeInfo {
     padding-top: 10px;
     padding-bottom: 10px;
-    width: 100%;
-    float: left;
 }
 
 
-.blog-operate{
-    clear: both;
-}
 
 ul.showAllBlogs_content_pagination {
     /*display: inline-block;

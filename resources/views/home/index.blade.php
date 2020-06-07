@@ -26,7 +26,13 @@
 				<div class="showAllBlogs_content_body_timeInfo">
 					<p class="fa fa-user">  {{$v['author']}} </p> 
 					<p class="fa fa-calendar"> {{$v['updated_at']}} </p>
-					<p class="fa fa-tags">  {{($v->category)['name']}} </p>
+					<p class="fa fa-tags">  
+						@if (!$v->category['name']) 
+						   暂无分类
+						@else
+						{{($v->category)['name']}} 
+						@endif
+					</p>
 				</div>
 				
 
@@ -37,7 +43,7 @@
 		<div style="position: relative;">
 			<ul class="showAllBlogs_content_pagination">
 				<li>{{$blogs->links()}}</li>
-			</div>
+		</div>
 	</div>
 
 	<div class="home_home_right_content"></div>

@@ -1,0 +1,13 @@
+.showAllBlogs_content_body_timeInfo p {
+    display: inline;
+}
+
+
+
+.blog-titile {
+  margin-top: 0;
+}
+
+.blog-operate-link {
+	width: 30%;
+}

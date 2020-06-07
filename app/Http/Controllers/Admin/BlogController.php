@@ -20,14 +20,8 @@ class BlogController extends Controller
      */
     public function index()
     {
-                //查找条件处理
-        $defaultParam = [
-                            'author' => '吴烨',
-                            'status' =>  1,
-                            'deleted'=>  0,
-                        ];
-
-        $articles = Blog::where($defaultParam)
+        //查找条件处理
+        $articles = Blog::where('status', 1)
                      ->orderby('updated_at', 'desc')
                      ->paginate(10);
 
@@ -166,14 +160,35 @@ class BlogController extends Controller
         $data = EndaEditor::uploadImgFile('statistics/blog');
         return json_encode($data);
     }
+
+    /**
+     * 软删除博文
+     * @param int $id
+     * @return bool 
+     */
+    public function softDelete($blogId)
+    {
+
+        Blog::find($blogId)->delete();
+
+        return route('index');
+        
+    }
+
+
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($blogId)
     {
         //
+        Blog::forceDelete()->where('id',$blogId);
+
+
+        return route('index');
     }
+
 }

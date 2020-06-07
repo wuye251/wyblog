@@ -62,12 +62,12 @@ Route::namespace('Home')->prefix('home')->group(function (){
 Route::namespace('Admin')->prefix('admin')->group(function (){
 
 	Route::prefix('oauth/client')->group(function () {
-		Route::get('/', 'OAuthClientController@index');
-		Route::get('create', 'OAuthClientController@add');
-		Route::get('store',  'OAuthClientController@store');
+		Route::get('/', 		'OAuthClientController@index');
+		Route::get('create', 	'OAuthClientController@add');
+		Route::get('store',  	'OAuthClientController@store');
 		Route::get('edit/{id}', 'OAuthClientController@edit');
-		Route::get('update', 'OAuthClientController@update');
-		Route::get('del', 'OAuthClientController@destroy');
+		Route::get('update', 	'OAuthClientController@update');
+		Route::get('del', 		'OAuthClientController@destroy');
 	});
 
 });
@@ -92,27 +92,29 @@ Route::namespace('Admin')->prefix('admin')->middleware('admin')->group(function(
 		Route::get('/','IndexController@index');
 		Route::get('index','IndexController@index');
 		
+		//博客
 		Route::prefix('blog')->group(function(){
-			Route::get('/', 'BlogController@index');
+			Route::get('/', 'BlogController@index')->name('index');
 			/*create 必须在{blogId}上*/
-			Route::get('create', 'BlogController@create');
-			Route::post('store', 'BlogController@store');
-			Route::get('edit/{blogId}', 'BlogController@edit')->name('editBlog');
-			Route::post('upload', 'BlogController@upload');
-			Route::post('update/{blogId}', 'BlogController@update');
-			Route::get('delete', 'BlogController@destroy');
-			Route::get('{blogId}', 'BlogController@show')->name('showBlog');
+			Route::get('create',        	  'BlogController@create');
+			Route::post('store',        	  'BlogController@store');
+			Route::get('edit/{blogId}',       'BlogController@edit')->name('editBlog');
+			Route::post('upload',             'BlogController@upload');
+			Route::post('update/{blogId}',    'BlogController@update');
+			Route::get('softDelete/{blogId}', 'BlogController@softDelete')->name('softDelete');
+			Route::get('destroy/{blogId}',    'BlogController@destroy')->name('destory');
+			Route::get('{blogId}',            'BlogController@show')->name('showBlog');
 		});
 
 		//分类管理
 		Route::prefix('category')->group(function(){
-			Route::get('index', 'CategoryController@index');
-			Route::get('create', 'CategoryController@create');
-			Route::get('store', 'CategoryController@store');
-			Route::get('show/{id}', 'CategoryController@show');
-			Route::get('edit/{id}', 'CategoryController@edit');
-			Route::get('update/{id}', 'CategoryController@update');
-			Route::get('destroy/{id}', 'CategoryController@destroy');
+			Route::get('index', 		'CategoryController@index');
+			Route::get('create', 		'CategoryController@create');
+			Route::get('store', 		'CategoryController@store');
+			Route::get('show/{id}', 	'CategoryController@show');
+			Route::get('edit/{id}', 	'CategoryController@edit');
+			Route::get('update/{id}', 	'CategoryController@update');
+			Route::get('destroy/{id}',  'CategoryController@destroy');
 			
 		});
 });
