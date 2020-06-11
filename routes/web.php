@@ -12,7 +12,7 @@
 */
 
 Route::get('/12345', function(){
-	return view('layouts.home.index');
+	return view('layouts.public.index');
 });
 
 Route::get('/1234', function(){
