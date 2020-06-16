@@ -26,7 +26,7 @@ Route::get('/123', function(){
 
 
 //web index
-Route::get('/', 'Home\IndexController@index');
+Route::get('/', 'Home\IndexController@index')->name('home');
 
 //forbidden create user 
 Auth::routes(['register' => false]);
@@ -36,8 +36,8 @@ Route::namespace('Home')->group(function(){
 		Route::get('/', 'IndexController@index');
 		//blog
 		Route::prefix('blog')->group(function(){
-			Route::get('/', 'BlogController@index');
-			Route::get('{blogId}','BlogController@show');/*paginate生成的link为 blog/article/{blogId} 后期需要优化 为 blog/{blogId}*/
+			Route::get('/', 'BlogController@index')->name('blog');
+			Route::get('{blogId}','BlogController@show')->name('blog_content');/*paginate生成的link为 blog/article/{blogId} 后期需要优化 为 blog/{blogId}*/
 
 			// Route::get('comment/{blogId}', 'CommentController@index');/*暂不支持单独评论展示路由*/
 			Route::post('comment/{blogId}', 'CommentController@create');

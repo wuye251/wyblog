@@ -2,3 +2,52 @@
 	margin: center;
 }
 
+.b-login {
+	margin-right: 32px;
+}
+
+#b-foot {
+	/*margin-top: 10px;*/
+    padding: 40px 0;
+    position: relative;
+    z-index: 2;
+    /*background: #333;*/
+    background: black;
+    color: #9d9d9d;
+	clear: both;
+
+}
+
+#b-foot dl dd a {
+     color: #9d9d9d; 
+}
+
+#b-foot dl dd {
+    height: 25px;
+    line-height: 25px;
+}
+
+#b-foot h3 {
+	margin-top: -7px;
+}
+
+.b-margin {
+	margin-top: 100px;
+}
+
+#login-modal .login-icon .fa {
+    margin: 0 20px;
+    font-size: 65px;
+    cursor: pointer;
+    color: #333;
+}
+
+.login-icon {
+	padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+.login-title {
+	text-align: center;
+}

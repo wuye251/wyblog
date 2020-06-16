@@ -3,8 +3,11 @@
 <script src="{{ asset('js/highlight.pack.js') }}"></script>
 <link href="{{ asset('css/highlight/monokai-sublime.css') }}" rel="stylesheet">
 <script >hljs.initHighlightingOnLoad();</script> 
+<link rel="stylesheet" type="text/css" href="{{ asset('css/font-awesome.min.css')}}">
 
-@extends('layouts.home.index')
+
+@extends('layouts.public.index')
+
 
 <!-- 博客页面左侧用户信息 -->
 @section('content_menu')
