@@ -13,12 +13,12 @@
 		<div class="container-fluid">
 
 			<div class="navbar-header col-md-1">
-					<a href="" class="navbar-brand">吴烨个人站</a>
+					<a href="/" class="navbar-brand">吴烨个人站</a>
 			</div>
 
 			<div class="collapse navbar-collapse">
 					<ul class="nav navbar-nav" id="mytab">
-						<li class="active col-md-4"><a class="btn" href="">首页</a></li>
+						<li class="active col-md-4"><a class="btn" href="/">首页</a></li>
 						<li class="col-md-4"><a class="btn" href="{{route('blog')}}">博客</a></li>
 						<li class="col-md-4"><a href="{{config('const.github')}}" target="_blank">Github</a></li>
 					</ul>
