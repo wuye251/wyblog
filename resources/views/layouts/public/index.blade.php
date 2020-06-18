@@ -31,9 +31,7 @@
 					</form> -->
 
 					<ul class="nav navbar-nav navbar-right b-login">
-						<li>
-							<a class="login-btn" data-toggle="modal" data-target="#login-modal">登陆</a>
-						</li>
+						@yield('loginCheck')
 					</ul>
 				
 			</div>

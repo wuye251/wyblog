@@ -3,8 +3,9 @@
 
 <script src="/js/app.js"></script>
 
-@extends('layouts.admin.index')
+@extends('layouts.public.index')
 
+@extends('layouts.admin.loginCheck')
 
 @section('content')
 

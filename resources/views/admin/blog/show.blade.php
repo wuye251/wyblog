@@ -6,7 +6,9 @@
 
 <script >hljs.initHighlightingOnLoad();</script> 
 
-@extends('layouts.admin.index')
+@extends('layouts.public.index')
+
+@extends('layouts.admin.loginCheck')
 
 @section('content')
 	<div class="showBlog_content_body">

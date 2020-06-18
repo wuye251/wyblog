@@ -1,7 +1,9 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('css/home/index.css')}}">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/font-awesome.min.css')}}">
+
 @extends('layouts.public.index')
 
+@extends('layouts.home.loginCheck')
 
 @section('content')
 	<!-- <div class="home_home_left_content"></div> -->

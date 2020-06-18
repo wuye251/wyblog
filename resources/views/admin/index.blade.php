@@ -3,6 +3,8 @@
 
 @extends('layouts.public.index')
 
+@extends('layouts.admin.loginCheck')
+
 
 @section('content')
 	<!-- <div class="home_home_left_content"></div> -->
