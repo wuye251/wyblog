@@ -96,7 +96,7 @@ Route::namespace('Admin')->prefix('admin')->middleware('admin')->group(function(
 		Route::prefix('blog')->group(function(){
 			Route::get('/', 'BlogController@index')->name('index');
 			/*create 必须在{blogId}上*/
-			Route::get('create',        	  'BlogController@create');
+			Route::get('create',        	  'BlogController@create')->name('createBlog');
 			Route::post('store',        	  'BlogController@store');
 			Route::get('edit/{blogId}',       'BlogController@edit')->name('editBlog');
 			Route::post('upload',             'BlogController@upload');

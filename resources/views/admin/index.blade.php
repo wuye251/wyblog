@@ -3,8 +3,7 @@
 
 @extends('layouts.public.index')
 
-@extends('layouts.admin.loginCheck')
-
+@extends('layouts.admin.module')
 
 @section('content')
 	<!-- <div class="home_home_left_content"></div> -->
@@ -27,7 +26,7 @@
 	                        <dl class="col-xs-4 col-md-4 col-lg-4">
 	                            <dt class="fa fa-calendar"></dt> {{ $v->updated_at }}
 	                        </dl>
-	                        <dl class="col-xs-4 col-md-4 col-lg-3">
+	                        <dl class="col-xs-4 col-md-4 col-lg-4">
 	                        	<dt class="fa fa-tags">  
 		                        	@if (!$v->category['name']) 
 								   		暂无分类

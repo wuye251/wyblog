@@ -7,7 +7,7 @@
 }
 
 #b-foot {
-	/*margin-top: 10px;*/
+	margin-top: 300px;
     padding: 40px 0;
     position: relative;
     z-index: 2;
@@ -18,6 +18,9 @@
 
 }
 
+.b-nav {
+    text-align: center;
+}
 #b-foot dl dd a {
      color: #9d9d9d; 
 }

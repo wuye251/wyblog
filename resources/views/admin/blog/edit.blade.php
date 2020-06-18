@@ -5,7 +5,7 @@
 
 @extends('layouts.public.index')
 
-@extends('layouts.admin.loginCheck')
+@extends('layouts.admin.module')
 
 @section('content')
 
@@ -24,12 +24,6 @@
 		<div class="form-group">
             <label class="checkbox-inline">
 			@foreach($categoryList as $item => $info)
-				@foreach($category as $i => $v)
-					@if($v['category_id'] == $info['id'])
-		                <input type="checkbox"  checked value="{{$info['id']}}" name="category">{{$info['name']}}
-		                {{countinue}}
-		            @endif
-		        @endforeach
                 <input type="checkbox"  value="{{$info['id']}}" name="category">{{$info['name']}}
             </label> 
 			 @endforeach

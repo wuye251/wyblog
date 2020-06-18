@@ -5,7 +5,8 @@
 
 @extends('layouts.public.index')
 
-@extends('layouts.admin.loginCheck')
+@extends('layouts.admin.module')
+
 
 @section('content')
 

@@ -119,7 +119,6 @@ class BlogController extends Controller
         $category = $blog->category;
 
         $categoryList   = Category::all();
-
         $assign = compact('blog', 'category', 'categoryList');
 
         return view('admin.blog.edit', $assign);

@@ -18,9 +18,10 @@
 
 			<div class="collapse navbar-collapse">
 					<ul class="nav navbar-nav" id="mytab">
-						<li class="active col-md-4"><a class="btn" href="/">首页</a></li>
-						<li class="col-md-4"><a class="btn" href="{{route('blog')}}">博客</a></li>
-						<li class="col-md-4"><a href="{{config('const.github')}}" target="_blank">Github</a></li>
+						<li class="b-nav-col active"><a class="btn" href="/">首页</a></li>
+						<li class="b-nav-col"><a class="btn" href="{{route('blog')}}">博客</a></li>
+						<li class="b-nav-col"><a href="{{config('const.github')}}" target="_blank">Github</a></li>
+						@yield('nav')
 					</ul>
 <!-- 
 					<form class="navbar-form navbar-left" role="search">
