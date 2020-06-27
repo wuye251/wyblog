@@ -51,14 +51,12 @@
 	                </div>
 	                <!-- 文章摘要结束 -->
 
-
 <!-- 	            	<a href="{{route('blog_content', $v['id']) }}" class="btn-read">查看文章</a> -->
 	            </div>
 			@endforeach
 			</div>
 		</div>
 
-		</div>
 		<div style="position: relative;">
 			<ul class="showAllBlogs_content_pagination">
 				<li>{{$blogs->links()}}</li>

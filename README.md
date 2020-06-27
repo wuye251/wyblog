@@ -1,3 +1,3 @@
-# wyblog1
+# wyblog
 个人博客搭建
  

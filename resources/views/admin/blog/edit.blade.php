@@ -9,7 +9,7 @@
 
 @section('content')
 
-	<form action="http://wyblog/admin/blog/update/{{$blog['id']}}" method="post" id="blogPublish">
+	<form action="{{route('admin.update', $blog['id'])}}" method="post" id="blogPublish">
 		@csrf
 	<div class="admin_create_content">
 		<div class="admin_blog_create_title">
@@ -25,6 +25,7 @@
             <label class="checkbox-inline">
 			@foreach($categoryList as $item => $info)
                 <input type="checkbox"  value="{{$info['id']}}" name="category">{{$info['name']}}
+
             </label> 
 			 @endforeach
 		</div>

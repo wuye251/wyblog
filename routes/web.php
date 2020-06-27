@@ -100,10 +100,10 @@ Route::namespace('Admin')->prefix('admin')->middleware('admin')->group(function(
 			Route::post('store',        	  'BlogController@store');
 			Route::get('edit/{blogId}',       'BlogController@edit')->name('editBlog');
 			Route::post('upload',             'BlogController@upload');
-			Route::post('update/{blogId}',    'BlogController@update');
+			Route::post('update/{blogId}',    'BlogController@update')->name('admin.update');
 			Route::get('softDelete/{blogId}', 'BlogController@softDelete')->name('softDelete');
 			Route::get('destroy/{blogId}',    'BlogController@destroy')->name('destory');
-			Route::get('{blogId}',            'BlogController@show')->name('showBlog');
+			Route::get('{blogId}',            'BlogController@show')->name('admin.show');
 		});
 
 		//分类管理

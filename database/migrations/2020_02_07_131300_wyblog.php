@@ -13,7 +13,7 @@ class Wyblog extends Migration
      */
     public function up()
     {
-        Schema::create('tblBlog', function (Blueprint $table) {
+        Schema::create('tblblog', function (Blueprint $table) {
             $table->bigIncrements('id')
                   ->comment('主键ID');
             $table->string('title')
