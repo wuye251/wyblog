@@ -37,7 +37,7 @@ Route::namespace('Home')->group(function(){
 		//blog
 		Route::prefix('blog')->group(function(){
 			Route::get('/', 'BlogController@index');
-			Route::get('{blogId}','BlogController@show');/*paginate生成的link为 blog/article/{blogId} 后期需要优化 为 blog/{blogId}*/
+			Route::get('{blogId}','BlogController@show')->name('home.show');/*paginate生成的link为 blog/article/{blogId} 后期需要优化 为 blog/{blogId}*/
 
 			// Route::get('comment/{blogId}', 'CommentController@index');/*暂不支持单独评论展示路由*/
 			Route::post('comment/{blogId}', 'CommentController@create');
