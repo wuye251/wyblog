@@ -5,6 +5,7 @@
 				<dt>权益</dt>
 					<dd>版权所有：© 2014-2020</dd>
 					<dd>联系邮箱：<a href="mailto:wuye@wuye.com">wuye@wuye.com</a></dd>
+					<dd>ICP 备案：<a href="http://www.beian.miit.gov.cn/">京ICP备20022739号-1</a></dd>
 			</dl>
 
 			<dl class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
