@@ -7,16 +7,16 @@
 
 <link rel="stylesheet" href="/css/admin/head.css">
 
-@section('home_url', 'http://wyblog/admin')
+@section('home_url', '/admin')
 
 @section('title', 'wyblog-admin')
 
 @section('view1', '首页')
-@section('view1_url', 'http://wyblog/admin')
+@section('view1_url', '/admin')
 
 
 @section('view2', '博客管理')
-@section('view2_url', 'http://wyblog/admin/blog')
+@section('view2_url', '/admin/blog')
 
 
 @section('view3', 'GitHub')
@@ -24,7 +24,7 @@
 
 
 @section('createBlog', '创建文章')
-@section('createBlog_url', 'http://wyblog/admin/blog/create')
+@section('createBlog_url', '/admin/blog/create')
 
 @section('createBlog')
 	<a class="btn container_createBlog" href="@yield('createBlog_url')">@yield('createBlog')</a>

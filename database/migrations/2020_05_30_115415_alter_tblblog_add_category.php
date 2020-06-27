@@ -15,7 +15,7 @@ class AlterTblblogAddCategory extends Migration
     {
         Schema::table('tblblog', function (Blueprint $table) {
             //
-            $table->integer('category_id')->comment('外键标签id')->after('author');
+            $table->integer('category_id')->comment('外键标签id')->after('author')->change();
         });
     }
 

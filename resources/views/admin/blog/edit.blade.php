@@ -7,7 +7,7 @@
 
 @section('content')
 
-	<form action="http://wyblog/admin/blog/update/{{$blog['id']}}" method="post" id="blogPublish">
+	<form action="{{route('admin.update', $blog['id'])}}" method="post" id="blogPublish">
 		@csrf
 	<div class="admin_create_content">
 		<div class="admin_blog_create_title">
@@ -22,13 +22,6 @@
 		<div class="form-group">
             <label class="checkbox-inline">
 			@foreach($categoryList as $item => $info)
-				@foreach($category as $i => $v)
-					@if($v['category_id'] == $info['id'])
-		                <input type="checkbox"  checked value="{{$info['id']}}" name="category">{{$info['name']}}
-		                {{countinue}}
-		            @endif
-		        @endforeach
-                <input type="checkbox"  value="{{$info['id']}}" name="category">{{$info['name']}}
             </label> 
 			 @endforeach
 		</div>

@@ -17,7 +17,7 @@
 			@foreach($blogs as $k => $v)
 				<div class="showAllBlogs_content_body_allInfo">
 					<div class="showAllBlogs_content_body_title">
-						<a class="showAllBlogs_content_body_link" href="{{route('showBlog', $v['id'])}}" target="view_window">
+						<a class="showAllBlogs_content_body_link" href="{{route('admin.show', $v['id'])}}" target="view_window">
 							<h2 class="blog-titile">{{ $v['title'] }} </h2>
 						</a> <!-- 打印标题 并且赋值超链接 -->
 					</div>
@@ -38,7 +38,7 @@
 					</div>
 
 					<div class="blog-operate">
-						<a class="showAllBlogs_content_body_operate_view" href="http://wyblog/admin/blog/{{$v['id']}}">查 看</a>
+						<a class="showAllBlogs_content_body_operate_view" href="{{route('admin.show', $v['id'])}}">查 看</a>
 						<a class="showAllBlogs_content_body_operate_edit" href="{{route('editBlog', $v['id'])}}">编 辑</a>
 					</div>
 
