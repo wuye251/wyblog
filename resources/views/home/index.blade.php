@@ -3,7 +3,7 @@
 
 @extends('layouts.public.index')
 
-@extends('layouts.home.loginCheck')
+@extends('layouts.home.module')
 
 @section('content')
 	<!-- <div class="home_home_left_content"></div> -->

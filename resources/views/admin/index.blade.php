@@ -16,7 +16,7 @@
 			@foreach($blogs as $k => $v)
 				<div class="row b-blog-summay">
 					<h3 class="col-xs-12 col-md-12 col-lg-12 b-titile">
-						<a class="blog-titile" href="{{ route('blog_content', $v['id']) }}">{{ $v['title'] }} </a>
+						<a class="blog-titile" href="{{route('admin.show',$v['id'])}}">{{ $v['title'] }} </a>
 					</h3>
 					<div class="col-xs-12 col-md-12 col-lg-12  b-summary-date">
 	                    <div class="row">
@@ -39,7 +39,7 @@
 	                </div>
 
 					<div class="col-xs-12 col-md-12 col-lg-12 operate">
-						<a class="col-xs-4 col-md-4 col-lg-4" href="http://wyblog/admin/blog/{{$v['id']}}">查 看</a>
+						<a class="col-xs-4 col-md-4 col-lg-4" href="{{route('admin.show',$v['id'])}}">查 看</a>
 						<a  class="col-xs-4 col-md-4 col-lg-4" href="{{route('editBlog', $v['id'])}}">编 辑</a>
 						<a  class="col-xs-4 col-md-4 col-lg-4" href="{{route('softDelete', $v['id'])}}">刪 除</a>
 					</div>

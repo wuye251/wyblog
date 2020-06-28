@@ -2,6 +2,7 @@
 <link rel="stylesheet" href="/css/admin/create.css">
 
 <script src="/js/app.js"></script>
+<!-- <script src="{{asset('/js/jquery.min.js')}}"></script> -->
 
 @extends('layouts.public.index')
 

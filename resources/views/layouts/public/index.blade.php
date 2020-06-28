@@ -3,7 +3,8 @@
 <head>
 	<title>吴烨个人站</title>
 	<meta charset="utf-8">
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/js/jquery.min.js') }}">
     <link rel="stylesheet" type="text/css" href="{{asset('css/public/index.css')}}">
 
 </head>
@@ -13,14 +14,14 @@
 		<div class="container-fluid">
 
 			<div class="navbar-header col-md-1">
-					<a href="/" class="navbar-brand">吴烨个人站</a>
+					<a href="@yield('nav_welcome')" class="navbar-brand">hello world</a>
 			</div>
 
 			<div class="collapse navbar-collapse">
 					<ul class="nav navbar-nav" id="mytab">
-						<li class="b-nav-col active"><a class="btn" href="/">首页</a></li>
-						<li class="b-nav-col"><a class="btn" href="{{route('blog')}}">博客</a></li>
-						<li class="b-nav-col"><a href="{{config('const.github')}}" target="_blank">Github</a></li>
+						<li class="b-nav-col active"><a class="btn" href="@yield('nav_index')" >首页</a></li>
+						<li class="b-nav-col"><a class="btn" href="@yield('nav_blog')" >博客</a></li>
+						<li class="b-nav-col"><a class="btn" href="{{config('const.github')}}" target="_blank" >Github</a></li>
 						@yield('nav')
 					</ul>
 <!-- 
@@ -80,12 +81,12 @@
 	<!-- 底部信息结束 -->
 <script src="{{asset('js/jquery.min.js')}}"></script>
 <script src="{{asset('js/bootstrap.min.js')}}"></script>
-<script>
+<!-- <script>
 	$("#mytab a").click(function(e){
 		e.preventDefault();
 		$(this).tab("show");
 	})
-</script>
+</script> -->
 </body>
 </html> 
 
