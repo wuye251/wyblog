@@ -81,12 +81,26 @@
 	<!-- 底部信息结束 -->
 <script src="{{asset('js/jquery.min.js')}}"></script>
 <script src="{{asset('js/bootstrap.min.js')}}"></script>
-<!-- <script>
-	$("#mytab a").click(function(e){
-		e.preventDefault();
-		$(this).tab("show");
-	})
-</script> -->
+<script>
+$(function () {
+　　$("#mytab").find("li").each(function () {
+
+　　　　var a = $(this).find("a:first")[0];
+
+　　　　 if ($(a).attr("href") === location.pathname) {
+
+　　　　　　$(this).addClass("active");
+
+　　　　} else {
+
+　　　　　　 $(this).removeClass("active");
+
+　　　　}
+
+　　});
+
+})
+</script>
 </body>
 </html> 
 

@@ -1,8 +1,10 @@
 <link rel="stylesheet" href="/css/admin/index.css">
 <link rel="stylesheet" href="/css/admin/create.css">
 
-<script src="/js/app.js"></script>
-<!-- <script src="{{asset('/js/jquery.min.js')}}"></script> -->
+<!-- <script src="/js/app.js"></script> -->
+    <script rel="stylesheet" href="{{ asset('/css/bootstrap.min.css') }}"></script> 
+	<script rel="stylesheet" href="{{ asset('/js/jquery.min.js') }}"></script> 
+    
 
 @extends('layouts.public.index')
 
@@ -17,6 +19,7 @@
 		<div class="admin_blog_create_title">
 			<input class="admin_blog_create_title_input" placeholder="请输入标题" name="title">
 		</div>
+
 		@include('editor::head')
 		<!-- 重定义 markdown大小 -->
 		<div class="editor" style="width: 100%;height: 1000px;">
