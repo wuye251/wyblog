@@ -30,7 +30,6 @@
 			<div class="showBlog_content_body_allInfo">
 				<div class="showBlog_content_body_title">
 							{{ $blog['title'] }}
-						<hr>
 				</div><!-- title end -->
 
 				<div class="showBlog_content_body_summary">
@@ -43,16 +42,20 @@
 					</div>
 					
 					<div class="showAllBlogs_content_body_category">
-						<p class="fa fa-tags">{{$category['name']}}</p>
+						<p class="fa fa-tags"> 
+						@if (!$category['name']) 
+						   暂无分类
+						@else
+						{{$category['name']}} 
+						@endif
+						</p>
 					</div>
 				</div><!-- summary end -->
 				<div style="clear: both;"></div>
-				<hr>
 				<div class="showBlog_content_body_content">
 					{!! htmlspecialchars_decode($blog['html'],ENT_QUOTES) !!}
 				</div> <!-- content end -->
 				<div class="showBlog_content_body_comment">
-					<hr>
 					<!-- <span class="comment_title">咖啡厅</span> -->
 					<!-- <br /> -->
 <!-- 					<div class="comment_contentAndSumit">

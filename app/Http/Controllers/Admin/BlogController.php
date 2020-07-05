@@ -121,7 +121,7 @@ class BlogController extends Controller
         $categoryList   = Category::all();
         $assign = compact('blog', 'category', 'categoryList');
 
-        return view('admin.blog.edit', $assign);
+        return view('admin.blog.create', $assign);
     }
 
     /**
@@ -137,6 +137,9 @@ class BlogController extends Controller
 
         $markdown = new MarkDowner;
         
+        //未勾选 给空值
+        $param['category'] = $param['category'] ?? 0;
+
         $html = $markdown->convertMarkdownToHtml($param['content']);
 
         //加载对应内容  和创建文章相同
@@ -144,7 +147,7 @@ class BlogController extends Controller
                     ->update(['title'   => $param['title'],
                               'html'    => $html,
                               'markdown'=> $param['content'],
-                              'category'=> $param['category'],
+                              'category_id'=> $param['category'],
                             ]);
 
         return redirect('admin/blog');

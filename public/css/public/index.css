@@ -35,7 +35,7 @@
 }
 
 .b-margin {
-	margin-top: 100px;
+	margin-top: 100px !;
 }
 
 #login-modal .login-icon .fa {
@@ -58,3 +58,13 @@
 .pi-welcome {
     width: 200px;
 }
+
+.b-blog-summay {
+    text-align: center;
+}
+
+a {
+    text-decoration:none
+}
+
+a:hover{ text-decoration:none}

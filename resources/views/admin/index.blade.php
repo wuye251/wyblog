@@ -20,7 +20,7 @@
 					</h3>
 					<div class="col-xs-12 col-md-12 col-lg-12  b-summary-date">
 	                    <div class="row">
-	                        <dl class="col-xs-4 col-md-4 col-lg-3 col-lg-offset-2">
+	                        <dl class="col-xs-4 col-md-4 col-lg-4">
 	                            <dt class="fa fa-user"></dt> {{ $v->author }}
 	                        </dl>
 	                        <dl class="col-xs-4 col-md-4 col-lg-4">

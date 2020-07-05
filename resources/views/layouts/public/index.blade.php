@@ -5,6 +5,8 @@
 	<meta charset="utf-8">
     <link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/js/jquery.min.js') }}">
+<!-- 	<link rel="stylesheet" type="text/css" href="{{asset('/js/app.js')}}">
+	<link rel="stylesheet" type="text/css" href="{{asset('/css/app.css')}}"> -->
     <link rel="stylesheet" type="text/css" href="{{asset('css/public/index.css')}}">
 
 </head>
@@ -101,7 +103,6 @@ $(function () {
 
 })
 </script>
-</body>
 </html> 
 
 

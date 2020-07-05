@@ -22,3 +22,87 @@ table, td, th
     font-size: 20px;
     color : #000000;/*纯黑*/
 }
+
+
+.admin_create_content {
+	width: 100%;
+	margin-bottom: -300px;
+}
+
+.b-title-return{
+	padding-left: 24px;
+	font-size: 19px;
+}
+.b-title-input {
+	width: 80%;
+    display: inline-block;
+  
+    margin: 8px 16px 8px 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+
+.admin_blog_create_title{
+	width: 100%;
+    display: inline-block;
+    background-color: #ddd
+}
+
+.admin_blog_create_title_input{
+	width: 100%;
+    padding: 8px;
+    font-size: 18px;
+    display: inline-block;
+    line-height: 24px;
+    background-color: #fff
+}
+
+.publish_setting{
+	height: 100px;
+	width: 100%;
+}
+.publish_publishbtn{
+	margin-left: 47%;
+	padding: 6px 12px;
+	line-height: 24px;
+	border: 1px solid #c92027;
+	color: #c92027;
+	font-size: 16px;
+	background-color: transparent;
+}
+
+.b-edit-operate {
+    display: inline-block;
+    height: 52px;
+    margin-top: 9px;
+}
+
+.btn-save {
+	display: inline-block;
+	margin-right: 16px;
+    padding: 0 16px;
+    font-size: 16px;
+    color: #ca0c16;
+    border: 1px solid #ca0c16;
+    border-radius: 4px;
+    white-space: nowrap;
+    background-color: #fff;
+    height: 43px;
+}
+
+.btn-publish {
+	padding: 0 16px;
+    height: 43px;
+    font-size: 16px;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    white-space: nowrap;
+    background-color: #ca0c16;
+}
+
+.b-margin {
+	margin-top: 53px !important;
+}	
+

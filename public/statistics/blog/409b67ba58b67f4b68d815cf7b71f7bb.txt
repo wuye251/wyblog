@@ -1,0 +1,25 @@
+highlightjs引入代码语法高亮  5.21
+https://highlightjs.org/download/   （下载链接）
+https://highlightjs.org/static/demo/ (主题)
+https://www.tinkpic.com/laravel_blogs/40（教程）
+
+
+composer require 
+composer update
+
+
+npm install ...
+npm run prod
+
+
+app.js的作用
+
+
+
+Bt-Panel: http://120.27.2.255:8888                                                                                                                                      username: jenq8nnc                                                                                                                                                      password: 5be4ef58   
+
+
+	
+101.201.146.171
+
+京ICP备20022739号-1
