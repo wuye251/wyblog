@@ -1,8 +1,8 @@
 <link rel="stylesheet" href="/css/admin/index.css">
 <link rel="stylesheet" href="/css/blog/createBlog.css">
 
-<script src="/js/app.js"></script>
-
+<link href="css/app.css" rel="stylesheet">
+<script src="{{ mix('js/app.js') }}"></script>
 @extends('layouts.public.index')
 
 @extends('layouts.admin.module')
@@ -28,8 +28,8 @@
 				@endif
 			</div>
 			<div class="b-edit-operate">
-					<button class="btn-save">保存草稿</button>
-					<button class="btn-publish">发布文章</button>
+					<button class="btn-save" id="save">保存草稿</button>
+					<button class="btn-publish" id="publish">发布文章</button>
 			</div>
 		</div>
 		@include('editor::head')
@@ -71,4 +71,9 @@
 
 @endsection
 
+<script type="text/javascript">
+	$(document).ready(function(){
+        $("#publish").colorbox({transition: "fade"});
+    	});
+</script>
 
