@@ -4,10 +4,12 @@
 	<title>吴烨个人站</title>
 	<meta charset="utf-8">
     <link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('/js/jquery.min.js') }}">
+    <script src="{{asset('js/jquery.min.js')}}"></script>
+	<script src="{{asset('js/bootstrap.min.js')}}"></script>
 <!-- 	<link rel="stylesheet" type="text/css" href="{{asset('/js/app.js')}}">
 	<link rel="stylesheet" type="text/css" href="{{asset('/css/app.css')}}"> -->
     <link rel="stylesheet" type="text/css" href="{{asset('css/public/index.css')}}">
+    
 
 </head>
 <body>
@@ -56,7 +58,7 @@
 
 						<dd>联系邮箱：<a href="mailto:{{config('const.mailto')}}">{{config('const.mailto')}}</a></dd>
 
-						<dd>ICP 备案：{{config('const.icp')}}</dd>
+						<dd>ICP 备案：<a href="http://www.beian.miit.gov.cn/">{{config('const.icp')}}</a></dd>
 				</dl>
 
 				<dl class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
@@ -81,8 +83,7 @@
 		</div>
 	</div>
 	<!-- 底部信息结束 -->
-<script src="{{asset('js/jquery.min.js')}}"></script>
-<script src="{{asset('js/bootstrap.min.js')}}"></script>
+</body>
 <script>
 $(function () {
 　　$("#mytab").find("li").each(function () {

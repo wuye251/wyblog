@@ -1,8 +1,12 @@
 <link rel="stylesheet" href="/css/admin/index.css">
 <link rel="stylesheet" href="/css/blog/createBlog.css">
 
-<link href="css/app.css" rel="stylesheet">
-<script src="{{ mix('js/app.js') }}"></script>
+	<script src="{{ mix('/js/app.js') }}"></script>
+    <!-- <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}"> -->
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+	<script src="{{ asset('js/bootstrap.min.js')}}"></script>
+	<link rel="stylesheet" href="{{mix('/css/app.css')}}">
+
 @extends('layouts.public.index')
 
 @extends('layouts.admin.module')
@@ -73,7 +77,8 @@
 
 <script type="text/javascript">
 	$(document).ready(function(){
-        $("#publish").colorbox({transition: "fade"});
+        // $("#publish").colorbox({transition: "fade"});
+        $("#publish").colorbox({ innerWidth: 610, innerHeight: 580, iframe:true});
     	});
 </script>
 

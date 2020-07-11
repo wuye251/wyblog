@@ -10,7 +10,7 @@ return [
 
 	/*foot >>> name & url*/
 	'mailto'    => '754093136@qq.com',
-	'icp'       => '豫ICP备14009546号-3',
+	'icp'       => '京ICP备20022739号-1',
 	'copyright' => '© 2014-2020',
 	'project_name'   => 'laravel-wyblog',
 	'version'   => 'v1.0.0-develop',
