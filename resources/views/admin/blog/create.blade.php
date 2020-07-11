@@ -1,12 +1,7 @@
 <link rel="stylesheet" href="/css/admin/index.css">
 <link rel="stylesheet" href="/css/blog/createBlog.css">
 
-	<script src="{{ mix('/js/app.js') }}"></script>
-    <!-- <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}"> -->
-    <script src="{{ asset('js/jquery.min.js') }}"></script>
-	<script src="{{ asset('js/bootstrap.min.js')}}"></script>
-	<link rel="stylesheet" href="{{mix('/css/app.css')}}">
-
+    <script src="{{mix('/js/app.js')}}"></script>
 @extends('layouts.public.index')
 
 @extends('layouts.admin.module')
@@ -14,11 +9,12 @@
 @section('content')
 		
 	@if (!isset($blog))
-	<form action="./store" method="post" id="blogPublish">
+	<form action="./store" method="post" id="blogPublish"></form>
 	@else
-	<form action="{{route('admin.update', $blog['id'])}}" method="post" id="blogPublish">
+	<form action="{{route('admin.update', $blog['id'])}}" method="post" id="blogPublish"></form>
 	@endif
-		@csrf
+	
+	@csrf
 	<div class="admin_create_content">
 		<div class="admin_blog_create_title">
 			<a class="b-title-return" href="{{route('index')}}">< 文章管理</a>
@@ -45,7 +41,7 @@
     		<textarea id='myEditor' name="content" placeholder="请输入内容"></textarea>
     	@endif
 		</div>
-
+	</div>
 
 <!-- 		<div class="form-group">
             <label class="checkbox-inline">
@@ -70,15 +66,14 @@
 			</button>
 		</div>
 	</div>
-	 -->
 	</form>
+	 -->
 
 @endsection
 
 <script type="text/javascript">
 	$(document).ready(function(){
-        // $("#publish").colorbox({transition: "fade"});
-        $("#publish").colorbox({ innerWidth: 610, innerHeight: 580, iframe:true});
+        $("#publish").colorbox({transition: "fade"});
     	});
 </script>
 

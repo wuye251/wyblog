@@ -3,47 +3,43 @@
 <head>
 	<title>吴烨个人站</title>
 	<meta charset="utf-8">
-    <link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css') }}">
-    <script src="{{asset('js/jquery.min.js')}}"></script>
-	<script src="{{asset('js/bootstrap.min.js')}}"></script>
-<!-- 	<link rel="stylesheet" type="text/css" href="{{asset('/js/app.js')}}">
-	<link rel="stylesheet" type="text/css" href="{{asset('/css/app.css')}}"> -->
-    <link rel="stylesheet" type="text/css" href="{{asset('css/public/index.css')}}">
-    
-
+	<link rel="stylesheet" type="text/css" href="{{asset('/css/app.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('/css/public/index.css')}}">
+    <script src="{{mix('/js/app.js')}}"></script>
 </head>
+
+
 <body>
 	<!-- 导航栏开始 -->
-	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-		<div class="container-fluid">
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<!-- <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation"> -->
+  		<a class="navbar-brand" href="/">hello world</a></a>
+		<!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		    <span class="navbar-toggler-icon"></span>
+		</button> -->
 
-			<div class="navbar-header col-md-1">
-					<a href="@yield('nav_welcome')" class="navbar-brand">hello world</a>
-			</div>
 
-			<div class="collapse navbar-collapse">
-					<ul class="nav navbar-nav" id="mytab">
-						<li class="b-nav-col active"><a class="btn" href="@yield('nav_index')" >首页</a></li>
-						<li class="b-nav-col"><a class="btn" href="@yield('nav_blog')" >博客</a></li>
-						<li class="b-nav-col"><a class="btn" href="{{config('const.github')}}" target="_blank" >Github</a></li>
-						@yield('nav')
-					</ul>
-<!-- 
-					<form class="navbar-form navbar-left" role="search">
-						<div class="form-group">
-							<input type="text" class="form-control" placeholder="搜索" name="">
-							<button type="submit" class="btn btn-default">提交</button>
-						</div>
-					</form> -->
-
-					<ul class="nav navbar-nav navbar-right b-login">
-						@yield('loginCheck')
-					</ul>
-				
-			</div>
-		</div>
+		 <div class="collapse navbar-collapse" id="navbarSupportedContent">
+		    <ul class="navbar-nav mr-auto" id="mytab">
+		        <li class="nav-item active b-nav-col">
+		        	<a class="nav-link" href="/">首页 <span class="sr-only">(current)asdasd</span></a>
+		        </li>
+		        <li class="nav-item b-nav-col">
+		        	<a class="nav-link" href="@yield('nav_blog')" >博客</a></li>
+		        </li>
+		        <li class="nav-item b-nav-col">
+		        	<a class="nav-link" href="{{config('const.github')}}" target="_blank" >Github</a></li>
+		        </li>
+				@yield('nav')
+   			</ul>
+   			<ul class="nav navbar-nav navbar-right b-login">
+				@yield('loginCheck')
+			</ul>
+   		</div>
 	</nav>
 	<!-- 导航栏结束 -->
+
+
 	<div class="b-margin">
 		@yield('content')
 	</div>
@@ -84,6 +80,8 @@
 	</div>
 	<!-- 底部信息结束 -->
 </body>
+
+
 <script>
 $(function () {
 　　$("#mytab").find("li").each(function () {
@@ -104,6 +102,7 @@ $(function () {
 
 })
 </script>
+
 </html> 
 
 
