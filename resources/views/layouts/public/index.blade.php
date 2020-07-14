@@ -13,7 +13,7 @@
 	<!-- 导航栏开始 -->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 	<!-- <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation"> -->
-  		<a class="navbar-brand" href="/">hello world</a></a>
+  		<a class="navbar-brand" href="@yield('nav_welcome')">hello world</a></a>
 		<!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 		    <span class="navbar-toggler-icon"></span>
 		</button> -->
@@ -22,7 +22,7 @@
 		 <div class="collapse navbar-collapse" id="navbarSupportedContent">
 		    <ul class="navbar-nav mr-auto" id="mytab">
 		        <li class="nav-item active b-nav-col">
-		        	<a class="nav-link" href="/">首页 <span class="sr-only">(current)asdasd</span></a>
+		        	<a class="nav-link" href="@yield('nav_index')">首页 <span class="sr-only">(current)asdasd</span></a>
 		        </li>
 		        <li class="nav-item b-nav-col">
 		        	<a class="nav-link" href="@yield('nav_blog')" >博客</a></li>

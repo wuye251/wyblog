@@ -71,9 +71,104 @@
 
 @endsection
 
+
 <script type="text/javascript">
 	$(document).ready(function(){
-        $("#publish").colorbox({transition: "fade"});
+        $("#publish").colorbox({
+        	width: "500px",
+        	height: "80%",
+        	inline: true,
+        	href: "#cbox-category"
     	});
+    });
 </script>
 
+<style type="text/css">
+	.tag__options-list {
+	    padding: 8px 8px 0 0;
+	    width: 423px;
+	    max-height: 117px;
+	    background: #fff;
+	    overflow-x: hidden;
+	    overflow-y: auto;
+	    border: 1px solid #e8e8ee;
+	    margin: auto;
+	}
+
+	.tag__option-box {
+	    float: left;
+	    height: 210px;
+	    line-height: 21px;
+	    white-space: nowrap;
+	    overflow: hidden;
+	    text-overflow: ellipsis;
+	    margin: 0 16px 8px 0;
+	    font-size: 14px;
+	    font-family: PingFangSC-Regular,PingFang SC;
+	    font-weight: 400;
+	    color: #606266;
+	}
+	.tag__option-box label.tag__option-label {
+	    padding-left: 10px;
+	    -webkit-user-select: none;
+	    -moz-user-select: none;
+	    -ms-user-select: none;
+	    user-select: none;
+	    cursor: pointer;
+    }
+    .cbox-fron {
+	    margin-top: 20px;
+	    margin-left: 11px;
+	    padding: 8px;
+	    font-size: 19px;
+    }
+
+    .btn-cbox {
+    	margin-top: 133px;
+    	margin-left: 180px;
+    }
+
+    .btn-cbox-publish {
+
+    }
+
+</style>
+
+
+<div id="cbox-parent" style="display: none;">
+	<div id="cbox-category">
+		<div class="cbox-fron">分类专栏：</div>
+		<div class="tag__options-list">
+			<div class="tag__option-box">
+				<label class="tag__option-label">
+					<input type="checkbox" class="tag__option-chk" value="blog">测试标签1
+				</label>
+				<label class="tag__option-label">
+					<input type="checkbox" class="tag__option-chk" value="blog">测试标签1
+				</label>
+				<label class="tag__option-label">
+					<input type="checkbox" class="tag__option-chk" value="blog">测试标签1
+				</label>
+				<label class="tag__option-label">
+					<input type="checkbox" class="tag__option-chk" value="blog">测试标签1
+				</label>
+			</div>
+		</div>
+
+		<div id="cbox-blog-viewable">
+			<div class="cbox-fron">发布类型:</div>
+			<div class="tag__option-box">
+				<label class="tag__option-label">
+					<input type="checkbox" class="tag__option-chk" value="blog">公开
+				</label>
+				<label class="tag__option-label">
+					<input type="checkbox" class="tag__option-chk" value="blog">私密
+				</label>
+			</div>
+		</div>
+
+		<div class="btn-cbox">
+			<button class="btn-publish btn-cbox-publish">发布文章</button>
+		</div>
+	</div>
+</div>
