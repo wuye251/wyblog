@@ -76,7 +76,7 @@
 	$(document).ready(function(){
         $("#publish").colorbox({
         	width: "500px",
-        	height: "80%",
+        	height: "60%",
         	inline: true,
         	href: "#cbox-category"
     	});
@@ -86,7 +86,7 @@
 <style type="text/css">
 	.tag__options-list {
 	    padding: 8px 8px 0 0;
-	    width: 423px;
+	    width: 403px;
 	    max-height: 117px;
 	    background: #fff;
 	    overflow-x: hidden;
@@ -127,11 +127,41 @@
     	margin-top: 133px;
     	margin-left: 180px;
     }
-
+    .blog__option-box {
+    	margin-left: 32px;
+    }
+    .blog__option-label{
+    	width: 100px;
+    }
     .btn-cbox-publish {
 
     }
 
+    .el-radio {
+	    color: #606266;
+	    font-weight: 500;
+	    line-height: 1;
+	    position: relative;
+	    cursor: pointer;
+	    display: inline-block;
+	    white-space: nowrap;
+	    outline: none;
+	    font-size: 14px;
+	    margin-right: 30px;
+	    -moz-user-select: none;
+	    -webkit-user-select: none;
+	    -ms-user-select: none;
+	}
+
+	.el-radio__input {
+	    white-space: nowrap;
+	    cursor: pointer;
+	    outline: none;
+	    display: inline-block;
+	    line-height: 1;
+	    position: relative;
+	    vertical-align: middle;
+	}
 </style>
 
 
@@ -157,12 +187,22 @@
 
 		<div id="cbox-blog-viewable">
 			<div class="cbox-fron">发布类型:</div>
-			<div class="tag__option-box">
-				<label class="tag__option-label">
-					<input type="checkbox" class="tag__option-chk" value="blog">公开
+			<div class="blog__option-box">
+				<label role="radio" tabindex="0" class="el-radio is-checked" aria-checked="true">
+					<span class="el-radio__input is-checked">
+						<span class="el-radio__inner"></span>
+						<input type="radio" aria-hidden="true" tabindex="-1" class="el-radio__original" value="private">
+					</span>
+					<span class="el-radio__label">公开</span>
 				</label>
-				<label class="tag__option-label">
-					<input type="checkbox" class="tag__option-chk" value="blog">私密
+				
+				<label role="radio" tabindex="0" class="el-radio is-checked" aria-checked="true">
+
+					<span class="el-radio__input is-checked">
+						<span class="el-radio__inner"></span>
+						<input type="radio" aria-hidden="true" tabindex="-1" class="el-radio__original" value="private">
+					</span>
+					<span class="el-radio__label">私密</span>
 				</label>
 			</div>
 		</div>
