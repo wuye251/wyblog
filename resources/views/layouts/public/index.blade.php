@@ -47,7 +47,7 @@
 	<div id="b-foot">
 		<div class="container">
 			<div class="row content">
-				<dl class="col-xs-12 col-sm-6 col-md-3 col-lg-3 col-lg-offset-3">
+				<dl class="col-xs-12 col-sm-6 col-md-3 col-lg-5 col-lg-offset-3">
 					<dt><h3>权益</h3></dt>
 
 						<dd>版权所有：© 2014-2020</dd>

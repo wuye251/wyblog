@@ -1,6 +1,9 @@
 <!-- 导航栏 -->
 @section('nav')
-	<li class="b-nav-col"><a href="{{route('createBlog')}}" target="_blank">新建</a></li>
+    <li class="nav-item b-nav-col">
+    	<a class="nav-link" href="{{route('createBlog')}}" target="_blank">新建</a></li>
+    </li>
+	<!-- <li class="b-nav-col"><a href="{{route('createBlog')}}" target="_blank">新建</a></li> -->
 @endsection
 
 @section('nav_welcome', '/admin')

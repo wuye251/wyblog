@@ -34,7 +34,7 @@ table, td, th
 	font-size: 19px;
 }
 .b-title-input {
-	width: 80%;
+	width: 74%;
     display: inline-block;
   
     margin: 8px 16px 8px 8px;
@@ -46,7 +46,8 @@ table, td, th
 .admin_blog_create_title{
 	width: 100%;
     display: inline-block;
-    background-color: #ddd
+    background-color: #f8f9fa;
+    border-top: solid 1px #dbcccc;
 }
 
 .admin_blog_create_title_input{

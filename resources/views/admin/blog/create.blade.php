@@ -76,7 +76,7 @@
 	$(document).ready(function(){
         $("#publish").colorbox({
         	width: "500px",
-        	height: "60%",
+        	height: "100%",
         	inline: true,
         	href: "#cbox-category"
     	});
@@ -124,7 +124,7 @@
     }
 
     .btn-cbox {
-    	margin-top: 133px;
+    	margin-top: 24px;
     	margin-left: 180px;
     }
     .blog__option-box {
@@ -191,7 +191,7 @@
 				<label role="radio" tabindex="0" class="el-radio is-checked" aria-checked="true">
 					<span class="el-radio__input is-checked">
 						<span class="el-radio__inner"></span>
-						<input type="radio" aria-hidden="true" tabindex="-1" class="el-radio__original" value="private">
+						<input type="radio" aria-hidden="true" name="kind" tabindex="-1" class="el-radio__original" value="private">
 					</span>
 					<span class="el-radio__label">公开</span>
 				</label>
@@ -200,7 +200,7 @@
 
 					<span class="el-radio__input is-checked">
 						<span class="el-radio__inner"></span>
-						<input type="radio" aria-hidden="true" tabindex="-1" class="el-radio__original" value="private">
+						<input type="radio" aria-hidden="true" name="kind" tabindex="-1" class="el-radio__original" value="private">
 					</span>
 					<span class="el-radio__label">私密</span>
 				</label>
@@ -208,7 +208,8 @@
 		</div>
 
 		<div class="btn-cbox">
-			<button class="btn-publish btn-cbox-publish">发布文章</button>
+			<button class="btn-publish btn-cbox-publish" type="submit">发布文章</button>
 		</div>
+	</form>
 	</div>
 </div>

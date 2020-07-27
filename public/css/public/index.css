@@ -18,6 +18,11 @@
 
 }
 
+.row.content {
+    width: 80%;
+    margin-left: 288px;
+}
+
 .b-nav {
     text-align: center;
 }
