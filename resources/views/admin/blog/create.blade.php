@@ -76,7 +76,7 @@
 	$(document).ready(function(){
         $("#publish").colorbox({
         	width: "500px",
-        	height: "100%",
+        	height: "50%",
         	inline: true,
         	href: "#cbox-category"
     	});
@@ -124,7 +124,7 @@
     }
 
     .btn-cbox {
-    	margin-top: 24px;
+    	margin-top: 61px;
     	margin-left: 180px;
     }
     .blog__option-box {
