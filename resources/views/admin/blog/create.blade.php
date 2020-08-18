@@ -162,17 +162,35 @@
 	    position: relative;
 	    vertical-align: middle;
 	}
+	.cbox-category-title {
+		display: inline-block;
+	}
+	.tag__option-box button.tag__btn-tag {
+		margin-top: 4px;
+	    color: #79a5e5;
+	    height: 28px;
+	    padding: 0 8px;
+	    border-radius: 4px;
+	    border: 1px solid rgba(38,125,204,.1);
+	    color: #555666;
+	    font-size: 14px;
+	    background-color: rgba(148, 131, 131, 0.15);;
+	}
+
 </style>
 
 
 <div id="cbox-parent" style="display: none;">
 	<div id="cbox-category">
 		<div class="cbox-fron">分类专栏：</div>
+		<div class="append-tag"></div>
+		<div class="cbox-add-tag">
+			<button type="button" class="tag__btn-tag" onclick="addCategory()">
+			    + 新建分类
+			</button>
+		</div>
 		<div class="tag__options-list">
 			<div class="tag__option-box">
-				<label class="tag__option-label">
-					<input type="checkbox" class="tag__option-chk" value="blog">测试标签1
-				</label>
 				<label class="tag__option-label">
 					<input type="checkbox" class="tag__option-chk" value="blog">测试标签1
 				</label>
@@ -213,3 +231,19 @@
 	</form>
 	</div>
 </div>
+
+
+<script type="text/javascript">
+	index = 1;
+	function addCategory(){
+		var html  = '<div class="parent-tag"><input type="text" class="tag__option-chk" value="">';
+			html += '<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-x" fill="currentColor" xmlns="http://www.w3.org/2000/svg" onclick="rmCategory(this)">';
+  			html += '<path fill-rule="evenodd" d="M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z"/>';
+ 	 		html += '<path fill-rule="evenodd" d="M4.146 4.146a.5.5 0 0 0 0 .708l7 7a.5.5 0 0 0 .708-.708l-7-7a.5.5 0 0 0-.708 0z"/>';
+			html += '</svg></div>';
+		$(".append-tag").append(html);
+	}
+	function rmCategory(obj){
+		$(obj).parent().remove();
+	}
+</script>
