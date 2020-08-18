@@ -121,6 +121,7 @@
 	    margin-left: 11px;
 	    padding: 8px;
 	    font-size: 19px;
+	    display: inline-block;
     }
 
     .btn-cbox {
@@ -176,6 +177,19 @@
 	    font-size: 14px;
 	    background-color: rgba(148, 131, 131, 0.15);;
 	}
+	.parent-tag input{
+		width: 100px;
+	}
+
+	.parent-tag {
+		display: inline-block;
+	}
+	.append-tag {
+		display: inline-block;
+	}
+	.cbox-add-tag {
+		display: inline-block;
+	}
 
 </style>
 
@@ -186,7 +200,7 @@
 		<div class="append-tag"></div>
 		<div class="cbox-add-tag">
 			<button type="button" class="tag__btn-tag" onclick="addCategory()">
-			    + 新建分类
+		    	+ 新建分类
 			</button>
 		</div>
 		<div class="tag__options-list">
