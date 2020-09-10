@@ -178,9 +178,13 @@
 		</div>
 		<div class="tag__options-list">
 			<div class="tag__option-box">
-				@foreach($tags as $item => $tagVal)
+				@foreach($tagsList as $item => $tagVal)
 				<label class="tag__option-label">
+					@if(isset($tags) && isset($tags[$tagVal['id']]))
+					<input id="{{$tagVal['id']}}"type="checkbox" class="tag__option-chk" checked="checked" value="blog">{{ $tagVal['name'] }}
+					@else
 					<input id="{{$tagVal['id']}}"type="checkbox" class="tag__option-chk" value="blog">{{ $tagVal['name'] }}
+					@endif
 				</label>
 				@endforeach
 			</div>

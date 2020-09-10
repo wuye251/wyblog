@@ -46,9 +46,9 @@ class Blog extends Base
 			Tag::class,  #最终模型类  
 			BlogTag::class, #中间模型类
 			'blog_id',      #中建模型的外键名
-			'tag_id',		#最终模型的外键名
+			'id',			#最终模型的本地名
 			'id',			#本地键名
-			'id'			#最终模型的本地键名
+			'tag_id'		#最终模型的外键名
 		);
 	}
 

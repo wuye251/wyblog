@@ -8,6 +8,7 @@ use App\Models\Blog;
 use App\Models\Comments;
 use App\Models\Category;
 use App\Models\Tag;
+use App\Models\BlogTag;
 
 use EndaEditor;
 use App\Common\MarkDowner;
@@ -42,9 +43,9 @@ class BlogController extends Controller
     {
         //
         //分类列表
-        $tags = Tag::orderBy('id', 'DESC')->get();
+        $tagsList = Tag::orderBy('id', 'DESC')->get();
 
-        $assign = compact('tags');
+        $assign = compact('tagsList');
         
         return view('admin.blog.create', $assign);
     }
@@ -57,6 +58,7 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
+
         //获取入参
         $input = $request->all();
         
@@ -64,13 +66,13 @@ class BlogController extends Controller
         
         $input['html']    = $markdown->convertMarkdownToHtml($input['markdown']);
 
+        $tagIds = $input['tagIds'];
+        unset($input['tagIds']);
         $blog = Blog::insert($input);
-        if ($boolInsert) {
-            $tagIds = $data['tagIds'];
-            unset($data['tagIds']);
-
+        $blog = 1;
+        if ($blog) {
             $blogTag = new BlogTag();
-            $blogTag->addTagIds($boolInsert->id, $tagIds);
+            $blogTag->addTagIds($blog->id, $tagIds);
         }
 
         return redirect('admin/blog');
@@ -87,8 +89,8 @@ class BlogController extends Controller
         //博文
         $blog = Blog::findOrFail($blogId);
 
-        //分类标签
-        $category = $blog->category;
+        //标签
+        $tags = $blog->tag;
 
         //评论
         $comments = new Comments;
@@ -97,11 +99,13 @@ class BlogController extends Controller
             'status'     => 1,
         ];
 
-
+        /* 评论
         $comments = Comments::where($param)
                             ->orderby('create_time','desc')
                             ->get();
-        $assign = compact('blog', 'comments', 'category');
+        */
+
+        $assign = compact('blog', 'comments', 'tags');
 
         return view('admin.blog.show', $assign);
     }
@@ -117,10 +121,21 @@ class BlogController extends Controller
         //
         $blog = Blog::findOrFail($blogId);
 
-        $category = $blog->category;
+        $tagsObj = $blog->tag;
 
+        $tags = [];
+        #设置对应键值 
+        foreach ($tagsObj as $item => $tagVal) {
+            $tags[$tagVal['id']] = $tagVal;
+        }
+        /* 分类
         $categoryList   = Category::all();
-        $assign = compact('blog', 'category', 'categoryList');
+        */
+
+        #标签
+        $tagsList = Tag::all();
+
+        $assign = compact('blog', 'tags', 'tagsList');
 
         return view('admin.blog.create', $assign);
     }
