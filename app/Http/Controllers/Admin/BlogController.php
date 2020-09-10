@@ -57,22 +57,22 @@ class BlogController extends Controller
     public function store(Request $request)
     {
         //获取入参
-        $param = $request->all();
+        $input = $request->all();
         
-        $blog = new Blog;
         $markdown = new MarkDowner; 
+        
+        $input['html']    = $markdown->convertMarkdownToHtml($input['markdown']);
 
-        $blog->title   = $param['title'];
-        $blog->html    = $markdown->convertMarkdownToHtml($param['content']);
-        $blog->markdown= $param['content'];
-        $blog->status  = isset($param['status']) ? $param['status'] : 1;
-        $blog->author  = '吴烨';
+        $blog = Blog::insert($input);
+        if ($boolInsert) {
+            $tagIds = $data['tagIds'];
+            unset($data['tagIds']);
 
-        $boolInsert = $blog->save();
+            $blogTag = new BlogTag();
+            $blogTag->addTagIds($boolInsert->id, $tagIds);
+        }
 
-        if ($boolInsert) return redirect('admin/blog');
-
-        return 'insert failed';
+        return redirect('admin/blog');
     }
 
     /**
