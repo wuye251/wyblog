@@ -178,15 +178,11 @@
 		</div>
 		<div class="tag__options-list">
 			<div class="tag__option-box">
+				@foreach($tags as $item => $tagVal)
 				<label class="tag__option-label">
-					<input type="checkbox" class="tag__option-chk" value="blog">测试标签1
+					<input id="{{$tagVal['id']}}"type="checkbox" class="tag__option-chk" value="blog">{{ $tagVal['name'] }}
 				</label>
-				<label class="tag__option-label">
-					<input type="checkbox" class="tag__option-chk" value="blog">测试标签1
-				</label>
-				<label class="tag__option-label">
-					<input type="checkbox" class="tag__option-chk" value="blog">测试标签1
-				</label>
+				@endforeach
 			</div>
 		</div>
 

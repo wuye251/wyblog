@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Blog;
 use App\Models\Comments;
 use App\Models\Category;
+use App\Models\Tag;
 
 use EndaEditor;
 use App\Common\MarkDowner;
@@ -41,9 +42,9 @@ class BlogController extends Controller
     {
         //
         //分类列表
-        $category = Category::orderBy('sort', 'ASC')->get();
+        $tags = Tag::orderBy('id', 'DESC')->get();
 
-        $assign = compact('category');
+        $assign = compact('tags');
         
         return view('admin.blog.create', $assign);
     }
