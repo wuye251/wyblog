@@ -23,7 +23,9 @@ class Blog extends Base
 	//软删除 Base.php中已引入
 	use SoftDeletes;
 	protected $dates = ['deleted_at'];
-
+  	protected $fillable = [
+   	 'title', 'markdown', 'html', 'status', 'author', 'category_id',
+  	];
 	const CREATE_AT = 'create_time';
 	const UPDATE_AT = 'update_time';
 
@@ -50,6 +52,13 @@ class Blog extends Base
 			'id',			#本地键名
 			'tag_id'		#最终模型的外键名
 		);
+	}
+
+
+	#一对多  删除而用
+	public function BlogTag()
+	{
+		return $this->hasMany(BlogTag::class);
 	}
 
 }

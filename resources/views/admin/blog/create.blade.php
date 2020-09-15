@@ -2,15 +2,19 @@
 <link rel="stylesheet" href="/css/blog/createBlog.css">
 
     <script src="{{mix('/js/app.js')}}"></script>
+    <script src="{{asset('/js/tips.js')}}"></script>
+
 @extends('layouts.public.index')
 
 @extends('layouts.admin.module')
 
 @section('content')
-		
+
 	@if (!isset($blog))
+	<input id="blogId" type="hidden" value="">
 	<form action="./store" method="post" id="blogPublish">
 	@else
+	<input id="blogId" type="hidden" value="{{$blog['id']}}">
 	<form action="{{route('admin.update', $blog['id'])}}" method="post" id="blogPublish">
 	@endif
 
@@ -20,10 +24,10 @@
 			<a class="b-title-return" href="{{route('index')}}">< 文章管理</a>
 			<div class="b-title-input">
 				@if (isset($blog))
-				<input maxlength="100" class="admin_blog_create_title_input" placeholder="请输入标题" name="title" value="{{$blog['title']}}">
+				<input maxlength="100" id="title" class="admin_blog_create_title_input" placeholder="请输入标题" name="title" value="{{$blog['title']}}">
 				<!-- <span class="b-title-count">0/100</span> -->
 				@else
-				<input maxlength="100" class="admin_blog_create_title_input" placeholder="请输入标题" name="title" value="">
+				<input maxlength="100" id="title" class="admin_blog_create_title_input" placeholder="请输入标题" name="title" value="">
 				<!-- <span class="b-title-count">0/100</span> -->
 				@endif
 			</div>
@@ -181,9 +185,9 @@
 				@foreach($tagsList as $item => $tagVal)
 				<label class="tag__option-label">
 					@if(isset($tags) && isset($tags[$tagVal['id']]))
-					<input id="{{$tagVal['id']}}"type="checkbox" class="tag__option-chk" checked="checked" value="blog">{{ $tagVal['name'] }}
+					<input id="tagId__{{$tagVal['id']}}"type="checkbox" class="tag__option-chk" checked="checked" value="{{$tagVal['id']}}">{{ $tagVal['name'] }}
 					@else
-					<input id="{{$tagVal['id']}}"type="checkbox" class="tag__option-chk" value="blog">{{ $tagVal['name'] }}
+					<input id="tagId__{{$tagVal['id']}}"type="checkbox" class="tag__option-chk" value="{{$tagVal['id']}}">{{ $tagVal['name'] }}
 					@endif
 				</label>
 				@endforeach
@@ -196,7 +200,7 @@
 				<label role="radio" tabindex="0" class="el-radio is-checked" aria-checked="true">
 					<span class="el-radio__input is-checked">
 						<span class="el-radio__inner"></span>
-						<input type="radio" aria-hidden="true" name="kind" tabindex="-1" class="el-radio__original" value="private">
+						<input type="radio" aria-hidden="true" id="kind" name="kind" tabindex="-1" class="el-radio__original" value="private">
 					</span>
 					<span class="el-radio__label">公开</span>
 				</label>
@@ -205,7 +209,7 @@
 
 					<span class="el-radio__input is-checked">
 						<span class="el-radio__inner"></span>
-						<input type="radio" aria-hidden="true" name="kind" tabindex="-1" class="el-radio__original" value="private">
+						<input type="radio" aria-hidden="true" name="kind" id="kind" tabindex="-1" class="el-radio__original" value="private">
 					</span>
 					<span class="el-radio__label">私密</span>
 				</label>
@@ -213,7 +217,7 @@
 		</div>
 
 		<div class="btn-cbox">
-			<button type="submit" class="btn-publish btn-cbox-publish">发布文章</button>
+			<button type="submit" class="btn-publish btn-cbox-publish" onclick="submitBlog()">发布文章</button>
 		</div>
 	</form>
 	</div>
@@ -223,7 +227,7 @@
 <script type="text/javascript">
 	index = 1;
 	function addCategory(){
-		var html  = '<div class="parent-tag"><input type="text" class="tag__option-chk" value="">';
+		var html  = '<div class="parent-tag" id="tagName"><input type="text" class="tag__option-chk" value="">';
 			html += '<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-x" fill="currentColor" xmlns="http://www.w3.org/2000/svg" onclick="rmCategory(this)">';
   			html += '<path fill-rule="evenodd" d="M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z"/>';
  	 		html += '<path fill-rule="evenodd" d="M4.146 4.146a.5.5 0 0 0 0 .708l7 7a.5.5 0 0 0 .708-.708l-7-7a.5.5 0 0 0-.708 0z"/>';
@@ -235,5 +239,74 @@
 	}
 </script>
 
+<!-- ajax提交 -->
+<script type="text/javascript">
+	function submitBlog() {
+		var title   = $("#title").val();
+		var content = $("#myEditor").val();
+
+		var tagIds  = '';
+		$("[id^='tagId__']").each(function(item, val){
+			if (tagIds == '') { 
+				tagIds = $(val).val();
+			} else {
+				tagIds += '#' + $(val).val();
+			}
+		}); //已有标签列表
+
+		var tagNames = ''  //新建标签
+		$("[id^='tagName']").each(function(item, val){
+			if (tagNames == '') { 
+				tagNames = $(val).find("input").val();
+			} else {
+				tagNames += '#' + $(val).find("input").val();
+			}
+		}); //已有标签列表
+
+		//公开私密
+
+		if (title.length == 0) {
+			alert("标题不能为空");
+			// $("#title").tips({msg: "标题不能为空"});
+			return -1;
+		}
+		if (content.length == 0) {
+			alert("内容不能为空");
+			// $("#myEditor").tips({msg: "好歹写点什么塞~"});
+			return -1;
+		}
+
+		var data = {
+			"title":   title,
+			"markdown": content,
+			"tagIds":   tagIds,
+			"tagNames": tagNames
+		};
+
+		console.log(data);
+
+		var url = '';
+		var blogId = $("#blogId").val();
+
+		if (blogId != "") {
+			url = "{{route('admin.update', $blog['id'])}}"
+		} else {
+			url = "{{route('storeBlog')}}";
+		}
+		$.ajax({
+			type: 'POST',
+			url:  url,
+			data: data,
+			dataType: 'json',
+			success: function (response) {
+			},
+			error: function (response) {
+			}
+		})
+
+
+
+	}
+</script>
 
 @endsection

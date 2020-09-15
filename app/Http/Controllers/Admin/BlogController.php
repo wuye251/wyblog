@@ -58,7 +58,6 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-
         //获取入参
         $input = $request->all();
         
@@ -67,12 +66,16 @@ class BlogController extends Controller
         $input['html']    = $markdown->convertMarkdownToHtml($input['markdown']);
 
         $tagIds = $input['tagIds'];
+        $tagNames = $input['tagNames'];
+        $arrTagIds = explode('#', $tagIds);
         unset($input['tagIds']);
-        $blog = Blog::insert($input);
-        $blog = 1;
+        unset($input['tagNames']);
+
+        $blog = Blog::create($input);
+
         if ($blog) {
             $blogTag = new BlogTag();
-            $blogTag->addTagIds($blog->id, $tagIds);
+            $blogTag->addTagIds($blog->id, $arrTagIds);
         }
 
         return redirect('admin/blog');
@@ -156,15 +159,29 @@ class BlogController extends Controller
         //未勾选 给空值
         $param['category'] = $param['category'] ?? 0;
 
-        $html = $markdown->convertMarkdownToHtml($param['content']);
+        $html = $markdown->convertMarkdownToHtml($param['markdown']);
 
         //加载对应内容  和创建文章相同
         $bool = Blog::where('id',$blogId)
                     ->update(['title'   => $param['title'],
                               'html'    => $html,
-                              'markdown'=> $param['content'],
+                              'markdown'=> $param['markdown'],
                               'category_id'=> $param['category'],
                             ]);
+
+        $tagIds = $param['tagIds'];
+        $tagNames = $param['tagNames'];
+        $arrTagIds = explode('#', $tagIds);
+        unset($param['tagIds']);
+        unset($param['tagNames']);
+
+        if ($bool) {
+            $blogTag = new BlogTag();
+            #删除中间表
+            $blog = Blog::find($blogId);
+            $deleBool = $blog->BlogTag()->delete();
+            $blogTag->addTagIds($blogId, $arrTagIds);
+        }
 
         return redirect('admin/blog');
     }
