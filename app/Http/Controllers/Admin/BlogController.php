@@ -65,6 +65,7 @@ class BlogController extends Controller
         
         $input['html']    = $markdown->convertMarkdownToHtml($input['markdown']);
 
+        $input['status'] = 1;
         $tagIds = $input['tagIds'];
         $tagNames = $input['tagNames'];
         $arrTagIds = explode('#', $tagIds);
@@ -78,7 +79,8 @@ class BlogController extends Controller
             $blogTag->addTagIds($blog->id, $arrTagIds);
         }
 
-        return redirect('admin/blog');
+        return json_encode('success');
+        // return redirect('admin/blog');
     }
 
     /**
@@ -91,7 +93,6 @@ class BlogController extends Controller
     {
         //博文
         $blog = Blog::findOrFail($blogId);
-
         //标签
         $tags = $blog->tag;
 
@@ -109,7 +110,6 @@ class BlogController extends Controller
         */
 
         $assign = compact('blog', 'comments', 'tags');
-
         return view('admin.blog.show', $assign);
     }
 
@@ -183,7 +183,7 @@ class BlogController extends Controller
             $blogTag->addTagIds($blogId, $arrTagIds);
         }
 
-        return redirect('admin/blog');
+        return json_encode('success');
     }
 
     //图片上传

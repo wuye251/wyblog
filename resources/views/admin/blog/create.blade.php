@@ -248,9 +248,9 @@
 		var tagIds  = '';
 		$("[id^='tagId__']").each(function(item, val){
 			if (tagIds == '') { 
-				tagIds = $(val).val();
+				tagIds = $(val).find("input[checked='checked']").val();
 			} else {
-				tagIds += '#' + $(val).val();
+				tagIds += '#' + $(val).find("input[checked='checked']").val();
 			}
 		}); //已有标签列表
 
@@ -264,6 +264,16 @@
 		}); //已有标签列表
 
 		//公开私密
+
+
+		var url = '';
+		var blogId = $("#blogId").val();
+		if (blogId != "") {
+			url = "{{route('admin.update', $blog['id'] ?? '')}}";
+		} else {
+			url = "{{route('storeBlog')}}";
+		}
+
 
 		if (title.length == 0) {
 			alert("标题不能为空");
@@ -285,22 +295,22 @@
 
 		console.log(data);
 
-		var url = '';
-		var blogId = $("#blogId").val();
 
-		if (blogId != "") {
-			url = "{{route('admin.update', $blog['id'])}}"
-		} else {
-			url = "{{route('storeBlog')}}";
-		}
 		$.ajax({
 			type: 'POST',
 			url:  url,
 			data: data,
 			dataType: 'json',
 			success: function (response) {
+				if (response == 'success') {
+					window.location.href="{{route('index')}}";
+				} else {
+					alert('unexception');
+				}
 			},
 			error: function (response) {
+				console.log('response----'+response)
+				alert('error>>'+response);
 			}
 		})
 
