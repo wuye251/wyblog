@@ -247,11 +247,14 @@
 
 		var tagIds  = '';
 		$("[id^='tagId__']").each(function(item, val){
-			if (tagIds == '') { 
-				tagIds = $(val).find("input[checked='checked']").val();
-			} else {
-				tagIds += '#' + $(val).find("input[checked='checked']").val();
+			if (val.checked) {
+				if (tagIds == '') { 
+					tagIds = $(val).val();
+				} else {
+					tagIds += '#' + $(val).val();
+				}
 			}
+			
 		}); //已有标签列表
 
 		var tagNames = ''  //新建标签
