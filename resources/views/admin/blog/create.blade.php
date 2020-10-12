@@ -293,7 +293,8 @@
 			"title":   title,
 			"markdown": content,
 			"tagIds":   tagIds,
-			"tagNames": tagNames
+			"tagNames": tagNames,
+			"author":  "吴烨",
 		};
 
 		console.log(data);
