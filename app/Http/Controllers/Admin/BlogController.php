@@ -68,7 +68,8 @@ class BlogController extends Controller
         $input['status'] = 1;
         $tagIds = $input['tagIds'];
         $tagNames = $input['tagNames'];
-        $arrTagIds = explode('#', $tagIds);
+        $arrTagIds = ($tagIds) ? explode('#', $tagIds) : [];
+        $arrTagNames = ($tagNames) ? explode('#', $tagNames) : [];
         unset($input['tagIds']);
         unset($input['tagNames']);
 
@@ -76,9 +77,26 @@ class BlogController extends Controller
 
         if ($blog) {
             $blogTag = new BlogTag();
-            $blogTag->addTagIds($blog->id, $arrTagIds);
-        }
+            if ($arrTagIds) {
+                $blogTag->addTagIds($blog->id, $arrTagIds);
+            }
 
+            #添加新标签
+            if ($arrTagNames) {
+                foreach ($arrTagNames as $item => $tagNameVal) {
+                    $fields = ['name' => $tagNameVal];
+
+                    $tagRet = Tag::create($fields);
+
+                    $insertTagIds[] = $tagRet->id;
+
+                }
+                if ($insertTagIds) {
+                    $blogTag->addTagIds($blog->id, $insertTagIds);
+                }
+            }
+        }
+        
         return json_encode('success');
         // return redirect('admin/blog');
     }
@@ -171,7 +189,8 @@ class BlogController extends Controller
 
         $tagIds = $param['tagIds'];
         $tagNames = $param['tagNames'];
-        $arrTagIds = explode('#', $tagIds);
+        $arrTagIds = ($tagIds) ? explode('#', $tagIds) : [];
+        $arrTagNames = ($tagNames) ? explode('#', $tagNames) : [];
         unset($param['tagIds']);
         unset($param['tagNames']);
 
@@ -180,7 +199,23 @@ class BlogController extends Controller
             #删除中间表
             $blog = Blog::find($blogId);
             $deleBool = $blog->BlogTag()->delete();
-            $blogTag->addTagIds($blogId, $arrTagIds);
+            if ($arrTagIds) {
+                $blogTag->addTagIds($blogId, $arrTagIds);
+            }
+            #添加新标签
+            if ($arrTagNames) {
+                foreach ($arrTagNames as $item => $tagNameVal) {
+                    $fields = ['name' => $tagNameVal];
+
+                    $tagRet = Tag::create($fields);
+
+                    $insertTagIds[] = $tagRet->id;
+
+                }
+                if ($insertTagIds) {
+                    $blogTag->addTagIds($blog->id, $insertTagIds);
+                }
+            }
         }
 
         return json_encode('success');
