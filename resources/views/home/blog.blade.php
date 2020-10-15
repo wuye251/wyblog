@@ -8,6 +8,8 @@
 
 @extends('layouts.public.index')
 
+@extends('layouts.home.module')
+
 @section('loginCheck')
 	@if (!Auth::guard('oauth')->check())
 		<li><a class="login-btn" data-toggle="modal" data-target="#login-modal">登陆</a></li>

@@ -14,7 +14,7 @@
 	@if (!Auth::guard('admin')->check())
 		<li><a class="login-btn btn" data-toggle="modal" data-target="#login-modal">登陆</a></li>
 	@else
-		<li><a style="color: #fff;"> {{ auth()->guard('admin')->user()->name }}</a></li>
+		<li><a style="color: #5f5e5e; padding: 8px;"> {{ auth()->guard('admin')->user()->name }}</a></li>
 		
 		<li><a style="color: #337ab7;"href="{{ route('adminLogout') }}">退 出</a></li>
     @endif
