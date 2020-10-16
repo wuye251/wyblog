@@ -65,6 +65,7 @@ class BlogController extends Controller
         
         $input['html']    = $markdown->convertMarkdownToHtml($input['markdown']);
 
+        $input['summary'] = substr($input['summary'],0,100);
         $input['status'] = 1;
         $tagIds = $input['tagIds'];
         $tagNames = $input['tagNames'];
@@ -72,7 +73,6 @@ class BlogController extends Controller
         $arrTagNames = ($tagNames) ? explode('#', $tagNames) : [];
         unset($input['tagIds']);
         unset($input['tagNames']);
-
         $blog = Blog::create($input);
 
         if ($blog) {
@@ -152,7 +152,6 @@ class BlogController extends Controller
         /* 分类
         $categoryList   = Category::all();
         */
-
         #标签
         $tagsList = Tag::all();
 
@@ -185,6 +184,7 @@ class BlogController extends Controller
                               'html'    => $html,
                               'markdown'=> $param['markdown'],
                               'category_id'=> $param['category'],
+                              'summary'  => $param['summary'],
                             ]);
 
         $tagIds = $param['tagIds'];
@@ -241,7 +241,7 @@ class BlogController extends Controller
 
         Blog::find($blogId)->delete();
 
-        return route('index');
+        return redirect('admin/blog');
         
     }
 
@@ -258,7 +258,7 @@ class BlogController extends Controller
         Blog::forceDelete()->where('id',$blogId);
 
 
-        return route('index');
+        return redirect('admin/blog');
     }
 
 }

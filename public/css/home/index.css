@@ -12,6 +12,7 @@
 .b-summary-date {
 	padding-top: 10px;
     padding-bottom: 10px;
+    margin-left: 62px;
 }
 
 .btn-read {
@@ -30,7 +31,7 @@
 }
 
 .b-des {
-	padding: 36px;
+	padding: 10px 100px;
 }
 
 /*头部*/

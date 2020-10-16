@@ -18,7 +18,7 @@
  -->
 @section('loginCheck')
 	@if (auth()->guard('oauth')->check())
-		<span style="color: #5f5e5e; padding: 8px;"> {{ auth()->guard('oauth')->user()->name }}</span> 
+		<span style="color: #747171; padding: 8px;"> {{ auth()->guard('oauth')->user()->name }}</span> 
 		
 		<a style="color: #337ab7;" href="{{ route('OAuthLogout') }}">退 出</a>
 	@else

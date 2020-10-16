@@ -37,16 +37,27 @@
 			</div>
 		</div>
 
+		<div class="b-summary-input" style="width: 83%; margin:auto">
+			<!-- <span style="display: inline-block;">摘要：</span> -->
+			@if (isset($blog))
+			<textarea maxlength="100" id="summary" class="admin_blog_create_title_input" placeholder="摘要：写点摘要" name="summary" value="{{$blog['summary']}}">{{$blog['summary']}}</textarea>
+			<!-- <span class="b-title-count">0/100</span> -->
+			@else
+			<textarea maxlength="100" id="summary" class="admin_blog_create_title_input" placeholder="摘要：写点摘要" name="summary" value=""></textarea>
+			<!-- <span class="b-title-count">0/100</span> -->
+			@endif
+		</div>
+
+
 		@include('editor::head')
 		<!-- 重定义 markdown大小 -->
-		<div class="editor" style="width: 100%;height: 95%;">
+		<div class="editor" style="width: 83%;height: 95%; margin:auto">
 		@if (isset($blog))
     		<textarea id='myEditor' name="markdown" placeholder="请输入内容">{{ $blog['markdown'] }}</textarea>
     	@else 
     		<textarea id='myEditor' name="markdown" placeholder="请输入内容"></textarea>
     	@endif
 		</div>
-
 
 
 <script type="text/javascript">
@@ -244,6 +255,7 @@
 	function submitBlog() {
 		var title   = $("#title").val();
 		var content = $("#myEditor").val();
+		var summary = $("#summary").val();
 
 		var tagIds  = '';
 		$("[id^='tagId__']").each(function(item, val){
@@ -283,6 +295,12 @@
 			// $("#title").tips({msg: "标题不能为空"});
 			return -1;
 		}
+		if (summary.length == 0) {
+			alert("摘要不能为空");
+			// $("#myEditor").tips({msg: "好歹写点什么塞~"});
+			return -1;
+		}
+
 		if (content.length == 0) {
 			alert("内容不能为空");
 			// $("#myEditor").tips({msg: "好歹写点什么塞~"});
@@ -295,6 +313,7 @@
 			"tagIds":   tagIds,
 			"tagNames": tagNames,
 			"author":  "吴烨",
+			"summary": summary,
 		};
 
 		console.log(data);

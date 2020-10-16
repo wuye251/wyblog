@@ -24,7 +24,7 @@ class Blog extends Base
 	use SoftDeletes;
 	protected $dates = ['deleted_at'];
   	protected $fillable = [
-   	 'title', 'markdown', 'html', 'status', 'author', 'category_id',
+   	 'title', 'summary', 'markdown', 'html', 'status', 'author', 'category_id',
   	];
 	const CREATE_AT = 'create_time';
 	const UPDATE_AT = 'update_time';
