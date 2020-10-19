@@ -72,6 +72,10 @@
 </script>
 
 <style type="text/css">
+	.modal.in .modal-dialog {
+	    z-index: 1040;
+	}
+
 	.tag__options-list {
 	    padding: 8px 8px 0 0;
 	    width: 403px;
