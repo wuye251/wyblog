@@ -16,7 +16,7 @@
 			@foreach($blogs as $k => $v)
 				<div class="row b-blog-summay">
 					<h3 class="col-xs-12 col-md-12 col-lg-12 b-titile">
-						<a class="blog-titile" href="{{route('admin.show',$v['id'])}}">{{ $v['title'] }} </a>
+						<a class="blog-titile" href="{{route('admin.show',$v['id'])}}">@if($v['status'] == 2)(私密)@endif{{ $v['title'] }} </a>
 					</h3>
 					<div class="col-xs-12 col-md-12 col-lg-12  b-summary-date">
 	                    <div class="row">

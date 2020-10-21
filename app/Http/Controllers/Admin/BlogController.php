@@ -24,6 +24,7 @@ class BlogController extends Controller
     {
         //查找条件处理
         $articles = Blog::where('status', 1)
+                     ->orwhere('status',2)
                      ->orderby('updated_at', 'desc')
                      ->paginate(10);
 
@@ -66,7 +67,7 @@ class BlogController extends Controller
         $input['html']    = $markdown->convertMarkdownToHtml($input['markdown']);
 
         $input['summary'] = substr($input['summary'],0,100);
-        $input['status'] = 1;
+        $input['status'] = $input['status'] ?? 1;
         $tagIds = $input['tagIds'];
         $tagNames = $input['tagNames'];
         $arrTagIds = ($tagIds) ? explode('#', $tagIds) : [];
@@ -185,6 +186,7 @@ class BlogController extends Controller
                               'markdown'=> $param['markdown'],
                               'category_id'=> $param['category'],
                               'summary'  => $param['summary'],
+                              'status'  => $param['status'],
                             ]);
 
         $tagIds = $param['tagIds'];

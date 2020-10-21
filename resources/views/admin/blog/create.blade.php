@@ -81,7 +81,6 @@
 	    width: 403px;
 	    max-height: 117px;
 	    background: #fff;
-	    border: 1px solid #e8e8ee;
 	    margin: auto;
 	}
 
@@ -212,7 +211,11 @@
 				<label role="radio" tabindex="0" class="el-radio is-checked" aria-checked="true">
 					<span class="el-radio__input is-checked">
 						<span class="el-radio__inner"></span>
-						<input type="radio" aria-hidden="true" id="kind" name="kind" tabindex="-1" class="el-radio__original" value="private">
+						@if((isset($blog) && $blog['status'] == 1) || !isset($blog))
+						<input id="blog-type" type="radio" aria-hidden="true" checked="true" id="kind" name="kind" tabindex="-1" class="el-radio__original" value="1">
+						@else
+						<input id="blog-type" type="radio" aria-hidden="true" id="kind" name="kind" tabindex="-1" class="el-radio__original" value="1">
+						@endif
 					</span>
 					<span class="el-radio__label">公开</span>
 				</label>
@@ -221,7 +224,11 @@
 
 					<span class="el-radio__input is-checked">
 						<span class="el-radio__inner"></span>
-						<input type="radio" aria-hidden="true" name="kind" id="kind" tabindex="-1" class="el-radio__original" value="private">
+						@if(isset($blog) && $blog['status'] == 2)
+						<input id="blog-type" type="radio" aria-hidden="true" checked="true" name="kind" id="kind" tabindex="-1" class="el-radio__original" value="2">
+						@else
+						<input id="blog-type" type="radio" aria-hidden="true" name="kind" id="kind" tabindex="-1" class="el-radio__original" value="2">
+						@endif
 					</span>
 					<span class="el-radio__label">私密</span>
 				</label>
@@ -280,7 +287,13 @@
 		}); //已有标签列表
 
 		//公开私密
-
+		var status = '';
+		$("[id^='blog-type']").each(function(item, val){
+			if (val.checked) {
+				status = $(val).val();
+			}
+			
+		});
 
 		var url = '';
 		var blogId = $("#blogId").val();
@@ -315,6 +328,7 @@
 			"tagNames": tagNames,
 			"author":  "吴烨",
 			"summary": summary,
+			'status': status,
 		};
 
 		console.log(data);
