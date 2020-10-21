@@ -38,12 +38,12 @@
 		</div>
 
 		<div class="b-summary-input" style="width: 83%; margin:auto">
-			<!-- <span style="display: inline-block;">摘要：</span> -->
+			<div style="display: inline-block;background: #f3e9e9;font-size: 23px;">摘要：</div>
 			@if (isset($blog))
-			<textarea maxlength="100" id="summary" class="admin_blog_create_title_input" placeholder="摘要：写点摘要" name="summary" value="{{$blog['summary']}}">{{$blog['summary']}}</textarea>
+			<textarea maxlength="100" id="summary" class="admin_blog_create_title_input" placeholder="写点摘要" name="summary" value="{{$blog['summary']}}" style="width: 93%;">{{$blog['summary']}}</textarea>
 			<!-- <span class="b-title-count">0/100</span> -->
 			@else
-			<textarea maxlength="100" id="summary" class="admin_blog_create_title_input" placeholder="摘要：写点摘要" name="summary" value=""></textarea>
+			<textarea maxlength="100" id="summary" class="admin_blog_create_title_input" placeholder="写点摘要" name="summary" value="" style="width: 93%;"></textarea>
 			<!-- <span class="b-title-count">0/100</span> -->
 			@endif
 		</div>
@@ -81,17 +81,14 @@
 	    width: 403px;
 	    max-height: 117px;
 	    background: #fff;
-	    overflow-x: hidden;
-	    overflow-y: auto;
 	    border: 1px solid #e8e8ee;
 	    margin: auto;
 	}
 
 	.tag__option-box {
 	    float: left;
-	    height: 210px;
+	    /*height: 210px;*/
 	    line-height: 21px;
-	    white-space: nowrap;
 	    overflow: hidden;
 	    text-overflow: ellipsis;
 	    margin: 0 16px 8px 0;

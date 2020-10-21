@@ -111,10 +111,10 @@ $(function () {
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <h4 class="modal-title login-title" id="myModalLabel" style="margin-left: 64px;">无需注册，用以下帐号即可直接登录。</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
-                <h4 class="modal-title login-title" id="myModalLabel">无需注册，用以下帐号即可直接登录。</h4>
             </div>
               <div class="row">
                   <div class="col-xs-12 col-md-12 col-lg-12 login-icon" > 
