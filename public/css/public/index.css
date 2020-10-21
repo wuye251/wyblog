@@ -17,6 +17,19 @@
 	clear: both;
 
 }
+.bg-light {
+    background-color: #618da2!important;
+
+}
+
+.login-btn {
+    color: #f1f2f3;
+
+}
+.login-name {
+    padding: 11px;
+    color: #000000;
+}
 
 .row.content {
     width: 80%;
@@ -38,6 +51,7 @@
 #b-foot h3 {
 	margin-top: -7px;
 }
+
 
 .b-margin {
 	margin-top: 100px;
