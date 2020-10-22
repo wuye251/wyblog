@@ -65,7 +65,6 @@ class BlogController extends Controller
         $markdown = new MarkDowner; 
         
         $input['html']    = $markdown->convertMarkdownToHtml($input['markdown']);
-
         $input['summary'] = substr($input['summary'],0,100);
         $input['status'] = $input['status'] ?? 1;
         $tagIds = $input['tagIds'];
@@ -75,13 +74,11 @@ class BlogController extends Controller
         unset($input['tagIds']);
         unset($input['tagNames']);
         $blog = Blog::create($input);
-
         if ($blog) {
             $blogTag = new BlogTag();
             if ($arrTagIds) {
                 $blogTag->addTagIds($blog->id, $arrTagIds);
             }
-
             #添加新标签
             if ($arrTagNames) {
                 foreach ($arrTagNames as $item => $tagNameVal) {

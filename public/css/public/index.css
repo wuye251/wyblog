@@ -57,6 +57,11 @@
 	margin-top: 100px;
 }
 
+.b-des {
+  padding: 36px 100px;
+  margin: auto;
+}
+
 #login-modal .login-icon .fa {
     margin: 0 20px;
     font-size: 65px;
