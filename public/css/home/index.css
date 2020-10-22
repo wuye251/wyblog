@@ -1,3 +1,36 @@
+.b-blog-summay {
+    margin-bottom: 40px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background:#eceae994;
+    box-shadow: 0 1px 2px 0 #e2e2e2;
+    position: relative;
+    border-radius: 40px;
+}
+
+
+.b-summary-date {
+	padding-top: 10px;
+    padding-bottom: 10px;
+    margin-left: 62px;
+}
+
+.btn-read {
+	padding: 0 10px;
+    position: absolute;
+    right: 15px;
+    bottom: 20px;
+    color: #fff;
+    border-radius: 10px;
+    background: #34afd8;
+}
+
+
+.b-titile {
+	text-align:center
+}
+
+
 /*头部*/
 .public_home_head{
 	width: 100%;
@@ -44,9 +77,9 @@
     padding-bottom: 10px;
 }
 
-.blog-titile {
+/*.blog-titile {
 	margin-top: 0;
-}
+}*/
 
 .showAllBlogs_content_body_timeInfo p {
     display: inline;

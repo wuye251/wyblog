@@ -17,6 +17,7 @@ class IndexController extends Controller
     {
         //查找条件处理
         $blogs = Blog::where('status', 1)
+                     ->orwhere('status',2)
                      ->orderby('updated_at', 'desc')
                      ->paginate(10);
 

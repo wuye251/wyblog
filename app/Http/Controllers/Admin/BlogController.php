@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Blog;
 use App\Models\Comments;
 use App\Models\Category;
+use App\Models\Tag;
+use App\Models\BlogTag;
 
 use EndaEditor;
 use App\Common\MarkDowner;
@@ -22,6 +24,7 @@ class BlogController extends Controller
     {
         //查找条件处理
         $articles = Blog::where('status', 1)
+                     ->orwhere('status',2)
                      ->orderby('updated_at', 'desc')
                      ->paginate(10);
 
@@ -41,9 +44,9 @@ class BlogController extends Controller
     {
         //
         //分类列表
-        $category = Category::orderBy('sort', 'ASC')->get();
+        $tagsList = Tag::orderBy('id', 'DESC')->get();
 
-        $assign = compact('category');
+        $assign = compact('tagsList');
         
         return view('admin.blog.create', $assign);
     }
@@ -57,22 +60,43 @@ class BlogController extends Controller
     public function store(Request $request)
     {
         //获取入参
-        $param = $request->all();
+        $input = $request->all();
         
-        $blog = new Blog;
         $markdown = new MarkDowner; 
+        
+        $input['html']    = $markdown->convertMarkdownToHtml($input['markdown']);
+        $input['summary'] = substr($input['summary'],0,100);
+        $input['status'] = $input['status'] ?? 1;
+        $tagIds = $input['tagIds'];
+        $tagNames = $input['tagNames'];
+        $arrTagIds = ($tagIds) ? explode('#', $tagIds) : [];
+        $arrTagNames = ($tagNames) ? explode('#', $tagNames) : [];
+        unset($input['tagIds']);
+        unset($input['tagNames']);
+        $blog = Blog::create($input);
+        if ($blog) {
+            $blogTag = new BlogTag();
+            if ($arrTagIds) {
+                $blogTag->addTagIds($blog->id, $arrTagIds);
+            }
+            #添加新标签
+            if ($arrTagNames) {
+                foreach ($arrTagNames as $item => $tagNameVal) {
+                    $fields = ['name' => $tagNameVal];
 
-        $blog->title   = $param['title'];
-        $blog->html    = $markdown->convertMarkdownToHtml($param['content']);
-        $blog->markdown= $param['content'];
-        $blog->status  = isset($param['status']) ? $param['status'] : 1;
-        $blog->author  = '吴烨';
+                    $tagRet = Tag::create($fields);
 
-        $boolInsert = $blog->save();
+                    $insertTagIds[] = $tagRet->id;
 
-        if ($boolInsert) return redirect('admin/blog');
-
-        return 'insert failed';
+                }
+                if ($insertTagIds) {
+                    $blogTag->addTagIds($blog->id, $insertTagIds);
+                }
+            }
+        }
+        
+        return json_encode('success');
+        // return redirect('admin/blog');
     }
 
     /**
@@ -85,9 +109,8 @@ class BlogController extends Controller
     {
         //博文
         $blog = Blog::findOrFail($blogId);
-
-        //分类标签
-        $category = $blog->category;
+        //标签
+        $tags = $blog->tag;
 
         //评论
         $comments = new Comments;
@@ -96,12 +119,13 @@ class BlogController extends Controller
             'status'     => 1,
         ];
 
-
+        /* 评论
         $comments = Comments::where($param)
                             ->orderby('create_time','desc')
                             ->get();
-        $assign = compact('blog', 'comments', 'category');
+        */
 
+        $assign = compact('blog', 'comments', 'tags');
         return view('admin.blog.show', $assign);
     }
 
@@ -116,13 +140,22 @@ class BlogController extends Controller
         //
         $blog = Blog::findOrFail($blogId);
 
-        $category = $blog->category;
+        $tagsObj = $blog->tag;
 
+        $tags = [];
+        #设置对应键值 
+        foreach ($tagsObj as $item => $tagVal) {
+            $tags[$tagVal['id']] = $tagVal;
+        }
+        /* 分类
         $categoryList   = Category::all();
+        */
+        #标签
+        $tagsList = Tag::all();
 
-        $assign = compact('blog', 'category', 'categoryList');
+        $assign = compact('blog', 'tags', 'tagsList');
 
-        return view('admin.blog.edit', $assign);
+        return view('admin.blog.create', $assign);
     }
 
     /**
@@ -138,17 +171,53 @@ class BlogController extends Controller
 
         $markdown = new MarkDowner;
         
-        $html = $markdown->convertMarkdownToHtml($param['content']);
+        //未勾选 给空值
+        $param['category'] = $param['category'] ?? 0;
+
+        $html = $markdown->convertMarkdownToHtml($param['markdown']);
 
         //加载对应内容  和创建文章相同
         $bool = Blog::where('id',$blogId)
                     ->update(['title'   => $param['title'],
                               'html'    => $html,
-                              'markdown'=> $param['content'],
-                              'category'=> $param['category'],
+                              'markdown'=> $param['markdown'],
+                              'category_id'=> $param['category'],
+                              'summary'  => $param['summary'],
+                              'status'  => $param['status'],
                             ]);
 
-        return redirect('admin/blog');
+        $tagIds = $param['tagIds'];
+        $tagNames = $param['tagNames'];
+        $arrTagIds = ($tagIds) ? explode('#', $tagIds) : [];
+        $arrTagNames = ($tagNames) ? explode('#', $tagNames) : [];
+        unset($param['tagIds']);
+        unset($param['tagNames']);
+
+        if ($bool) {
+            $blogTag = new BlogTag();
+            #删除中间表
+            $blog = Blog::find($blogId);
+            $deleBool = $blog->BlogTag()->delete();
+            if ($arrTagIds) {
+                $blogTag->addTagIds($blogId, $arrTagIds);
+            }
+            #添加新标签
+            if ($arrTagNames) {
+                foreach ($arrTagNames as $item => $tagNameVal) {
+                    $fields = ['name' => $tagNameVal];
+
+                    $tagRet = Tag::create($fields);
+
+                    $insertTagIds[] = $tagRet->id;
+
+                }
+                if ($insertTagIds) {
+                    $blogTag->addTagIds($blog->id, $insertTagIds);
+                }
+            }
+        }
+
+        return json_encode('success');
     }
 
     //图片上传
@@ -171,7 +240,7 @@ class BlogController extends Controller
 
         Blog::find($blogId)->delete();
 
-        return route('index');
+        return redirect('admin/blog');
         
     }
 
@@ -188,7 +257,7 @@ class BlogController extends Controller
         Blog::forceDelete()->where('id',$blogId);
 
 
-        return route('index');
+        return redirect('admin/blog');
     }
 
 }

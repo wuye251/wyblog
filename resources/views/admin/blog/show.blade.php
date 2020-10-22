@@ -3,20 +3,24 @@
 
 <script src="{{ asset('js/highlight.pack.js') }}"></script>
 <link href="{{ asset('css/highlight/monokai-sublime.css') }}" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="{{ asset('css/font-awesome.min.css')}}"> 
+<link href="{{ asset('css/highlight/monokai-sublime.css') }}" rel="stylesheet">
 
 <script >hljs.initHighlightingOnLoad();</script> 
 
-@extends('layouts.admin.index')
+@extends('layouts.public.index')
+
+@extends('layouts.admin.module')
+
 
 @section('content')
 	<div class="showBlog_content_body">
 			<div class="showBlog_content_body_allInfo">
 				<div class="showBlog_content_body_title">
 							{{ $blog['title'] }}
-						<hr>
 				</div><!-- title end -->
 
-				<div class="showBlogs_content_body_summary">
+				<div class="showBlog_content_body_summary">
 					<div class="showAllBlogs_content_body_authorInfo">
 						<p class="fa fa-user">{{$blog['author']}}   </p>
 					</div>
@@ -27,24 +31,24 @@
 					
 					<div class="showAllBlogs_content_body_category">
 						<p class="fa fa-tags"> 
-						@if (!$category['name']) 
+						@if (!isset($tags) || !$tags) 
 						   暂无分类
 						@else
-						{{$category['name']}} 
+						@foreach($tags as $item => $tagVal)
+						<a id="" href="">{{$tagVal['name']}}</a> 
+						@endforeach
 						@endif
 						</p>
 					</div>
-					<div class="container">
-						<dt class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
-							<a class="blog-operate-link" href="{{route('editBlog', $blog['id'])}}" target="_self">编辑</a>
-							<a class="blog-operate-link" href="{{route('softDelete', $blog['id'])}}" target="_self">刪除</a>
-							<a class="blog-operate-link" href="{{route('destory', $blog['id'])}}" target="_self">徹底刪除</a>
-						</dt>
+					<div>
+						<a class="blog-operate-link" href="{{route('editBlog', $blog['id'])}}" target="_self">编辑</a>
+						<a class="blog-operate-link" href="{{route('softDelete', $blog['id'])}}" target="_self">刪除</a>
+						<a class="blog-operate-link" href="{{route('destory', $blog['id'])}}" target="_self">彻底删除</a>
 					</div>
 				</div><!-- summary end -->
 
 				<div style="clear: both;"></div>
-				<hr>
+
 				<div class="showBlog_content_body_content">
 					{!! htmlspecialchars_decode($blog['html'],ENT_QUOTES) !!}
 				</div> <!-- content end -->
@@ -60,7 +64,7 @@
 						</form>
 					</div>
 					<br />
- -->					<hr>
+ -->					
 
 					<div class="comment_list">
 						@foreach($comments as $commentKey => $commentValue)

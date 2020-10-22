@@ -17,6 +17,8 @@
 .showBlog_content_body_summary {
 	font-size: 15px;
 	text-align: center;
+	background-color: #f7f7fc;
+	border-radius: 4px;
 }
 
 
@@ -45,6 +47,8 @@
 }
 /*博客内容布局*/
 .showBlog_content_body_content {
+	margin-top: 50px;
+	background-color: #f7f7fc;
 }
 
 
@@ -81,5 +85,5 @@
 
 /*博客内容 图片固定格式大小*/
 .showBlog_content_body_content img {
-	width: 647.5px;
+	width: 647.5px;	
 }

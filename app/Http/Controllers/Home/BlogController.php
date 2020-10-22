@@ -17,8 +17,7 @@ class BlogController extends Controller
     public function index()
     {
         //查找条件处理
-        $articles = Blog::withTrashed()
-                     ->where('status',1)
+        $articles = Blog::where('status',1)
                      ->orderby('updated_at', 'desc')
                      ->paginate(10);
 
@@ -55,7 +54,6 @@ class BlogController extends Controller
                             ->get();
 
         $assign = compact('blog', 'comments', 'category');
-
         return view('home.blog', $assign);
     }
 }

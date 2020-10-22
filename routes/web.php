@@ -12,7 +12,7 @@
 */
 
 Route::get('/12345', function(){
-	return view('layouts.home.index');
+	return view('layouts.public.index');
 });
 
 Route::get('/1234', function(){
@@ -26,7 +26,7 @@ Route::get('/123', function(){
 
 
 //web index
-Route::get('/', 'Home\IndexController@index');
+Route::get('/', 'Home\IndexController@index')->name('home');
 
 //forbidden create user 
 Auth::routes(['register' => false]);
@@ -36,8 +36,10 @@ Route::namespace('Home')->group(function(){
 		Route::get('/', 'IndexController@index');
 		//blog
 		Route::prefix('blog')->group(function(){
-			Route::get('/', 'BlogController@index');
-			Route::get('{blogId}','BlogController@show')->name('home.show');/*paginate生成的link为 blog/article/{blogId} 后期需要优化 为 blog/{blogId}*/
+
+			Route::get('/', 'BlogController@index')->name('blog');
+			Route::get('{blogId}','BlogController@show')->name('blog_content');/*paginate生成的link为 blog/article/{blogId} 后期需要优化 为 blog/{blogId}*/
+
 
 			// Route::get('comment/{blogId}', 'CommentController@index');/*暂不支持单独评论展示路由*/
 			Route::post('comment/{blogId}', 'CommentController@create');
@@ -96,8 +98,8 @@ Route::namespace('Admin')->prefix('admin')->middleware('admin')->group(function(
 		Route::prefix('blog')->group(function(){
 			Route::get('/', 'BlogController@index')->name('index');
 			/*create 必须在{blogId}上*/
-			Route::get('create',        	  'BlogController@create');
-			Route::post('store',        	  'BlogController@store');
+			Route::get('create',        	  'BlogController@create')->name('createBlog');
+			Route::post('store',        	  'BlogController@store')->name('storeBlog');
 			Route::get('edit/{blogId}',       'BlogController@edit')->name('editBlog');
 			Route::post('upload',             'BlogController@upload');
 			Route::post('update/{blogId}',    'BlogController@update')->name('admin.update');

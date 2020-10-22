@@ -3,8 +3,14 @@
 <script src="{{ asset('js/highlight.pack.js') }}"></script>
 <link href="{{ asset('css/highlight/monokai-sublime.css') }}" rel="stylesheet">
 <script >hljs.initHighlightingOnLoad();</script> 
+<link rel="stylesheet" type="text/css" href="{{ asset('css/font-awesome.min.css')}}">
 
-@extends('layouts.home.index')
+
+@extends('layouts.public.index')
+
+@extends('layouts.home.module')
+
+
 
 <!-- 博客页面左侧用户信息 -->
 @section('content_menu')
@@ -17,7 +23,6 @@
 			<div class="showBlog_content_body_allInfo">
 				<div class="showBlog_content_body_title">
 							{{ $blog['title'] }}
-						<hr>
 				</div><!-- title end -->
 
 				<div class="showBlog_content_body_summary">
@@ -30,16 +35,20 @@
 					</div>
 					
 					<div class="showAllBlogs_content_body_category">
-						<p class="fa fa-tags">{{$category['name']}}</p>
+						<p class="fa fa-tags"> 
+						@if (!$category['name']) 
+						   暂无分类
+						@else
+						{{$category['name']}} 
+						@endif
+						</p>
 					</div>
 				</div><!-- summary end -->
 				<div style="clear: both;"></div>
-				<hr>
 				<div class="showBlog_content_body_content">
 					{!! htmlspecialchars_decode($blog['html'],ENT_QUOTES) !!}
 				</div> <!-- content end -->
 				<div class="showBlog_content_body_comment">
-					<hr>
 					<!-- <span class="comment_title">咖啡厅</span> -->
 					<!-- <br /> -->
 <!-- 					<div class="comment_contentAndSumit">
