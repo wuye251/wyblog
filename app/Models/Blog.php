@@ -23,7 +23,9 @@ class Blog extends Base
 	//软删除 Base.php中已引入
 	use SoftDeletes;
 	protected $dates = ['deleted_at'];
-
+  	protected $fillable = [
+   	 'title', 'summary', 'markdown', 'html', 'status', 'author', 'category_id',
+  	];
 	const CREATE_AT = 'create_time';
 	const UPDATE_AT = 'update_time';
 
@@ -36,10 +38,27 @@ class Blog extends Base
         // 'deleted' => 0,
     // ];
 
-	public function category()
+	public function tag()
 	{
 		/* 将blog category_id字段 和 category表的id关联 */
-		return $this->belongsTo(Category::class, 'category_id');
+		// return $this->belongsTo(Category::class, 'category_id');
+
+		#远程一对多
+		return $this->hasManyThrough(
+			Tag::class,  #最终模型类  
+			BlogTag::class, #中间模型类
+			'blog_id',      #中建模型的外键名
+			'id',			#最终模型的本地名
+			'id',			#本地键名
+			'tag_id'		#最终模型的外键名
+		);
+	}
+
+
+	#一对多  删除而用
+	public function BlogTag()
+	{
+		return $this->hasMany(BlogTag::class);
 	}
 
 }

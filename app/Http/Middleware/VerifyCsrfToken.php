@@ -21,6 +21,7 @@ class VerifyCsrfToken extends Middleware
     protected $except = [
         //
         'http://wyblog/blog/create',
-        'http://wyblog/auth/admin/login'
+        'http://wyblog/auth/admin/login',
+        'http://wuye1024.com/auth/admin/login',
     ];
 }

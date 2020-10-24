@@ -1,0 +1,94 @@
+.wy-nav-btn {
+	margin: center;
+}
+
+.b-login {
+	margin-right: 32px;
+}
+
+#b-foot {
+	margin-top: 300px;
+    padding: 40px 0;
+    position: relative;
+    z-index: 2;
+    /*background: #333;*/
+    background: black;
+    color: #9d9d9d;
+	clear: both;
+
+}
+.bg-light {
+    background-color: #618da2!important;
+
+}
+
+.login-btn {
+    color: #f1f2f3;
+
+}
+.login-name {
+    padding: 11px;
+    color: #000000;
+}
+
+.row.content {
+    width: 80%;
+    margin-left: 288px;
+}
+
+.b-nav {
+    text-align: center;
+}
+#b-foot dl dd a {
+     color: #9d9d9d; 
+}
+
+#b-foot dl dd {
+    height: 25px;
+    line-height: 25px;
+}
+
+#b-foot h3 {
+	margin-top: -7px;
+}
+
+
+.b-margin {
+	margin-top: 100px;
+}
+
+.b-des {
+  padding: 36px 100px;
+  margin: auto;
+}
+
+#login-modal .login-icon .fa {
+    margin: 0 20px;
+    font-size: 65px;
+    cursor: pointer;
+    color: #333;
+}
+
+.login-icon {
+	padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+.login-title {
+	text-align: center;
+}
+
+.pi-welcome {
+    width: 200px;
+}
+
+.b-blog-summay {
+    text-align: center;
+}
+
+a {
+    text-decoration:none
+}
+
+a:hover{ text-decoration:none}

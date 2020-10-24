@@ -1566,10 +1566,9 @@ $(document).ready(function () {\n\
             }
         }
         sfModal({
-            title: '插入图片',
+            title: '',
             content: '<ul class="nav nav-tabs" role="tablist">\
     <li class="active"><a href="#localPic" role="tab" data-toggle="tab">本地上传</a></li>\
-    <li><a href="#remotePic" role="tab" data-toggle="tab">远程地址获取</a></li>\
 </ul>\
 <div class="tab-content">\
     <div class="tab-pane fade in active pt20 form-horizontal" id="localPic">\

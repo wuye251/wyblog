@@ -1,56 +1,68 @@
-<link href="{{ asset('css/app.css') }}" rel="stylesheet">
 <link rel="stylesheet" href="/css/admin/index.css">
-<link rel="stylesheet" href="/css/public/paginate.css">
-<link rel="stylesheet" href="/css/public/blogList.css">
-<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
-<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="{{ asset('css/font-awesome.min.css')}}">
 
-@extends('layouts.admin.index')
+@extends('layouts.public.index')
 
+@extends('layouts.admin.module')
 
 @section('content')
-	<div class="admin_home_content">
-		<div class="admin_home_conten_bloglist">
-			<div class="home_home_main_content">
-			<div class="showAllBlogs_content_body">
+	<!-- <div class="home_home_left_content"></div> -->
+	
+	<!-- <div class="home_home_main_content"> -->
+
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 col-md-12 col-lg-8 col-lg-offset-2" style="margin-left: 204px;"style="margin-left: 175px;">
 			@foreach($blogs as $k => $v)
-				<div class="showAllBlogs_content_body_allInfo">
-					<div class="showAllBlogs_content_body_title">
-						<a class="showAllBlogs_content_body_link" href="{{route('admin.show', $v['id'])}}" target="view_window">
-							<h2 class="blog-titile">{{ $v['title'] }} </h2>
-						</a> <!-- 打印标题 并且赋值超链接 -->
+				<div class="row b-blog-summay">
+					<h3 class="col-xs-12 col-md-12 col-lg-12 b-titile">
+						<a class="blog-titile" href="{{route('admin.show',$v['id'])}}">@if($v['status'] == 2)(私密)@endif{{ $v['title'] }} </a>
+					</h3>
+					<div class="col-xs-12 col-md-12 col-lg-12  b-summary-date">
+	                    <div class="row">
+	                        <dl class="col-xs-4 col-md-4 col-lg-4">
+	                            <dt class="fa fa-user"></dt> {{ $v->author }}
+	                        </dl>
+	                        <dl class="col-xs-4 col-md-4 col-lg-4">
+	                            <dt class="fa fa-calendar"></dt> {{ $v->updated_at }}
+	                        </dl>
+	                        <dl class="col-xs-4 col-md-4 col-lg-4">
+	                        	<dt class="fa fa-tags">  
+	                        		@if(!$v->tag->isEmpty())
+		                        		@foreach($v->tag as $item => $tagInfo)
+		                        			{{$tagInfo->name}}
+		                        		@endforeach
+		                        	@else
+		                        		暂无分类
+		                        	@endif
+								</dt>
+	                        </dl>
+	                    </div>
+	                </div>
+
+					<div class="col-xs-12 col-md-12 col-lg-12 operate">
+						<a class="col-xs-4 col-md-4 col-lg-4" href="{{route('admin.show',$v['id'])}}">查 看</a>
+						<a  class="col-xs-4 col-md-4 col-lg-4" href="{{route('editBlog', $v['id'])}}">编 辑</a>
+						<a  class="col-xs-4 col-md-4 col-lg-4" href="{{route('softDelete', $v['id'])}}">刪 除</a>
 					</div>
-					<div class="showAllBlogs_content_body_timeInfo">
-					<p class="fa fa-user">  {{$v['author']}} </p> 
-					<p class="fa fa-calendar"> {{$v['updated_at']}} </p>
-					<p class="fa fa-tags">  
-						@if (!$v->category['name']) 
-						   暂无分类
-						@else
-						{{($v->category)['name']}} 
-						@endif
-					</p>
 					
-					</div>
-					<div class="showAllBlogs_content_body_summary">
-						<p></p>
-					</div>
+	                
+	                <!-- 文章摘要 -->
+	                <div class="b-des">
+	                	    {{ $v['summary'] }}
+	                </div>
+	                <!-- 文章摘要结束 -->
 
-					<div class="blog-operate">
-						<a class="showAllBlogs_content_body_operate_view" href="{{route('admin.show', $v['id'])}}">查 看</a>
-						<a class="showAllBlogs_content_body_operate_edit" href="{{route('editBlog', $v['id'])}}">编 辑</a>
-					</div>
-
-				</div>
+<!-- 	            	<a href="{{route('blog_content', $v['id']) }}" class="btn-read">查看文章</a> -->
+	            </div>
 			@endforeach
 			</div>
-			</div>
 		</div>
+
 		<div style="position: relative;">
 			<ul class="showAllBlogs_content_pagination">
 				<li>{{$blogs->links()}}</li>
-			</ul>
 		</div>
 	</div>
+
 @endsection

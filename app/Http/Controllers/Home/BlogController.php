@@ -17,8 +17,7 @@ class BlogController extends Controller
     public function index()
     {
         //查找条件处理
-        $articles = Blog::withTrashed()
-                     ->where('status',1)
+        $articles = Blog::where('status',1)
                      ->orderby('updated_at', 'desc')
                      ->paginate(10);
 
@@ -39,23 +38,23 @@ class BlogController extends Controller
     {
         //博文
         $blog = Blog::findOrFail($blogId);
-
-        //分类标签
-        $category = $blog->category;
+        //标签
+        $tags = $blog->tag;
 
         //评论
         $comments = new Comments;
-
         $param = [          
             'article_id' => $blogId,
             'status'     => 1,
         ];
+
+        /* 评论
         $comments = Comments::where($param)
                             ->orderby('create_time','desc')
                             ->get();
+        */
 
-        $assign = compact('blog', 'comments', 'category');
-
+        $assign = compact('blog', 'comments', 'tags');
         return view('home.blog', $assign);
     }
 }
