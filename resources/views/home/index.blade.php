@@ -28,11 +28,13 @@
 	                        </dl>
 	                        <dl class="col-xs-4 col-md-4 col-lg-3">
 	                        	<dt class="fa fa-tags">  
-		                        	@if (!$v->category['name']) 
-								   		暂无分类
-									@else
-										{{($v->category)['name']}} 
-									@endif
+		                        	@if(!$v->tag->isEmpty())
+		                        		@foreach($v->tag as $item => $tagInfo)
+		                        			{{$tagInfo->name}}
+		                        		@endforeach
+		                        	@else
+		                        		暂无分类
+		                        	@endif
 								</dt>
 	                        </dl>
 	                    </div>

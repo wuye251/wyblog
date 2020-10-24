@@ -34,9 +34,9 @@
 						@if (!isset($tags) || !$tags) 
 						   暂无分类
 						@else
-						@foreach($tags as $item => $tagVal)
-						<a id="" href="">{{$tagVal['name']}}</a> 
-						@endforeach
+							@foreach($tags as $item => $tagVal)
+								<span>{{$tagVal['name']}}</span> 
+							@endforeach
 						@endif
 						</p>
 					</div>

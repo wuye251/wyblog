@@ -36,10 +36,12 @@
 					
 					<div class="showAllBlogs_content_body_category">
 						<p class="fa fa-tags"> 
-						@if (!$category['name']) 
+						@if (!isset($tags) || !$tags) 
 						   暂无分类
 						@else
-						{{$category['name']}} 
+						@foreach($tags as $item => $tagVal)
+						<span>{{$tagVal['name']}}</span> 
+						@endforeach
 						@endif
 						</p>
 					</div>
