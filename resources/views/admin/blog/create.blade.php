@@ -37,7 +37,8 @@
 			</div>
 		</div>
 
-		<div class="b-summary-input" style="width: 83%; margin:auto">
+		<!-- <input-summary inline-template> -->
+		<div id="b-summary-input" class="b-summary-input" style="width: 83%; margin:auto">
 			<div style="display: inline-block;background: #f3e9e9;font-size: 23px;">摘要：</div>
 			@if (isset($blog))
 			<textarea maxlength="100" id="summary" class="admin_blog_create_title_input" placeholder="写点摘要" name="summary" value="{{$blog['summary']}}" style="width: 93%;">{{$blog['summary']}}</textarea>
@@ -46,8 +47,9 @@
 			<textarea maxlength="100" id="summary" class="admin_blog_create_title_input" placeholder="写点摘要" name="summary" value="" style="width: 93%;"></textarea>
 			<!-- <span class="b-title-count">0/100</span> -->
 			@endif
+			<span class="b-summary-input-tip">0/100字</span>
 		</div>
-
+		<!-- </input-summary> -->
 
 		@include('editor::head')
 		<!-- 重定义 markdown大小 -->
@@ -69,6 +71,26 @@
         	href: "#cbox-category"
     	});
     });
+
+	$("#summary").on('input propertychange', function () {
+		var str = $(this).val();
+		var len;
+		len = checkStrLengths(str, 100);
+
+		$(".b-summary-input-tip").html(len+'/100字');
+	})
+
+	var checkStrLengths = function (str, maxLength) {
+	    var maxLength = maxLength;
+	    var result = 0;
+	    if (str && str.length > maxLength) {
+	        result = maxLength;
+	    } else {
+	        result = str.length;
+	    }
+	    return result;
+	}
+	
 </script>
 
 <style type="text/css">
