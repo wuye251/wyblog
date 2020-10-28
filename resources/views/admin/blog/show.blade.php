@@ -70,7 +70,7 @@
 						@foreach($comments as $commentKey => $commentValue)
 							{{$commentValue['create_time']}}
 							{{$commentValue['content']}}
-							<hr>
+							<!-- <hr> -->
 						@endforeach
 					</div> <!-- 评论列表展示结束 -->
 				</div>
