@@ -10,6 +10,7 @@
 
 
 <body>
+	<div id="goTop"></div>
 	<!-- 导航栏开始 -->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: red">
 	<!-- <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation"> -->
@@ -43,6 +44,11 @@
 	<div class="b-margin">
 		@yield('content')
 	</div>
+	<!-- <div style="position: absolute;"><a href="#goTop">返回顶部</a></div> -->
+	<div class="goTop"></div>>
+	<!-- <a class="to-top">返回顶部</a> -->
+	<img src="{{ URL::asset('images/common/goTop.ico') }}" class="to-top">
+
 	<!-- 底部信息开始 -->
 	<div id="b-foot">
 		<div class="container">
@@ -101,8 +107,29 @@ $(function () {
 　　});
 
 })
-</script>
+$(document).ready(function() {
+	$(".goTop").hide();
+	$(function(){
+		$(window).scroll(function(){
+			if ($(window).scrollTop() > 100) {
+				$(".goTop").fadeIn(1500);
+			} else {
+				$(".goTop").fadeOut(1500);
+			}
+		});
+		$(".goTop").click(function(){
+			$('body,html').animate({
+				scrollTop:0
+			},
+			1000);
+			return false;
+		});
+	})
+});
 
+$('.to-top').toTop();
+
+</script>
 </html> 
 
 
