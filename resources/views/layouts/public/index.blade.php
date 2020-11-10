@@ -10,8 +10,9 @@
 
 
 <body>
+	<div id="goTop"></div>
 	<!-- 导航栏开始 -->
-	<nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: red">
+	<nav class="navbar navbar-expand-lg navbar-light bg-light my-nav-bar" style="background-color: red">
 	<!-- <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation"> -->
   		<a class="navbar-brand" href="@yield('nav_welcome')" style="color: rgb(248, 250, 252);">HELLO WORLD</a></a>
 		<!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -43,6 +44,11 @@
 	<div class="b-margin">
 		@yield('content')
 	</div>
+	<!-- <div style="position: absolute;"><a href="#goTop">返回顶部</a></div> -->
+	<div class="goTop"></div>>
+	<!-- <a class="to-top">返回顶部</a> -->
+	<img src="{{ URL::asset('images/common/goTop.ico') }}" class="to-top">
+
 	<!-- 底部信息开始 -->
 	<div id="b-foot">
 		<div class="container">
@@ -101,8 +107,53 @@ $(function () {
 　　});
 
 })
-</script>
+$(document).ready(function() {
+	$(".goTop").hide();
+	$(function(){
+		$(window).scroll(function(){
+			if ($(window).scrollTop() > 100) {
+				$(".goTop").fadeIn(1500);
+			} else {
+				$(".goTop").fadeOut(1500);
+			}
+		});
+		$(".goTop").click(function(){
+			$('body,html').animate({
+				scrollTop:0
+			},
+			1000);
+			return false;
+		});
+	})
+});
 
+$('.to-top').toTop();
+
+// $(function(){
+	
+// 	//初始高度
+// 	var start_height = $(document).scrollTop();
+// 	//导航栏高度
+// 	var navigation_height = $('.my-nav-bar').scrollTop();
+
+// 	$(window).scroll(function(){
+// 		//滑动页面触发获取滑动高度
+// 		var end_height = $(document).scrollTop(); 
+
+// 		if (end_height > navigation_height) {
+// 			$('.my-nav-bar').addClass('hide');
+// 		} else {
+// 			$('.my-nav-bar').removeClass('hide');
+// 		}
+
+// 		if (end_height < start_height) {
+// 			$('.my-nav-bar').removeClass('hide');
+// 		}
+// 		start_height = $(document).scrollTop();
+// 	})
+// })
+
+</script>
 </html> 
 
 
