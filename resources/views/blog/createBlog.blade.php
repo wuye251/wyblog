@@ -8,7 +8,6 @@
 
 
 <link rel="stylesheet" href="/css/blog/createBlog.css">
-
 <!-- 博客内容列表侧内容 -->
 @section('content_body')
         <form action="{{url('/blog/create')}}" method="POST">   

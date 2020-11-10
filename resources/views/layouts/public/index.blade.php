@@ -50,7 +50,7 @@
 				<dl class="col-xs-12 col-sm-6 col-md-3 col-lg-5">
 					<dt><h3>权益</h3></dt>
 
-						<dd>版权所有：© 2014-2020</dd>
+						<dd>版权所有：{{config('const.copyright')}}</dd>
 
 						<dd>联系邮箱：<a href="mailto:{{config('const.mailto')}}">{{config('const.mailto')}}</a></dd>
 

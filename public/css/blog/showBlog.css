@@ -85,6 +85,5 @@
 
 /*博客内容 图片固定格式大小*/
 .showBlog_content_body_content img {
-    width: 40%;
-    height: 40%;
+	max-width: 100%;
 }
