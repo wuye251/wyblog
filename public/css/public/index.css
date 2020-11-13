@@ -1,3 +1,6 @@
+body {
+    line-height: 30px;
+}
 .wy-nav-btn {
 	margin: center;
 }
@@ -59,8 +62,10 @@
 }
 
 .b-des {
+  font-size: 13px;
   padding: 36px 100px;
   margin: auto;
+  line-height: 1.42857143;
 }
 
 #login-modal .login-icon .fa {
