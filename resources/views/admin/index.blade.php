@@ -1,6 +1,7 @@
 <link rel="stylesheet" href="/css/admin/index.css">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/font-awesome.min.css')}}">
 
+
 @extends('layouts.public.index')
 
 @extends('layouts.admin.module')
@@ -48,7 +49,7 @@
 					
 	                
 	                <!-- 文章摘要 -->
-	                <div class="b-des">
+	                <div class="b-des" style="padding: 0 100px 10px 100px;">
 	                	    {{ $v['summary'] }}
 	                </div>
 	                <!-- 文章摘要结束 -->
@@ -59,10 +60,15 @@
 			</div>
 		</div>
 
-		<div style="position: relative;">
+<!-- 		<div style="position: relative;">
 			<ul class="showAllBlogs_content_pagination">
-				<li>{{$blogs->links()}}</li>
-		</div>
+				<li>{{$blogs->render()}}</li>
+		</div> -->
+		<div id="pull_right">
+	       <div class="pull-right">
+	          {!! $blogs->render() !!}
+	       </div>
+ 		</div>
 	</div>
 
 @endsection

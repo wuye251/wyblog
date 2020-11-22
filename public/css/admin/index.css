@@ -1,11 +1,11 @@
 .b-blog-summay {
-    margin-bottom: 40px;
+    margin-bottom: 13px;
     padding-top: 20px;
     padding-bottom: 20px;
     background:#eceae994;
     box-shadow: 0 1px 2px 0 #e2e2e2;
     position: relative;
-    border-radius: 40px;
+    /*border-radius: 40px;*/
 }
 
 

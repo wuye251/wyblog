@@ -23,8 +23,8 @@
             offset: 600,
             speed: 500,
             position: true,
-            right: 159,
-            bottom: 329,
+            right: 100,
+            bottom: 208,
         }, opt);
         
         elem.css({

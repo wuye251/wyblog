@@ -53,10 +53,11 @@
 		</div>
 
 		</div>
-		<div style="position: relative;">
-			<ul class="showAllBlogs_content_pagination">
-				<li>{{$blogs->links()}}</li>
-		</div>
+		<div id="pull_right">
+	       <div class="pull-right">
+	          {!! $blogs->render() !!}
+	       </div>
+ 		</div>
 	</div>
 
 @endsection

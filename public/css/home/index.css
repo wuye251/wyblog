@@ -1,11 +1,11 @@
 .b-blog-summay {
-    margin-bottom: 40px;
+    margin-bottom: 13px;
     padding-top: 20px;
     padding-bottom: 20px;
     background:#eceae994;
     box-shadow: 0 1px 2px 0 #e2e2e2;
     position: relative;
-    border-radius: 40px;
+    /*border-radius: 40px;*/
 }
 
 
@@ -93,41 +93,6 @@
 	height: 200px;
 	background-color: black;
 }*/
-
-
-ul.showAllBlogs_content_pagination {
-    /*display: inline-block;
-    padding: 0;
-    margin: 0;*/
-    display: table;
-    margin: 40px auto;
-    text-align: center;
-}
-
-ul.showAllBlogs_content_pagination li {
-  /*display: inline;*/
-  display: table-cell;
-  /*padding: 1%;
-  font-size: 18px;
-  font-weight: bold;
-  margin: 0 1px;*/
-
-}
-
-ul.showAllBlogs_content_pagination li a {
-    color: #000; 
-    /*float: left;*/
-    padding: 5px 8px;
-    text-decoration: none;
-    background-color: #ddd;
-    margin-left: 1px;
-}
-
-ul.showAllBlogs_content_pagination li a:hover {
-    background-color: #ffcc00;
-    color: #fff;
-}
-
 
 /*登录框 标题居中*/
 .login-title {
