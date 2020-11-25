@@ -28,7 +28,7 @@
 	                            <dt class="fa fa-calendar"></dt> {{ $v->updated_at }}
 	                        </dl>
 	                        <dl class="col-xs-4 col-md-4 col-lg-4">
-	                        	<dt class="fa fa-tags">  
+	                        	<dt class="fa fa-tags" style="margin-top: 7px;">  
 	                        		@if(!$v->tag->isEmpty())
 		                        		@foreach($v->tag as $item => $tagInfo)
 		                        			{{$tagInfo->name}}

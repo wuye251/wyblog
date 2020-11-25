@@ -37,6 +37,7 @@
 			</div>
 		</div>
 
+.	·1
 		<!-- <input-summary inline-template> -->
 		<div id="b-summary-input" class="b-summary-input" style="width: 83%; margin:auto">
 			<div style="display: inline-block;background: #f3e9e9;font-size: 23px;">摘要：</div>
