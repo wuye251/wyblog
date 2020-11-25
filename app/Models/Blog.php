@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Blog extends Base
 {
 	//指定表名
-	protected $table = 'tblblog';
+	protected $table = 'blogs';
 
 	//指定主键
 	protected $primaryKey = 'id';

@@ -25,17 +25,11 @@ class Wyblog extends Migration
             $table->tinyInteger('status')
                   ->default(0)
                   ->comment('文章状态 0未发布 1已发布 2已删除');
-            $table->timestamp('create_time')
-                  // ->default(0)
-                  ->comment('创建时间');
-            $table->timestamp('update_time')
-                  // ->default(0)
-                  ->comment('修改时间');
             $table->string('author')
                   ->default('')
                   ->comment('作者');
             $table->primary('id');
-// $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            
         });
     }
 
