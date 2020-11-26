@@ -111,7 +111,6 @@ class BlogController extends Controller
         $blog = Blog::findOrFail($blogId);
         //标签
         $tags = $blog->tag;
-
         //评论
         $comments = new Comments;
         $param = [          
@@ -181,7 +180,7 @@ class BlogController extends Controller
                     ->update(['title'   => $param['title'],
                               'html'    => $html,
                               'markdown'=> $param['markdown'],
-                              'category_id'=> $param['category'],
+                              // 'category_id'=> $param['category'],
                               'summary'  => $param['summary'],
                               'status'  => $param['status'],
                             ]);

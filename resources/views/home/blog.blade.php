@@ -35,7 +35,7 @@
 			
 			<div class="showAllBlogs_content_body_category">
 				<p class="fa fa-tags"> 
-				@if (!isset($tags) || !$tags) 
+				@if ($tags->isEmpty()) 
 				   暂无分类
 				@else
 				@foreach($tags as $item => $tagVal)
