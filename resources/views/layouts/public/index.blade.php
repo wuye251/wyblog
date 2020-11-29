@@ -45,7 +45,7 @@
 		@yield('content')
 	</div>
 	<!-- <div style="position: absolute;"><a href="#goTop">返回顶部</a></div> -->
-	<div class="goTop"></div>>
+	<div class="goTop"></div>
 	<!-- <a class="to-top">返回顶部</a> -->
 	<img src="{{ URL::asset('images/common/goTop.ico') }}" class="to-top">
 

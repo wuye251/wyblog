@@ -179,6 +179,9 @@ return [
         YuanChao\Editor\EndaEditorServiceProvider::class,
         // YuanChao\Editor\Parsedown::class,
         Overtrue\LaravelSocialite\ServiceProvider::class,
+
+        //models init plugin
+        // Reliese\Coders\CodersServiceProvider::class,
     ],
 
     /*

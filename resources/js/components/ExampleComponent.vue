@@ -20,11 +20,4 @@
             console.log('Component mounted.')
         }
     }
-
-    $inputSummary = new Vue({
-        el: '#b-summary-input',
-        data: {
-            curWordLength: "1111",
-        }
-    });
 </script>

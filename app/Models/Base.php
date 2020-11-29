@@ -9,4 +9,5 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Base extends Model
 {
     //
+    use SoftDeletes;
 }

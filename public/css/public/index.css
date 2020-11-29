@@ -59,6 +59,7 @@ body {
 
 .b-margin {
 	margin-top: 100px;
+    min-height: 80%;
 }
 
 .b-des {

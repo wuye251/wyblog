@@ -88,6 +88,8 @@ Route::namespace('Admin')->prefix('admin')->group(function () {
 
 Route::post('auth/admin/login', 'Auth\AdminController@login')->name('adminLogin');
 
+
+
 Route::namespace('Admin')->prefix('admin')->middleware('admin')->group(function(){
 // Route::namespace('Admin')->prefix('admin')->group(function(){
 
@@ -111,13 +113,22 @@ Route::namespace('Admin')->prefix('admin')->middleware('admin')->group(function(
 		//分类管理
 		Route::prefix('category')->group(function(){
 			Route::get('index', 		'CategoryController@index');
-			Route::get('create', 		'CategoryController@create');
+			Route::get('create', 		'Cagit tegoryController@create');
 			Route::get('store', 		'CategoryController@store');
 			Route::get('show/{id}', 	'CategoryController@show');
 			Route::get('edit/{id}', 	'CategoryController@edit');
 			Route::get('update/{id}', 	'CategoryController@update');
 			Route::get('destroy/{id}',  'CategoryController@destroy');
 			
+		});
+
+		//时间轴
+		Route::prefix('note')->group(function(){
+			Route::get('index', 'NoteController@index')->name('admin.noteList');
+			Route::get('add', 'NoteController@index');
+			Route::get('update', 'NoteController@index');
+			Route::get('softDelete', 'NoteController@index');
+			Route::get('destory', 'NoteController@index');
 		});
 });
 

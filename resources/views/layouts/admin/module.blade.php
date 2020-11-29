@@ -1,8 +1,12 @@
 <!-- 导航栏 -->
 @section('nav')
     <li class="nav-item b-nav-col">
+    	<a class="nav-link" href="{{route('admin.noteList')}}" target="_blank" style="color: rgba(234, 229, 229, 0.9);">时间藤条</a></li>
+    </li>
+    <li class="nav-item b-nav-col">
     	<a class="nav-link" href="{{route('createBlog')}}" target="_blank" style="color: rgba(234, 229, 229, 0.9);">新建</a></li>
     </li>
+
 	<!-- <li class="b-nav-col"><a href="{{route('createBlog')}}" target="_blank">新建</a></li> -->
 @endsection
 
