@@ -7,14 +7,7 @@
 
 @section('content')
 	<div id="app">
-		<div class='time-line'>
-			<div v-for='item in testList' class='time-line-div'>
-				<p>{{item.time}}</p>
-				<p ref='circular'></p>
-				<p>{{item.text}}</p>
-			</div>
-			<div class='img-dotted' ref='dotted'></div>
-		</div>
+	    <example-component></example-component>
 	</div>
 
 @endsection

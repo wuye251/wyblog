@@ -5,7 +5,8 @@
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="{{asset('/css/app.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('/css/public/index.css')}}">
-    <script src="{{mix('/js/app.js')}}"></script>
+	<script src="{{mix('/js/app.js')}}"></script>
+
 </head>
 
 
@@ -86,9 +87,10 @@
 	</div>
 	<!-- 底部信息结束 -->
 </body>
-
+<script src="{{mix('/js/app.js')}}"></script>
 
 <script>
+
 $(function () {
 　　$("#mytab").find("li").each(function () {
 
@@ -154,6 +156,7 @@ $('.to-top').toTop();
 // })
 
 </script>
+
 </html> 
 
 
