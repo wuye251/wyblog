@@ -11,6 +11,8 @@
 |
 */
 
+Route::get('/hello','HelloController@index');
+
 Route::get('/12345', function(){
 	return view('layouts.public.index');
 });

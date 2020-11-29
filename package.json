@@ -27,6 +27,7 @@
     },
     "dependencies": {
         "bootstrap-datepicker": "^1.9.0",
+        "element-ui": "^2.14.1",
         "jquery-colorbox": "^1.6.4",
         "tips.js": "^1.2.0"
     }
