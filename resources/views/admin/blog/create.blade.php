@@ -64,6 +64,7 @@
 
 
 <script type="text/javascript">
+	debugger
 	$(document).ready(function(){
         $("#publish").colorbox({
         	width: "500px",

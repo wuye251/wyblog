@@ -112228,6 +112228,8 @@ __webpack_require__.r(__webpack_exports__);
  */
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+__webpack_require__(/*! ./common/public */ "./resources/js/common/public.js");
+
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 
  // import 'element-ui/lib/timeline.js';
@@ -112302,6 +112304,73 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/common/public.js":
+/*!***************************************!*\
+  !*** ./resources/js/common/public.js ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/**
+ *  Plugin Name: jQuery toTop for smoothly Scroll back to Top
+ *  Plugin URL: https://github.com/mmkjony/jQuery.toTop
+ *  Version: 1.1
+ *  Author: MMK Jony
+ *  Author URL: https://github.com/mmkjony
+ *  License: Licensed under MIT
+ **/
+(function ($) {
+  'use strict';
+
+  $.fn.toTop = function (opt) {
+    //variables
+    var elem = this;
+    var win = $(window);
+    var doc = $('html, body'); //Extended Options
+
+    var options = $.extend({
+      autohide: true,
+      offset: 600,
+      speed: 500,
+      position: true,
+      right: 100,
+      bottom: 208
+    }, opt);
+    elem.css({
+      'cursor': 'pointer'
+    });
+
+    if (options.autohide) {
+      elem.css('display', 'none');
+    }
+
+    if (options.position) {
+      elem.css({
+        'position': 'fixed',
+        'right': options.right,
+        'bottom': options.bottom
+      });
+    }
+
+    elem.click(function () {
+      doc.animate({
+        scrollTop: 0
+      }, options.speed);
+    });
+    win.scroll(function () {
+      var scrolling = win.scrollTop();
+
+      if (options.autohide) {
+        if (scrolling > options.offset) {
+          elem.fadeIn(options.speed);
+        } else elem.fadeOut(options.speed);
+      }
+    });
+  };
+})(jQuery);
 
 /***/ }),
 
