@@ -7,8 +7,9 @@
 
 @section('content')
 	<div id="app">
-	    <example-component></example-component>
+	    <timeline></timeline>
 	</div>
 
+	<script src="{{mix('/js/app.js')}}"></script>
 @endsection
 

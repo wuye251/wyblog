@@ -10,6 +10,7 @@ require('jquery');
 require('jquery-colorbox/jquery.colorbox.js');
 require('tips.js/dist/js/tips.js');
 
+
 window.Vue = require('vue');
 
 import ElementUI from 'element-ui';
@@ -33,6 +34,8 @@ Vue.use(ElementUI);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('timeline', require('./vue/note.vue').default);
+
 
 // Vue.component('note', require('./vue/note.vue').default);
 
