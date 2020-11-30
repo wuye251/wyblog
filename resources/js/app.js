@@ -6,6 +6,9 @@
 
 require('./bootstrap');
 require('./common/public');
+require('jquery');
+require('jquery-colorbox/jquery.colorbox.js');
+require('tips.js/dist/js/tips.js');
 
 window.Vue = require('vue');
 
