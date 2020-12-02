@@ -40,6 +40,7 @@
 		<!-- <input-summary inline-template> -->
 		<div id="b-summary-input" class="b-summary-input" style="width: 83%; margin:auto">
 			<div style="display: inline-block;background: #f3e9e9;font-size: 23px;">摘要：</div>
+			<div>
 			@if (isset($blog))
 			<textarea maxlength="100" id="summary" class="admin_blog_create_title_input" placeholder="写点摘要" name="summary" value="{{$blog['summary']}}" style="width: 93%;">{{$blog['summary']}}</textarea>
 			<!-- <span class="b-title-count">0/100</span> -->
@@ -48,12 +49,13 @@
 			<!-- <span class="b-title-count">0/100</span> -->
 			@endif
 			<span class="b-summary-input-tip">0/100字</span>
+			</div>
 		</div>
 		<!-- </input-summary> -->
 
 		@include('editor::head')
 		<!-- 重定义 markdown大小 -->
-		<div class="editor" style="width: 83%;height: 95%; margin:auto">
+		<div class="editor" style="width: 83%;min-height: 95%; margin:auto">
 		@if (isset($blog))
     		<textarea id='myEditor' name="markdown" placeholder="请输入内容">{{ $blog['markdown'] }}</textarea>
     	@else 
@@ -201,6 +203,18 @@
 		display: inline-block;
 	}
 
+	#b-foot {
+		margin-top: 26%;
+	}
+
+	.CodeMirror {
+		line-height: 1.7;
+	}
+
+	.CodeMirror pre {
+		font-family: unset;
+		font-size: 17px;
+	}
 </style>
 
 
