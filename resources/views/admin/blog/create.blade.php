@@ -215,6 +215,16 @@
 		font-family: unset;
 		font-size: 17px;
 	}
+	#cbox-blog-viewable input[type="radio"] {
+	  width: 20px;
+	  height: 20px;
+	  border-radius: 2px;
+	}
+
+	input[type="checkbox"] {
+	  width: 20px;
+	  height: 20px;
+	}
 </style>
 
 
@@ -246,24 +256,21 @@
 			<div class="blog__option-box">
 				<label role="radio" tabindex="0" class="el-radio is-checked" aria-checked="true">
 					<span class="el-radio__input is-checked">
-						<span class="el-radio__inner"></span>
 						@if((isset($blog) && $blog['status'] == 1) || !isset($blog))
-						<input id="blog-type" type="radio" aria-hidden="true" checked="true" id="kind" name="kind" tabindex="-1" class="el-radio__original" value="1">
+						<input id="blog-type" type="radio" checked="true" name="kind" value="1">
 						@else
-						<input id="blog-type" type="radio" aria-hidden="true" id="kind" name="kind" tabindex="-1" class="el-radio__original" value="1">
+						<input id="blog-type" type="radio" checked="" name="kind" value="1">
 						@endif
 					</span>
 					<span class="el-radio__label">公开</span>
 				</label>
 				
 				<label role="radio" tabindex="0" class="el-radio is-checked" aria-checked="true">
-
 					<span class="el-radio__input is-checked">
-						<span class="el-radio__inner"></span>
 						@if(isset($blog) && $blog['status'] == 2)
-						<input id="blog-type" type="radio" aria-hidden="true" checked="true" name="kind" id="kind" tabindex="-1" class="el-radio__original" value="2">
+						<input id="blog-type" type="radio" checked="true" name="kind" value="2">
 						@else
-						<input id="blog-type" type="radio" aria-hidden="true" name="kind" id="kind" tabindex="-1" class="el-radio__original" value="2">
+						<input id="blog-type" type="radio" checked="" name="kind" value="2">
 						@endif
 					</span>
 					<span class="el-radio__label">私密</span>
