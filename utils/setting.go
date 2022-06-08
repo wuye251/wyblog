@@ -35,7 +35,7 @@ func LoadData(file *ini.File) {
 	AppMode = file.Section("server").Key("AppMode").MustString("development")
 	HttpPort = file.Section("server").Key("HttpPort").MustString(":3000")
 	Db = file.Section("server").Key("Db").MustString("debug")
-	DbHost = file.Section("server").Key("DbHost").MustString("http")
+	DbHost = file.Section("server").Key("DbHost").MustString("localhost")
 	DbPort = file.Section("server").Key("DbPort").MustString("3306")
 	DbUser = file.Section("server").Key("DbUser").MustString("root")
 	DbPassWord = file.Section("server").Key("DbPassWord").MustString("")
