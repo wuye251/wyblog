@@ -58,11 +58,6 @@ func UpdateCategory(c *gin.Context) {
 
 }
 
-//查询单个分类下的文章
-func GetArticlesByCategoryId(c *gin.Context) {
-
-}
-
 //查询分类列表
 func GetCategories(c *gin.Context) {
 	pageSize, _ := strconv.Atoi(c.Query("pageSize"))
