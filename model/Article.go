@@ -6,24 +6,24 @@ import (
 	"gorm.io/gorm"
 )
 
+type Article struct {
+	Category Category `gorm:"foreignkey:CategoryId"`
+	gorm.Model
+	Title      string `gorm:"type:varchar(1000);not null;comment:标题" json:"title"`
+	Desc       string `gorm:"type:varchar(200);comment:文章摘要描述" json:"desc"`
+	Content    string `gorm:"type:longtext;not null;comment:文章内容" json:"content"`
+	CategoryId int    `gorm:"type:int;not null;comment:文章类型id" json:"categoryId"`
+	Img        string `gorm:"type:varchar(100);comment:文章插图" json:"img"`
+}
+
 // type Article struct {
 // 	gorm.Model
-// 	Title    string `gorm:"type:varchar(1000);not null;comment:标题" json:"title"`
-// 	Desc     string `gorm:"type:varchar(200);comment:文章摘要描述" json:"desc"`
-// 	Content  string `gorm:"type:longtext;not null;comment:文章内容" json:"content"`
-// 	CategoryId      int    `gorm:"type:int;not null;comment:文章类型id" json:"categoryId"`
-// 	Img      string `gorm:"type:varchar(100);comment:文章插图" json:"img"`
+// 	Category   Category
+// 	Title      string `gorm:"type:varchar(1000);not null;comment:标题" json:"title"`
+// 	Desc       string `gorm:"type:varchar(200);comment:文章摘要描述" json:"desc"`
+// 	Content    string `gorm:"type:longtext;not null;comment:文章内容" json:"content"`
+// 	Img        string `gorm:"type:varchar(100);comment:文章插图" json:"img"`
 // }
-
-type Article struct {
-	gorm.Model
-	Category   Category `gorm:"foreignKey:ID;references:CategoryId;"`
-	Title      string   `gorm:"type:varchar(1000);not null;comment:标题" json:"title"`
-	CategoryId int      `gorm:"type:int;not null;comment:文章类型id" json:"categoryId"`
-	Desc       string   `gorm:"type:varchar(200);comment:文章摘要描述" json:"desc"`
-	Content    string   `gorm:"type:longtext;not null;comment:文章内容" json:"content"`
-	Img        string   `gorm:"type:varchar(100);comment:文章插图" json:"img"`
-}
 
 //新增用户
 func InsertArticle(data *Article) (code int) {
@@ -65,4 +65,34 @@ func UpdateArticleById(id int, articleInfo *Article) (code int) {
 		return errmsg.ERROR
 	}
 	return errmsg.SUCCESS
+}
+
+func GetArticles(pageSize, pageNum int) ([]Article, int) {
+	var articleList []Article
+	err := db.Preload("Category").Limit(pageSize).Offset((pageNum - 1) * pageSize).Find(&articleList).Error
+	if err != nil && err != gorm.ErrRecordNotFound {
+		return nil, errmsg.ERROR
+	}
+
+	return articleList, errmsg.SUCCESS
+}
+
+func GetArticleById(id int) (*Article, int) {
+	var article Article
+	err := db.Preload("Category").Where("id = ?", id).First(&article).Error
+	if err != nil {
+		return nil, errmsg.ERROR_ARTICLE_NOT_EXIST
+	}
+
+	return &article, errmsg.SUCCESS
+}
+
+func GetArticlesByCategoryId(categoryId int, pageSize, pageNum int) ([]Article, int) {
+	var articleList []Article
+	err := db.Preload("Category").Limit(pageSize).Offset((pageNum-1)*pageSize).Where("category_id = ?", categoryId).Find(&articleList).Error
+	if err != nil {
+		return nil, errmsg.ERROR_CATEGORY_NOT_EXIST
+	}
+
+	return articleList, errmsg.SUCCESS
 }

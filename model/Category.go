@@ -56,3 +56,4 @@ func GetCategories(pageSize, pageNum int) []Category {
 	}
 	return category
 }
+

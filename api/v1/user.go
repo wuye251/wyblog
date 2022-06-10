@@ -83,8 +83,3 @@ func GetUsers(c *gin.Context) {
 		"data":    list,
 	})
 }
-
-//查询用户是否存在
-func CheckUserExist(c *gin.Context) {
-
-}
