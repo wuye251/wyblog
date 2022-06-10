@@ -62,3 +62,38 @@ func ScryptPwd(password string) string {
 
 	return fpwd
 }
+
+//保存前的前置钩子
+func (u *User) BeforeSave(tx *gorm.DB) (err error) {
+	u.Password = ScryptPwd(u.Password)
+	return
+}
+
+//删除用户
+func DeleteById(id int) (code int) {
+
+	if id <= 0 {
+		return errmsg.SUCCESS
+	}
+
+	err := db.Delete(&User{}, id).Error
+	if err != nil {
+		return errmsg.ERROR
+	}
+
+	return errmsg.SUCCESS
+}
+
+//更新用户信息
+func UpdateById(id int, userInfo *User) (code int) {
+	var user User
+	var data = make(map[string]interface{})
+	data["username"] = userInfo.Username
+	data["role"] = userInfo.Role
+
+	err := db.Model(&user).Where("id = ?", id).Updates(data).Error
+	if err != nil {
+		return errmsg.ERROR
+	}
+	return errmsg.SUCCESS
+}
