@@ -83,3 +83,4 @@ func GetUsers(c *gin.Context) {
 		"data":    list,
 	})
 }
+

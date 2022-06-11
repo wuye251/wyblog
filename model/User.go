@@ -97,3 +97,20 @@ func UpdateById(id int, userInfo *User) (code int) {
 	}
 	return errmsg.SUCCESS
 }
+
+//登录验证
+func CheckLogin(username string, password string) int {
+	var user User
+	code := errmsg.SUCCESS
+	db.Where("username = ?", username).First(&user)
+	if user.ID == 0 || ScryptPwd(password) != user.Password {
+		code = errmsg.ERROR_PASSWORD_WRONG
+		return code
+	}
+
+	if user.Role != 0 {
+		return errmsg.ERROR_USER_NO_RIGHT
+	}
+
+	return code
+}
