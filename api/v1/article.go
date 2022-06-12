@@ -1,7 +1,6 @@
 package v1
 
 import (
-	"fmt"
 	"net/http"
 	"strconv"
 	"wyblog/model"
@@ -69,11 +68,12 @@ func GetArticlesByCategoryId(c *gin.Context) {
 	categoryId, _ := strconv.Atoi(c.Param("id"))
 	pageSize, _ := strconv.Atoi(c.Query("pageSize"))
 	pageNum, _ := strconv.Atoi(c.Query("pageNum"))
-	data, code := model.GetArticlesByCategoryId(categoryId, pageSize, pageNum)
+	data, code, total := model.GetArticlesByCategoryId(categoryId, pageSize, pageNum)
 	c.JSON(http.StatusOK, gin.H{
 		"code":    code,
 		"message": errmsg.GetErrMsg(code),
 		"data":    data,
+		"total":   total,
 	})
 }
 
@@ -82,13 +82,12 @@ func GetArticles(c *gin.Context) {
 	pageSize, _ := strconv.Atoi(c.Query("pageSize"))
 	pageNum, _ := strconv.Atoi(c.Query("pageNum"))
 
-	fmt.Println("pageSize----", pageSize, " ----- pageNum:", pageNum)
-	code := errmsg.SUCCESS
-	list, code := model.GetArticles(pageSize, pageNum)
+	list, code, total := model.GetArticles(pageSize, pageNum)
 
 	c.JSON(http.StatusOK, gin.H{
 		"code":    code,
 		"message": errmsg.GetErrMsg(code),
 		"data":    list,
+		"total":   total,
 	})
 }

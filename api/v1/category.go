@@ -65,7 +65,7 @@ func GetCategories(c *gin.Context) {
 
 	fmt.Println("pageSize----", pageSize, " ----- pageNum:", pageNum)
 	code := errmsg.SUCCESS
-	list := model.GetCategories(pageSize, pageNum)
+	list, total := model.GetCategories(pageSize, pageNum)
 	if list == nil {
 		code = errmsg.ERROR
 	}
@@ -74,5 +74,6 @@ func GetCategories(c *gin.Context) {
 		"code":    code,
 		"message": errmsg.GetErrMsg(code),
 		"data":    list,
+		"total":   total,
 	})
 }

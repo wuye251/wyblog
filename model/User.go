@@ -11,9 +11,9 @@ import (
 
 type User struct {
 	gorm.Model
-	Username string `gorm:"type:varchar(20);not null;comment:用户名称" json:"username"`
-	Password string `gorm:"type:varchar(20);not null;comment:用户密码" json:"password" `
-	Role     int    `gorm:"type:int;comment:身份" json:"role"`
+	Username string `gorm:"type:varchar(20);not null;comment:用户名称" json:"username" validate:"required,min=4,max=12" label:"用户名"`
+	Password string `gorm:"type:varchar(20);not null;comment:用户密码" json:"password" validate:"required,min=6,max=20" label:"密码"`
+	Role     int    `gorm:"type:int;comment:身份1管理员 2用户" json:"role" validate:"required,gte=2" label:"身份"`
 }
 
 //新增用户
@@ -39,13 +39,16 @@ func GetByUserName(username string) (code int) {
 }
 
 //查询用户列表
-func GetUsers(pageSize, pageNum int) []User {
+func GetUsers(pageSize, pageNum int) ([]User, int64) {
 	var users []User
+	var total int64
 	err := db.Limit(pageSize).Offset((pageNum - 1) * pageSize).Find(&users).Error
+	db.Model(&users).Count(&total)
+
 	if err != nil && err != gorm.ErrRecordNotFound {
-		return nil
+		return nil, total
 	}
-	return users
+	return users, total
 }
 
 //密码加密
@@ -108,7 +111,7 @@ func CheckLogin(username string, password string) int {
 		return code
 	}
 
-	if user.Role != 0 {
+	if user.Role != 1 {
 		return errmsg.ERROR_USER_NO_RIGHT
 	}
 

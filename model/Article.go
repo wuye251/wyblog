@@ -67,14 +67,16 @@ func UpdateArticleById(id int, articleInfo *Article) (code int) {
 	return errmsg.SUCCESS
 }
 
-func GetArticles(pageSize, pageNum int) ([]Article, int) {
+func GetArticles(pageSize, pageNum int) ([]Article, int, int64) {
 	var articleList []Article
+	var total int64
 	err := db.Preload("Category").Limit(pageSize).Offset((pageNum - 1) * pageSize).Find(&articleList).Error
+	db.Model(&articleList).Count(&total)
 	if err != nil && err != gorm.ErrRecordNotFound {
-		return nil, errmsg.ERROR
+		return nil, errmsg.ERROR, total
 	}
 
-	return articleList, errmsg.SUCCESS
+	return articleList, errmsg.SUCCESS, total
 }
 
 func GetArticleById(id int) (*Article, int) {
@@ -87,12 +89,14 @@ func GetArticleById(id int) (*Article, int) {
 	return &article, errmsg.SUCCESS
 }
 
-func GetArticlesByCategoryId(categoryId int, pageSize, pageNum int) ([]Article, int) {
+func GetArticlesByCategoryId(categoryId int, pageSize, pageNum int) ([]Article, int, int) {
 	var articleList []Article
+	var total int64
 	err := db.Preload("Category").Limit(pageSize).Offset((pageNum-1)*pageSize).Where("category_id = ?", categoryId).Find(&articleList).Error
+	db.Model(&articleList).Where("category_id = ?", categoryId).Count(&total)
 	if err != nil {
-		return nil, errmsg.ERROR_CATEGORY_NOT_EXIST
+		return nil, errmsg.ERROR_CATEGORY_NOT_EXIST, int(total)
 	}
 
-	return articleList, errmsg.SUCCESS
+	return articleList, errmsg.SUCCESS, int(total)
 }

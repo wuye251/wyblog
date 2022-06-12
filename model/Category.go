@@ -48,12 +48,13 @@ func UpdateCategory(id int, data *Category) (code int) {
 	}
 	return errmsg.SUCCESS
 }
-func GetCategories(pageSize, pageNum int) []Category {
+func GetCategories(pageSize, pageNum int) ([]Category, int64) {
 	var category []Category
+	var total int64
 	err := db.Limit(pageSize).Offset((pageNum - 1) * pageSize).Find(&category).Error
+	db.Model(&category).Count(&total)
 	if err != nil && err != gorm.ErrRecordNotFound {
-		return nil
+		return nil, total
 	}
-	return category
+	return category, total
 }
-

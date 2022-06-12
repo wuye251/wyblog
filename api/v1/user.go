@@ -6,6 +6,7 @@ import (
 	"strconv"
 	"wyblog/model"
 	"wyblog/utils/errmsg"
+	"wyblog/utils/validate"
 
 	"github.com/gin-gonic/gin"
 )
@@ -13,11 +14,20 @@ import (
 //添加用户
 func AddUser(c *gin.Context) {
 	var code int
+	var msg string
 	var param model.User
 	_ = c.ShouldBindJSON(&param)
-	fmt.Println(param.Username)
+	msg, code = validate.Validate(&param)
+	if code != errmsg.SUCCESS {
+		c.JSON(http.StatusOK, gin.H{
+			"code":    code,
+			"message": msg,
+			"data":    "",
+		})
+		return
+	}
+
 	code = model.GetByUserName(param.Username)
-	fmt.Println("getByUserName code:", code)
 	if code == errmsg.SUCCESS {
 		model.InsertUser(&param)
 	}
@@ -60,11 +70,6 @@ func UpdateUser(c *gin.Context) {
 	})
 }
 
-//查询单个用户
-func GetUser(c *gin.Context) {
-
-}
-
 //查询用户列表
 func GetUsers(c *gin.Context) {
 	pageSize, _ := strconv.Atoi(c.Query("pageSize"))
@@ -72,7 +77,7 @@ func GetUsers(c *gin.Context) {
 
 	fmt.Println("pageSize----", pageSize, " ----- pageNum:", pageNum)
 	code := errmsg.SUCCESS
-	list := model.GetUsers(pageSize, pageNum)
+	list, total := model.GetUsers(pageSize, pageNum)
 	if list == nil {
 		code = errmsg.ERROR
 	}
@@ -81,6 +86,6 @@ func GetUsers(c *gin.Context) {
 		"code":    code,
 		"message": errmsg.GetErrMsg(code),
 		"data":    list,
+		"total":   total,
 	})
 }
-

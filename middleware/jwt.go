@@ -94,10 +94,7 @@ func JwtToken() gin.HandlerFunc {
 			c.Abort()
 			return
 		}
-		c.JSON(http.StatusOK, gin.H{
-			"code":    code,
-			"message": errmsg.GetErrMsg(code),
-		})
+
 		c.Set("username", key.Username)
 		c.Next()
 	}
