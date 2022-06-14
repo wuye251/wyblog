@@ -1,10 +1,11 @@
-import Vue from 'vue'
-import { Button, Form, FormModel, Input } from 'ant-design-vue'
+// import Vue from 'vue'
+import { Button, Form, Input } from 'ant-design-vue'
 
-
-  const ant = {
-    install(Vue) {
-      Vue.component(Button.name, Button);
-    },
-  };
-  export default ant;
+const ant = {
+  install (Vue) {
+    Vue.component(Button.name, Button)
+    Vue.component(Input.name, Input)
+    Vue.component(Form.name, Form)
+  }
+}
+export default ant
