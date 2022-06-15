@@ -12,7 +12,7 @@
             <a-form-item
             :rules="[{ required: true, message: 'Please input your username!' }]"
             >
-                <a-input v-model:value="formState.user" type="username" placeholder="Username">
+                <a-input v-model:value="formState.username" type="username" placeholder="Username">
                    <template #prefix><UserOutlined style="color: rgba(0, 0, 0, 0.25)" /></template>
                 </a-input>
             </a-form-item>
@@ -35,7 +35,9 @@
                 :disabled="formState.user === '' || formState.password === ''"
                 >-->
                 <a-button type="primary" html-type="submit" class="login-form-button"
-                :disabled="formState.user === '' || formState.password === ''">
+                :disabled="formState.user === '' || formState.password === ''"
+                @click="loginSubmit"
+                >
                     Log in
                 </a-button>
             </a-form-item>
@@ -49,6 +51,9 @@
 // eslint-disable-next-line no-unused-vars
 import { UserOutlined, LockOutlined } from '@ant-design/icons-vue'
 import { defineComponent, reactive } from 'vue'
+// import axios from 'axios'
+import { login } from '@/api/user.js'
+
 export default defineComponent({
   components: {
     UserOutlined,
@@ -56,7 +61,7 @@ export default defineComponent({
   },
   setup () {
     const formState = reactive({
-      user: '',
+      username: '',
       password: ''
     })
 
@@ -73,8 +78,31 @@ export default defineComponent({
       handleFinish,
       handleFinishFailed
     }
-  }
+  },
+  methods: {
+    // 提交接口
+    loginSubmit () {
+      login(this.formState).then(res => {
+          let data = res.data
+          let code = res.code
+          if(code=='1002') {
+            console.log("密码错误")
+            return this.$message.error(res.message)
+          }
+          if(code=='200'){
+            console.log("登录成功")
+            window.sessionStorage.setItem('token', data)
+            this.$message.success("登录成功")
+            this.$router.push('admin')
+          }
+        }).catch(err => {
+          console.log('err')
+          console.log(err)
+          return this.$message.error(err)
 
+        })
+    }
+  }
 })
 </script>
 
