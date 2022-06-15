@@ -53,6 +53,7 @@ import { UserOutlined, LockOutlined } from '@ant-design/icons-vue'
 import { defineComponent, reactive } from 'vue'
 // import axios from 'axios'
 import { login } from '@/api/user.js'
+import { setToken } from '@/utils/auth'
 
 export default defineComponent({
   components: {
@@ -91,7 +92,8 @@ export default defineComponent({
           }
           if(code=='200'){
             console.log("登录成功")
-            window.sessionStorage.setItem('token', data)
+            // window.sessionStorage.setItem('token', data)
+            setToken(data)
             this.$message.success("登录成功")
             this.$router.push('admin')
           }
