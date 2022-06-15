@@ -1,5 +1,5 @@
-// // import Vue from 'vue'
-// import { Button, Form, Input, Layout } from 'ant-design-vue'
+// import { Button, Form, Input, Layout, message } from 'ant-design-vue/es'
+// import 'ant-design-vue/dist/antd.css'
 
 // const ant = {
 //   install (Vue) {
@@ -7,6 +7,7 @@
 //     Vue.component(Input.name, Input)
 //     Vue.component(Form.name, Form)
 //     Vue.component(Layout.name, Layout)
+//     Vue.component(message.name, message)
 //   }
 // }
 // export default ant

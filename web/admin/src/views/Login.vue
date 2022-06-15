@@ -95,7 +95,7 @@ export default defineComponent({
             // window.sessionStorage.setItem('token', data)
             setToken(data)
             this.$message.success("登录成功")
-            this.$router.push('admin')
+            this.$router.push('/admin/dashboard')
           }
         }).catch(err => {
           console.log('err')

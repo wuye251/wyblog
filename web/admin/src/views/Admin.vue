@@ -1,17 +1,10 @@
 <template>
   <a-layout class="container">
-    
-    <a-layout-sider>
-        <div class="logo">
-            <span>MyBlog Logo</span>
-        </div>
-        
-        <Nav></Nav>
-    </a-layout-sider>
+    <Nav></Nav>
     
     <a-layout>
       <a-layout-header class="headerBtn">
-        <a-button type="danger" @click="logout"> 退出</a-button>
+      <Header></Header>
       </a-layout-header>
     
       <a-layout-content>
@@ -29,6 +22,7 @@
 
 <script>
 import { defineComponent, reactive } from 'vue'
+import Header from '../components/admin/Header'
 import Nav   from '../components/admin/Nav'
 import Footer from '../components/admin/Footer'
 import { removeToken } from '@/utils/auth'
@@ -36,16 +30,11 @@ import { removeToken } from '@/utils/auth'
 
 export default defineComponent({
     components: {
+        Header,
         Nav,
         Footer
-    },
-    methods: {
-        logout() {
-            console.log('logout event')
-            removeToken()
-            this.$router.push('/login')
-        }
     }
+
 })
 </script>
 

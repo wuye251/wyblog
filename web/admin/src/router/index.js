@@ -2,6 +2,13 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import Login from '../views/Login.vue'
 import { getToken } from '@/utils/auth'
 
+//页面路由组件
+import DashBoard from '../components/admin/DashBoard.vue'
+import ArticlList from '../components/article/List.vue'
+import AddArticle from '../components/article/Add.vue'
+import CategoryList from '../components/category/List.vue'
+import UserList from '../components/user/List.vue'
+
 const routes = [
   // { path: "/", redirect: "/index" },
   {
@@ -13,14 +20,21 @@ const routes = [
     path: '/admin',
     name: 'Admin',
     component: () =>
-      import('../views/Admin.vue')
+      import('../views/Admin.vue'),
+    children:[
+      {path:'dashboard', component: DashBoard},
+      {path:'add-article', component: AddArticle},
+      {path:'article-list', component: ArticlList},
+      {path:'category-list', component: CategoryList},
+      {path:'user-list', component: UserList},
+    ]
   },
   {
     path: '/test',
     name: 'Test',
     component: () =>
       import('../views/Test.vue')
-  }
+  },
 ]
 
 const router = createRouter({
