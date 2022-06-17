@@ -1,9 +1,11 @@
 import axios from 'axios'
 import { getToken } from '@/utils/auth'
-const BASE_API = 'http://localhost:3000' // 開發環境
+
+
+const BASE_HOST = 'http://localhost:3000' // 開發環境
 // 创建一个axios实例
 const service = axios.create({
-  baseURL:BASE_API, // api 的 base_url
+  baseURL:BASE_HOST, // api 的 base_url
   // transformRequest: [function (data) {
   //   return qs.stringify(data)
   // }],
@@ -18,7 +20,7 @@ service.interceptors.request.use(
   config => {
     if (getToken()) {
       // 让每个请求携带token-- ['X-Litemall-Admin-Token']为自定义key 请根据实际情况自行修改
-      config.headers['Bearea-Token'] = getToken()
+      config.headers['Authorization'] = `Bearea-Token ${getToken()}`
     }
     return config
   },
@@ -66,3 +68,4 @@ service.interceptors.response.use(
   })
 
 export default service
+export {BASE_HOST}

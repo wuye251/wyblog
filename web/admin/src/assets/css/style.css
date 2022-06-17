@@ -8,3 +8,7 @@ html, body, #app {
     margin: 10px;
     background-color: #fff;
 }
+.userList .ant-table-pagination.ant-pagination {
+    justify-content: center;
+    margin-top:50px;
+}

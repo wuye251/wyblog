@@ -9,20 +9,20 @@ export function login(data) {
   })
 }
 
-export function userList(data) {
+export function articleList(data) {
   return request({
-    url: '/api/v1/user/list',
+    url: '/api/v1/article/list',
     method: 'get',
     params:data
   })
 }
 
 
-export function getUserById(id,) {
+export function addArticle(info) {
   return request({
-    url: '/api/v1/user/' + id,
-    method: 'get',
-    params:'',
+    url: '/api/v1/article/add',
+    method: 'post',
+    data:info,
   })
 }
 

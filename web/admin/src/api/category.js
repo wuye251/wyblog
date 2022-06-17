@@ -1,11 +1,11 @@
 
 import request from '@/utils/request'
 
-export function login(data) {
+export function getList(data) {
   return request({
-    url: '/api/v1/login',
-    method: 'post',
-    data:data
+    url: '/api/v1/category/list',
+    method: 'get',
+    params:data
   })
 }
 
