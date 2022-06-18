@@ -17,6 +17,12 @@ export function articleList(data) {
   })
 }
 
+export function getArticleInfo(id) {
+  return request({
+    url: '/api/v1/article/info/'+id,
+    method: 'get',
+  })
+}
 
 export function addArticle(info) {
   return request({
@@ -26,17 +32,17 @@ export function addArticle(info) {
   })
 }
 
-export function updateUserInfo(id, info) {
+export function updateArticle(id, info) {
   return request({
-    url: '/api/v1/user/' + id,
+    url: '/api/v1/article/' + id,
     method: 'put',
     data:info,
   })
 }
 
-export function deleteUserById(id) {
+export function deleteArticleById(id) {
   return request({
-    url: '/api/v1/user/' + id,
+    url: '/api/v1/article/' + id,
     method: 'delete',
     params:'',
   })

@@ -9,7 +9,7 @@
                         <a-input style="width: 30%;" v-model:value="articleInfo.title"></a-input>
                     </a-form-item>
                     <a-form-item label="文章分类">
-                        <a-select style="width:200px" v-model="articleInfo.categoryId" placeholder="请选择" @change="cateChange">
+                        <a-select style="width:200px" v-model:value="articleInfo.categoryId" placeholder="请选择" @change="cateChange">
                             <a-select-option v-for="item in catagoryList" :key="item.ID" :value="item.ID">{{item.name}}</a-select-option>
                           </a-select>
                     </a-form-item>
@@ -43,6 +43,7 @@
                     </a-form-item>
                     <a-form-item>
                         <a-button type="danger" style="margin-right:15px" @click="submit">提交</a-button>
+                        <a-button type="danger" style="margin-right:15px" @click="drafts">保存草稿</a-button>
                         <a-button type="primary">取消</a-button>
 
                     </a-form-item>
@@ -56,11 +57,12 @@
 import { UploadOutlined} from '@ant-design/icons-vue';
 import { defineComponent, reactive, ref } from 'vue'
 import { getList } from '@/api/category.js'
-import { addArticle } from '@/api/article.js'
+import { addArticle, getArticleInfo, updateArticle } from '@/api/article.js'
 import { getToken } from '@/utils/auth.js'
 import { BASE_HOST } from '@/utils/request.js'
 import { message } from 'ant-design-vue';
 import router from '../../router'
+import { useRoute} from 'vue-router'
 
 
 export default defineComponent({
@@ -69,9 +71,8 @@ export default defineComponent({
         UploadOutlined,
         message,
     },
-
     setup () {
-
+        
         const articleInfo = reactive({
                 id:0,
                 title:'',
@@ -80,6 +81,7 @@ export default defineComponent({
                 content:'',
                 img:'',
         })
+
         const catagoryList = reactive([]);
         const getCateList = (() => {
             getList({pageSize:100, pageNum:1}).then(res => {
@@ -88,6 +90,8 @@ export default defineComponent({
         })
         const cateChange = ((value) => {
             articleInfo.categoryId = value
+            console.log('cateChange', articleInfo)
+
         })
         const imageUrl = ref('');
 
@@ -116,8 +120,16 @@ export default defineComponent({
         const headers = {Authorization: `Bearea-Token ${getToken()}`}
 
         const submit = (() => {
+            articleInfo.status = 2
             let res = add()
-            console.log('res',res)
+            console.log('submit',res)
+        })
+
+        const drafts = (() => {
+            articleInfo.status = 1
+            let res = add()
+            console.log('drafts',res)
+
         })
 
         const add = (() => {
@@ -125,19 +137,53 @@ export default defineComponent({
                 title:articleInfo.title,
                 desc: articleInfo.desc,
                 content:articleInfo.content,
-                categoryId:articleInfo.categoryId
+                categoryId:articleInfo.categoryId,
+                status: articleInfo.status,
+                img:articleInfo.img
             }
-            addArticle(data).then(res => {
-                if(res.code == 200) {
-                    message.success("发布成功")
-                    router.push('/admin/article-list')
-                } else {
-                    console.log('error')
-                    message.error("发布失败")
-                }
-            })
+            if (articleInfo.id > 0) {
+                //update
+                updateArticle(articleInfo.id, data).then(res => {
+                    if(res.code == 200) {
+                        message.success("发布成功")
+                        router.push('/admin/article-list')
+                    } else {
+                        console.log('error')
+                        message.error("发布失败")
+                    }
+                })
+            } else {
+                //add
+                addArticle(data).then(res => {
+                    if(res.code == 200) {
+                        message.success("发布成功")
+                        router.push('/admin/article-list')
+                    } else {
+                        console.log('error')
+                        message.error("发布失败")
+                    }
+                })
+            }
+            
         })
-
+        const getRouteQuery = (() => {
+            let route = useRoute() // 第一步
+            let routeQuery = route.query // 第二步
+            if (routeQuery.id > 0) {
+                articleInfo.id = routeQuery.id
+                getArticleInfo(articleInfo.id).then(res => {
+                    let data = res.data
+                    articleInfo.title = data.title
+                    articleInfo.desc = data.desc
+                    articleInfo.content = data.content
+                    articleInfo.status = data.status
+                    articleInfo.img = data.img
+                    imageUrl.value = data.img
+                    articleInfo.categoryId = data.categoryId
+                    console.log('articleInfo',articleInfo)
+                })
+            }
+        })
         return {
             imageUrl,
             uploadUrl,
@@ -149,9 +195,12 @@ export default defineComponent({
             cateChange,
             uploadChange,
             submit,
+            drafts,
+            getRouteQuery,
         }
     },
     created() {
+        this.getRouteQuery()
         this.getCateList()
     },
 

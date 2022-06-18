@@ -34,6 +34,7 @@ let message = ''
 service.interceptors.response.use(
   response => {
     const res = response.data
+    console.log(res)
     if (res.code === 0 || res.code === '0') {
         // 可以在这里统一处理响应错误
         message && message.close()

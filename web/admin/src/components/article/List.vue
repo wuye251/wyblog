@@ -4,7 +4,7 @@
         <a-card>
             <a-row :gutter="20">
                 <a-col 
-                :span="3"
+                :span="5"
                 @click="searchUser"
                 >
                     <a-input-search
@@ -16,7 +16,7 @@
                     />
                 </a-col>
                 <a-col :span="4">
-                    <a-button type="primary">
+                    <a-button type="primary" @click="addArticle">
                         <span>新增</span>
                     </a-button>
                 </a-col>
@@ -36,18 +36,29 @@
                 <template v-if="column.key === 'img'">
                     <img  style="width:250px;heigth:250px" :src=text />
                 </template>
+                <template v-if="column.key === 'status'">
+                    <template v-if="text === 1">
+                        草稿
+                    </template>
+                    <template v-else-if="text === 2">
+                        已发布
+                    </template>
+                    <template v-else-if="text === 3">
+                        已删除
+                    </template>
+                </template>
                 <template v-if="column.key === 'action'">
                     <a-button
                         type="primary"
                         style="margin-right: 50px"
-                        @click="editUser(record.ID)"
+                        @click="editArticle(record.ID)"
                     >
                         编辑
                     </a-button>
                     <a-button
                         type="danger"
                         style="margin-right: 50px"
-                        @click="deleteUser(record.ID)"
+                        @click="deleteArticle(record.ID)"
                     >
                         删除
                     </a-button>
@@ -60,10 +71,14 @@
 </template>
 
 <script>
-import { defineComponent, reactive, computed,ref } from 'vue'
-import { articleList } from '@/api/article.js'
+import { inject, createVNode, defineComponent, reactive, computed,ref } from 'vue'
+import { articleList, deleteArticleById } from '@/api/article.js'
 import '../../assets/css/style.css'
 import day from 'dayjs'
+import router from '../../router'
+import { Modal,message } from 'ant-design-vue';
+import { ExclamationCircleOutlined } from '@ant-design/icons-vue';
+
 const columns = [
     {
         title: 'ID',
@@ -122,6 +137,13 @@ const columns = [
         align: 'center',
     },
     {
+        title: '状态',
+        dataIndex: 'status',
+        key:'status',
+        width:'10%',
+        align: 'center',
+    },
+    {
         dataIndex:'action',
         title: '操作',
         align: 'center',
@@ -130,9 +152,12 @@ const columns = [
 
 ]
 export default defineComponent({
-    name: '',
-    components: {},
+    name:'',
+    components:{
+        message,
+    },
     setup() {
+
         // const editUser= ((id) => {
         //     const info = getUserById(id)
         //     console.log(info)
@@ -185,6 +210,7 @@ export default defineComponent({
                 username: '',
                 pagesize: 5,
                 pagenum: 1,
+                status:0,
             },
             pagination: {  
                 defaultCurrent: 1,  // 默认当前页数  
@@ -208,7 +234,6 @@ export default defineComponent({
             } 
         }
     },
- 
     created() {
         this.list()
         console.log('created---', this.data)
@@ -229,6 +254,44 @@ export default defineComponent({
             this.pagination.total = total  
             this.data = res.data
             console.log('this.data',this.data)
+        },
+
+        addArticle() {
+            router.push('/admin/add-article')
+        },
+
+        editArticle(id) {
+            router.push({path: '/admin/add-article',query: {id:id}})
+        },
+
+        deleteArticle(id) {
+            Modal.confirm({
+                title: '确定删除该文章?',
+                icon: createVNode(ExclamationCircleOutlined),
+                content: createVNode('div', {
+                style: 'color:red;',
+                }, 'Some descriptions'),
+
+                onOk() {
+                    console.log('OK');
+                    // deleteArticleById(id).then(res => {
+                        // if (res.code == 200) {
+                            message.success("删除成功");
+                            // inject("reload")
+
+                            // const reload = inject('reload') //注入刷新事件,这里括号中的参数要对应上前面provide中的第一个参数
+                            // reload()
+                        // } else {
+                        //     message.error('删除失败');
+                        // }
+
+                    // })
+                },
+
+                onCancel() {
+                    console.log('Cancel');
+                },
+            });
         },
     }
 })
