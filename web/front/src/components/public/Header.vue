@@ -2,7 +2,7 @@
       <a-layout-header class="header">
         <a-menu
           v-model:selectedKeys="selectedKeys1"
-          theme="dark"
+          theme="lineHeight"
           mode="horizontal"
           :style="{ lineHeight: '64px' }"
           class="categoryList"
@@ -33,6 +33,12 @@ export default defineComponent({
 
 <style>
 
+
+<style>
+.container .ant-layout-header {
+    height: 10%;
+    width: 1440px;
+}
 .categoryList {
     margin-left:50px;
 }
@@ -45,6 +51,11 @@ export default defineComponent({
     left: 15%;
     position: relative;
     margin-right: 20%;
+}
+
+.ant-layout-header {
+    background: #fff !important;
+    padding: 0 200px !important;
 }
 </style>
 

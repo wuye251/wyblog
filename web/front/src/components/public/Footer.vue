@@ -6,12 +6,15 @@
     </div>
 </template>
 
-<!-- <style scoped>
+<style scoped>
 .footer {
-    background-color:#eee;
-    text-align:center;
+    margin-top: 100px;
+    background: black;
+}
+.ant-layout-footer {
+    background: #fff;
 }
 .footer span {
     font-size:18px;
 }
-</style> -->
+</style>
