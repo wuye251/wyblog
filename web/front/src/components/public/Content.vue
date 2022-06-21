@@ -9,30 +9,32 @@
         </a-card> -->
         <div class="articleList">
             <a-list  class="myArticleList" item-layout="horizontal" :data-source="data">
-                <template #renderItem="{ item }">
-                  <a-list-item>
+                  <a-list-item v-for="(item, index) in data">
                     <a-list-item-meta
-                      description="到时候这就是博客的描述到时候这就是博客的描述到时候这就是博客的描述到时候这就是博客的描述到时候这就是博客的描述到时候这就是博客的描述到时候这就是博客的描述到时候这就是博客的描述到时候这就是博客的描述到时候这就是博客的描述到时候这就是博客的描述到时候这就是博客的描述
-                      到时候这就是博客的描述到时候这就是博客的描述到时候这就是博客的描述到时候这就是博客的描述"
+                      :description="item.desc"
                     >
                       <template #title>
-                        <a href="https://www.antdv.com/">{{ item.title }}</a>
+                        <router-link :to="{ path: '/article/info', query: { id: `${item.ID}` }}">
+                            {{ item.title }}
+                        </router-link> 
                       </template>
                       <template #avatar>
-                        <a-avatar src="https://joeschmoe.io/api/v1/random" />
+                        <a-avatar :src="item.img" />
                       </template>
                     </a-list-item-meta>
                   </a-list-item>
-                </template>
               </a-list>
-              <a-pagination @change="" class="myPagination" :showSizeChanger=false v-model:current="current" :total="500" show-less-items />
+              <a-pagination @change="" class="myPagination" :showSizeChanger=false v-model:current="current" :total="total" show-less-items />
         </div>
         
     </a-layout-content>
 </template>
 
 <script>
-import { defineComponent, ref } from 'vue';
+import { defineComponent, ref, reactive } from 'vue';
+import { articleList } from '@/api/article.js'
+import router from '../../router'
+
 const data = [{
     title: '这是第一篇文章标题这是第一篇文章标题',
     }, {
@@ -53,12 +55,31 @@ export default defineComponent({
                 console.log(page);
             },
             pageSize: 5,
+            pageNum: reactive(1)
         };
 
         return {
             pagination,
-            data,
+            data: ref([]),
+            total:ref(0)
         };
+    },
+    created() {
+        this.getArticleList()
+    },
+    methods: {
+        getArticleList() {
+            let params = {
+                pageSize: this.pagination.pageSize,
+                pageNum: this.pagination.pageNum
+            }
+            console.log(params)
+            articleList(params).then(res => {
+                
+                this.data.push(...res.data)
+                this.total = res.total
+            })
+        }
     },
 
 });
@@ -104,7 +125,7 @@ export default defineComponent({
 
 .myPagination {
     padding: 30px 30px 10px 30px !important;
-    max-width: 56%;
+    max-width: 40%;
     margin: 0 auto !important;
 }
 </style>

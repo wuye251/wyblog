@@ -68,7 +68,8 @@ func GetArticlesByCategoryId(c *gin.Context) {
 	categoryId, _ := strconv.Atoi(c.Param("id"))
 	pageSize, _ := strconv.Atoi(c.Query("pageSize"))
 	pageNum, _ := strconv.Atoi(c.Query("pageNum"))
-	data, code, total := model.GetArticlesByCategoryId(categoryId, pageSize, pageNum)
+	status, _ := strconv.Atoi(c.Query("status"))
+	data, code, total := model.GetArticlesByCategoryId(categoryId, pageSize, pageNum, status)
 	c.JSON(http.StatusOK, gin.H{
 		"code":    code,
 		"message": errmsg.GetErrMsg(code),
@@ -81,8 +82,8 @@ func GetArticlesByCategoryId(c *gin.Context) {
 func GetArticles(c *gin.Context) {
 	pageSize, _ := strconv.Atoi(c.Query("pageSize"))
 	pageNum, _ := strconv.Atoi(c.Query("pageNum"))
-
-	list, code, total := model.GetArticles(pageSize, pageNum)
+	status, _ := strconv.Atoi(c.Query("status"))
+	list, code, total := model.GetArticles(pageSize, pageNum, status)
 
 	c.JSON(http.StatusOK, gin.H{
 		"code":    code,

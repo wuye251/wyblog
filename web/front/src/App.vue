@@ -5,7 +5,9 @@
       <Header></Header>
   
       <!-- 中间内容 -->
-      <Content></Content>
+      <Content>
+        <router-view v-if="isRouterAlive"></router-view>
+      </Content>
   
       <!-- 底部声明 -->
       <Footer></Footer>
@@ -14,7 +16,7 @@
 </template>
 
 <script>
-import { defineComponent, reactive } from 'vue'
+import { defineComponent, ref, reactive, nextTick, provide } from 'vue'
 import Header from './components/public/Header'
 import Nav   from './components/public/Nav'
 import Footer from './components/public/Footer'
@@ -22,13 +24,28 @@ import Content from './components/public/Content'
 
 
 export default defineComponent({
+  name: "App",
   components: {
       Header,
       Nav,
       Footer,
       Content,
-  }
+  },
+  setup() {
+    // 局部组件刷新
+    const isRouterAlive = ref(true);
+    const reload = () => {
+      isRouterAlive.value = false;
+      nextTick(() => {
+        isRouterAlive.value = true;
+      });
+    };
+    provide("reload", reload);
 
+    return {
+      isRouterAlive,
+    };
+  },
 })
 </script>
 

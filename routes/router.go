@@ -40,6 +40,7 @@ func InitRouter() {
 	{
 		//用户模块路由接口
 		routerV1.GET("user/list", v1.GetUsers)
+		routerV1.GET("user/:id", v1.GetUserInfo)
 		routerV1.POST("login", v1.Login)
 		//分类模块路由接口
 		routerV1.GET("category/list", v1.GetCategories)

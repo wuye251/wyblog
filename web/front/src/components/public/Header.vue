@@ -6,32 +6,52 @@
           mode="horizontal"
           :style="{ lineHeight: '64px' }"
           class="categoryList"
+          :data-source="category" 
+          @click="getArticleList"
         >
-        
-            <a-menu-item key="1" class="category">博客</a-menu-item>
-            <a-menu-item key="2">About</a-menu-item>
+            <a-menu-item :key="0">
+                首页
+            </a-menu-item>
+            <a-menu-item v-for="(item, index) in category" :key="item.ID">
+                    {{item.name}}
+            </a-menu-item>
 
         </a-menu>
       </a-layout-header>
 
   </template>
 <script>
-import { defineComponent, ref } from 'vue';
+import { defineComponent, ref, reactive } from 'vue';
+import { getList } from '@/api/category.js'
+import { articleList } from '@/api/article.js'
+
 export default defineComponent({
     components: {
 
     },
 
     setup() {
+        const category = ref([])
         return {
-            selectedKeys1: ref(['1']),
+            selectedKeys1:ref([0]),
+            category,
         };
+    },
+    created() {
+        this.getCategoryList()
+    },
+    methods: {
+        getCategoryList() { //顶部分类列表
+            getList([]).then(res => {
+                this.category.push(...res.data)
+                // this.selectedKeys1.push(res.data[0].ID)
+            })
+        },
     },
 
 });
 </script>
 
-<style>
 
 
 <style>

@@ -18,6 +18,9 @@ func InitDb() {
 		fmt.Println("数据库连接失败 dsn：", dsn, "\n err:", err)
 	}
 	db.AutoMigrate(&User{}, &Article{}, &Category{})
+	
+	// db.Migrator().CreateIndex(&Article{}, "Status")
+	// db.Migrator().CreateIndex(&Article{}, "idx_status")
 	// // SetMaxIdleConns 设置空闲连接池中连接的最大数量
 	// db.SetMaxIdleConns(10)
 

@@ -10,7 +10,7 @@ const routes = [
     path: '/index',
     name: 'index',
     component: () => 
-      import('../components/Index.vue'),
+      import('../App.vue'),
   },
   {
     path: '/article',

@@ -74,10 +74,10 @@ func UpdateUser(c *gin.Context) {
 func GetUsers(c *gin.Context) {
 	pageSize, _ := strconv.Atoi(c.Query("pageSize"))
 	pageNum, _ := strconv.Atoi(c.Query("pageNum"))
-
+	username := c.Query("searchname")
 	fmt.Println("pageSize----", pageSize, " ----- pageNum:", pageNum)
 	code := errmsg.SUCCESS
-	list, total := model.GetUsers(pageSize, pageNum)
+	list, total := model.GetUsers(pageSize, pageNum, username)
 	if list == nil {
 		code = errmsg.ERROR
 	}
@@ -87,5 +87,17 @@ func GetUsers(c *gin.Context) {
 		"message": errmsg.GetErrMsg(code),
 		"data":    list,
 		"total":   total,
+	})
+}
+
+func GetUserInfo(c *gin.Context) {
+	id, _ := strconv.Atoi(c.Param("id"))
+
+	info, code := model.GetUserById(id)
+
+	c.JSON(http.StatusOK, gin.H{
+		"code":    code,
+		"message": errmsg.GetErrMsg(code),
+		"data":    info,
 	})
 }
