@@ -5,9 +5,7 @@
       <Header></Header>
   
       <!-- 中间内容 -->
-      <Content>
-        <router-view v-if="isRouterAlive"></router-view>
-      </Content>
+      <Content></Content>
   
       <!-- 底部声明 -->
       <Footer></Footer>
@@ -32,19 +30,19 @@ export default defineComponent({
       Content,
   },
   setup() {
-    // 局部组件刷新
-    const isRouterAlive = ref(true);
-    const reload = () => {
-      isRouterAlive.value = false;
-      nextTick(() => {
-        isRouterAlive.value = true;
-      });
-    };
-    provide("reload", reload);
+    // // 局部组件刷新
+    // const isRouterAlive = ref(true);
+    // const reload = () => {
+    //   isRouterAlive.value = false;
+    //   nextTick(() => {
+    //     isRouterAlive.value = true;
+    //   });
+    // };
+    // provide("reload", reload);
 
-    return {
-      isRouterAlive,
-    };
+    // return {
+    //   isRouterAlive,
+    // };
   },
 })
 </script>

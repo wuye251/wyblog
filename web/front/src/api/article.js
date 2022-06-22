@@ -1,14 +1,6 @@
 
 import request from '@/api/request'
 
-export function login(data) {
-  return request({
-    url: '/api/v1/login',
-    method: 'post',
-    data:data
-  })
-}
-
 export function articleList(data) {
   return request({
     url: '/api/v1/article/list',

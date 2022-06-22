@@ -1,27 +1,42 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
+import ArticleInfo from '../components/article/Info.vue'
+import ArticleList from '../components/article/List.vue'
 
 
 const routes = [
   { 
     path: "/", 
-    redirect: 'index'
+    component: () => 
+    import('../components/article/List.vue'),
   },
   {
     path: '/index',
-    name: 'index',
+    name: 'Index',
     component: () => 
-      import('../App.vue'),
+      import('../components/article/List.vue'),
   },
   {
     path: '/article',
-    name: 'article',
-    component: () => 
-      import('../components/article/List.vue'),
-    children:[
-      {path: 'list', component: () => import('../components/article/List.vue')},
-      {path: 'info', component: () => import('../components/article/Info.vue')},
-    ]  
-  }
+    name: 'Article',
+    component: () =>
+      ArticleList,
+    // children:[
+    //   {path:'info', component: ArticleInfo},
+
+    //   {path:'list',  component: ArticleList},
+    // ]
+  },
+  {
+    path:'/article/info',
+    name: 'ArticleInfo',
+    component: ArticleInfo,
+  },
+  {
+    path:'/article/list',
+    name: 'ArticleList',
+    component: ArticleList
+  },
+
 ]
 
 const router = createRouter({
