@@ -22,6 +22,7 @@ import { defineComponent, ref, reactive } from 'vue';
 import { getArticleInfo } from '@/api/article.js'
 import router from '../../router'
 import { useRoute} from 'vue-router'
+import day from 'dayjs'
 
 export default defineComponent({
     setup() {
@@ -40,6 +41,7 @@ export default defineComponent({
         getInfo() {
             this.id = this.getRouteQuery()
             getArticleInfo(this.id).then(res => {
+                res.data.UpdatedAt = res.data.UpdatedAt ? day(res.data.UpdatedAt).format('YYYY/MM/DD HH:mm') : '暂无'
                 this.data = res.data
                 this.getContent = res.data.content
             })

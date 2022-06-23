@@ -7,13 +7,13 @@
           :style="{ lineHeight: '64px' }"
           class="categoryList"
           :data-source="category" 
-          @click="getArticleList"
+          @click="goToPage"
         >
             <a-menu-item :key="0">
-                首页
+                    首页
             </a-menu-item>
             <a-menu-item v-for="(item, index) in category" :key="item.ID">
-                    {{item.name}}
+                {{item.name}}
             </a-menu-item>
 
         </a-menu>
@@ -23,7 +23,7 @@
 <script>
 import { defineComponent, ref, reactive } from 'vue';
 import { getList } from '@/api/category.js'
-import { articleList } from '@/api/article.js'
+import router from '../../router'
 
 export default defineComponent({
     components: {
@@ -44,9 +44,17 @@ export default defineComponent({
         getCategoryList() { //顶部分类列表
             getList([]).then(res => {
                 this.category.push(...res.data)
-                // this.selectedKeys1.push(res.data[0].ID)
             })
         },
+        goToPage(item){
+            if(item.key == 0) {
+                console.log("one")
+                this.$router.push('/')
+            } else {
+                console.log("two")
+                this.$router.push('/article?category=' +item.key)
+            }
+        }
     },
 
 });
@@ -57,7 +65,7 @@ export default defineComponent({
 <style>
 .container .ant-layout-header {
     height: 10%;
-    width: 1440px;
+    /* width: 1440px; */
 }
 .categoryList {
     margin-left:50px;

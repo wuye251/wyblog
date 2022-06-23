@@ -8,7 +8,7 @@
             <p>评价：高富帅</p>
         </a-card> -->
         <div class="articleList">
-            <a-list  class="myArticleList" item-layout="horizontal" :data-source="data">
+            <a-list  size="large" class="myArticleList" item-layout="horizontal" :data-source="data">
                   <a-list-item v-for="(item, index) in data">
                     <a-list-item-meta
                       :description="item.desc"
@@ -32,8 +32,10 @@
 
 <script>
 import { defineComponent, ref, reactive } from 'vue';
-import { articleList } from '@/api/article.js'
 import router from '../../router'
+import { articleList, categoryArticleList } from '@/api/article.js'
+import { useRoute} from 'vue-router'
+import day from 'dayjs'
 
 // const data = [{
 //     title: '这是第一篇文章标题这是第一篇文章标题',
@@ -65,7 +67,8 @@ export default defineComponent({
         };
     },
     created() {
-        this.getArticleList()
+        this.getArtList()
+        console.log("created")
     },
     methods: {
         getArticleList() {
@@ -73,12 +76,42 @@ export default defineComponent({
                 pageSize: this.pagination.pageSize,
                 pageNum: this.pagination.pageNum
             }
-            console.log(params)
             articleList(params).then(res => {
-                
+                this.data.push(...res.data)
+                for (var i=0; i<this.data.length; i++) {
+                    this.data[i].UpdatedTime =  day(this.data[i].UpdatedAt).format('YYYY/MM/DD HH:mm')
+                }
+                console.log(this.data)
+            })
+            
+        },
+        getCategoryArticleList(id) {
+            let params = {
+                pageSize: this.pagination.pageSize,
+                pageNum: this.pagination.pageNum
+            }
+            categoryArticleList(id, params).then(res => {
                 this.data.push(...res.data)
                 this.total = res.total
             })
+            
+        },
+
+        getRouteQuery() {
+            let route = useRoute() // 第一步
+            let routeQuery = route.query // 第二步
+            return routeQuery
+        },
+
+        getArtList() {
+            let query = this.getRouteQuery()
+            if(query.category != undefined) {
+                console.log(1111)
+                this.getCategoryArticleList(query.category)
+            } else {
+                console.log(222)
+                this.getArticleList()
+            }
         }
     },
 
