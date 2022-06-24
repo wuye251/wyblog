@@ -8,7 +8,7 @@
             <p>评价：高富帅</p>
         </a-card> -->
         <div class="content-main">
-            <router-view v-if="isRouterAlive"></router-view>
+            <router-view :key="$route.fullPath"></router-view>
         </div>
         
     </a-layout-content>
