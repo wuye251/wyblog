@@ -8,7 +8,18 @@
             <p>评价：高富帅</p>
         </a-card> -->
         <div class="articleList">
-            <a-list  size="large" class="myArticleList" item-layout="horizontal" :data-source="data">
+                <li v-for="(item, index) in data" style="border-style: dashed;">
+                    <div class="title">
+                        <router-link :to="{ path: '/article/info', query: { id: `${item.ID}` }}">
+                            {{ item.title }}
+                        </router-link> 
+                    </div>
+                    <div class="desc">{{item.desc}}</div>
+                    <div class="img">{{item.img}}</div>
+                    <div class="time">{{item.UpdatedAt}}</div>
+                    <div class="category">{{item.Category.name}}</div>
+                </li>
+            <!-- <a-list  size="large" class="myArticleList" item-layout="horizontal" :data-source="data">
                   <a-list-item v-for="(item, index) in data">
                     <a-list-item-meta
                       :description="item.desc"
@@ -23,9 +34,9 @@
                       </template>
                     </a-list-item-meta>
                   </a-list-item>
-              </a-list>
-              <a-pagination @change="" class="myPagination" :showSizeChanger=false v-model:current="current" :total="total" show-less-items />
+              </a-list> -->
         </div>
+        <a-pagination @change="" class="myPagination" :showSizeChanger=false v-model:current="current" :total="total" show-less-items />
         
     </a-layout-content>
 </template>
@@ -139,9 +150,12 @@ export default defineComponent({
     width: 500px;
     padding: 0 30px 30px 30px;
     background-color: #f9f9f9; */
-    width: 40%;
+    /* width: 40%; */
     border-radius: 9px;
     margin: 0 auto;
+}
+.articleList li{
+    list-style: none;
 }
 
 .ant-list {
@@ -152,9 +166,17 @@ export default defineComponent({
 }
 
 .myPagination {
-    padding: 30px 30px 10px 30px !important;
+    /* padding: 30px 30px 10px 30px !important;
     max-width: 40%;
-    margin: 0 auto !important;
+    margin: 0 auto !important; */
+    margin: 50px auto 0 auto !important;
+    justify-content: center;
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    bottom:0;
+    transform: translate(-50%,-50%);
 }
+
 
 </style>

@@ -10,7 +10,7 @@
                 <span class ="timeInfo-block"> <profile-outlined />{{data.Category.name}}</span>
             </div>
             <div id="desc">
-                {{data.desc}}
+                <span>{{data.desc}}</span>
             </div>
         </div>
         <div id="content">
@@ -37,7 +37,7 @@
 #article-info #desc {
     background: #f8f8f8;
     margin: 20px 0;
-    padding: 10px 0px;
+    padding: 10px 39px;
 }
 </style>
 
