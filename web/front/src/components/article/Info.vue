@@ -1,21 +1,45 @@
 <template>
     <div  id="article-info">
-        <div id="title">
-            {{data.title}}
-        </div>
-        <div id="timeInfo">
-            最近更新:{{data.UpdatedAt}}
-            分类:{{data.Category.name}}
-        </div>
-        <div id="desc">
-            {{data.desc}}
+        <div class="summary">
+            <div id="title">
+                <span>{{data.title}}</span>
+            </div>
+            <div id="timeInfo">
+               
+                <span class ="timeInfo-block"> <field-time-outlined />{{data.UpdatedAt}}</span>
+                <span class ="timeInfo-block"> <profile-outlined />{{data.Category.name}}</span>
+            </div>
+            <div id="desc">
+                {{data.desc}}
+            </div>
         </div>
         <div id="content">
             <v-md-preview :text="getContent"></v-md-preview>
-            <v-md-preview :text="markdown"></v-md-preview>
         </div>
     </div>
 </template>
+
+<style>
+    
+#article-info #title {
+    font-size: 40px;
+    text-align: center;
+}
+#article-info #timeInfo {
+    font-size: 17px;
+    text-align: center;
+    border: 2px groove rgb(255 255 255 / 20%);
+    border-left:none;border-right:none;
+}
+.timeInfo-block {
+    margin: 0 20px;        
+}
+#article-info #desc {
+    background: #f8f8f8;
+    margin: 20px 0;
+    padding: 10px 0px;
+}
+</style>
 
 <script>
 import { defineComponent, ref, reactive } from 'vue';
@@ -23,8 +47,16 @@ import { getArticleInfo } from '@/api/article.js'
 import router from '../../router'
 import { useRoute} from 'vue-router'
 import day from 'dayjs'
+import { 
+    FieldTimeOutlined,
+    ProfileOutlined,
+} from '@ant-design/icons-vue';
 
 export default defineComponent({
+    components: {
+        FieldTimeOutlined,
+        ProfileOutlined,
+    },
     setup() {
         return {
             data: ref({}),
