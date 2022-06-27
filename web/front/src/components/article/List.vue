@@ -15,7 +15,9 @@
                         </router-link> 
                     </div>
                     <div class="desc">{{item.desc}}</div>
-                    <div class="img">{{item.img}}</div>
+                    <div class="img">
+                        <img class="img-info" :src="item.img">
+                    </div>
                     <div class="time">{{item.UpdatedAt}}</div>
                     <div class="category">{{item.Category.name}}</div>
                 </li>
@@ -156,6 +158,7 @@ export default defineComponent({
 }
 .articleList li{
     list-style: none;
+    height: 200px;
 }
 
 .ant-list {
@@ -178,5 +181,7 @@ export default defineComponent({
     transform: translate(-50%,-50%);
 }
 
-
+.img-info {
+    height: 50px;
+}
 </style>
