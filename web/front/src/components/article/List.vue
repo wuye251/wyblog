@@ -8,35 +8,25 @@
             <p>评价：高富帅</p>
         </a-card> -->
         <div class="articleList">
-                <li v-for="(item, index) in data" style="border-style: dashed;">
-                    <div class="title">
-                        <router-link :to="{ path: '/article/info', query: { id: `${item.ID}` }}">
-                            {{ item.title }}
-                        </router-link> 
-                    </div>
-                    <div class="desc">{{item.desc}}</div>
-                    <div class="img">
+            <li v-for="(item, index) in data" style="border-style: dashed;">
+                    <div v-if="item.img" class="img">
                         <img class="img-info" :src="item.img">
                     </div>
-                    <div class="time">{{item.UpdatedAt}}</div>
-                    <div class="category">{{item.Category.name}}</div>
-                </li>
-            <!-- <a-list  size="large" class="myArticleList" item-layout="horizontal" :data-source="data">
-                  <a-list-item v-for="(item, index) in data">
-                    <a-list-item-meta
-                      :description="item.desc"
-                    >
-                      <template #title>
-                        <router-link :to="{ path: '/article/info', query: { id: `${item.ID}` }}">
-                            {{ item.title }}
-                        </router-link> 
-                      </template>
-                      <template #avatar>
-                        <a-avatar :src="item.img" />
-                      </template>
-                    </a-list-item-meta>
-                  </a-list-item>
-              </a-list> -->
+                    
+                    <div class="main-content">
+                        <div class="main-header">
+                            <div class="title">
+                                <router-link :to="{ path: '/article/info', query: { id: `${item.ID}` }}">
+                                    {{ item.title }}
+                                </router-link> 
+                            </div>
+                            <div class="main-category">{{item.Category.name}}</div>
+                            <div class="time" style="margin-left: 5px;">{{getTime(item.UpdatedAt)}}</div>
+                        </div>
+                        <div class="desc">{{item.desc}}</div>
+    
+                    </div>
+            </li>
         </div>
         <a-pagination @change="" class="myPagination" :showSizeChanger=false v-model:current="current" :total="total" show-less-items />
         
@@ -84,6 +74,9 @@ export default defineComponent({
         console.log("created")
     },
     methods: {
+        getTime(val) {
+            return val ? day(val).format('YYYY/MM/DD HH:mm') : '暂无'
+        },
         getArticleList() {
             let params = {
                 pageSize: this.pagination.pageSize,
@@ -158,9 +151,28 @@ export default defineComponent({
 }
 .articleList li{
     list-style: none;
-    height: 200px;
+    height: 210px;
+    display: flex;
 }
 
+.main-content {
+    flex: 1;
+    flex-direction: column;
+    display: flex;
+    margin: 10px;
+
+}
+.main-header { 
+    display: flex;
+    margin: 5px;
+}
+.img {
+    background-color: beige;
+}
+.img-info {
+    height: 100%;
+    width: 230px;
+}
 .ant-list {
     margin: 0 auto !important;
 }
@@ -181,7 +193,23 @@ export default defineComponent({
     transform: translate(-50%,-50%);
 }
 
-.img-info {
-    height: 50px;
+.title a:hover {
+    text-decoration: underline;
+    color: black;
+}
+.title a {
+    color: black;
+}
+.title {
+    display: inherit;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.5;
+}
+.desc {
+    margin: 0 0 8px;
+    font-size: 13px;
+    line-height: 24px;
+    color: #999;
 }
 </style>
