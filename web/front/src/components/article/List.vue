@@ -7,18 +7,19 @@
             <p>颜值：帅</p>
             <p>评价：高富帅</p>
         </a-card> -->
-        <div class="articleList">
-            <li v-for="(item, index) in data">
-                    <div class="li-main-content">
+        <div class="list-page">
+            <div class="articleList">
+                <li v-for="(item, index) in data">
+                    <div class="li-main-content" @click="goToInfo(item.ID)">
                         <div v-if="item.img" class="img">
                             <img class="img-info" :src="item.img">
                         </div>
                         
                         <div class="main-content">
                             <div class="title">
-                                <router-link :to="{ path: '/article/info', query: { id: `${item.ID}` }}">
+                                <a @click="goToInfo(item.ID)">
                                     {{ item.title }}
-                                </router-link> 
+                                </a>
                             </div>
                             <div class="desc">{{item.desc}}</div>
                             <div class="main-foot">
@@ -33,10 +34,19 @@
                             </div>
                         </div>
                     </div>
-            </li>
-            <li>
-                <a-pagination @change="" class="myPagination" :showSizeChanger=false v-model:current="current" :total="total" show-less-items />
-            </li>
+                </li>
+                <!-- :show-total="total => `Total ${total} items`" -->
+    
+                <!-- <a-pagination @change="" class="myPagination" :showSizeChanger=false :pagination="pagination" show-less-items /> -->
+            </div>
+            <a-pagination
+            class="myPagination"
+            v-model:current="pagination.defaultCurrent"
+            v-model:page-size="pagination.defaultPageSize"
+            :showSizeChanger=false
+            :total="total"
+            @change="onChange"
+            />
         </div>
     </a-layout-content>
 </template>
@@ -74,44 +84,58 @@ export default defineComponent({
             onChange: page => {
                 console.log(page);
             },
-            pageSize: 5,
-            pageNum: reactive(1)
+            defaultPageSize: 5,
+            defaultCurrent: reactive(1),
         };
 
         return {
             pagination,
             data: ref([]),
-            total:ref(0)
+            total: ref(0),
+            routeQuery: ref({}),
         };
     },
     created() {
+        this.getRouteQuery()
         this.getArtList()
         console.log("created")
     },
     methods: {
+        onChange(current, size)  {  
+            this.pagination.defaultCurrent = current  
+            this.pagination.defaultPageSize = size  
+            this.getArtList()  
+        }, // 点击页码事件  
+        goToInfo(id) {
+            router.push({path: '/article/info',query: {id:id}})
+        },
         getTime(val) {
             return val ? day(val).format('YYYY/MM/DD HH:mm') : '暂无'
         },
         getArticleList() {
             let params = {
-                pageSize: this.pagination.pageSize,
-                pageNum: this.pagination.pageNum
+                pageSize: this.pagination.defaultPageSize,
+                pageNum: this.pagination.defaultCurrent,
             }
             articleList(params).then(res => {
+                this.data = []
                 this.data.push(...res.data)
                 for (var i=0; i<this.data.length; i++) {
                     this.data[i].UpdatedTime =  day(this.data[i].UpdatedAt).format('YYYY/MM/DD HH:mm')
                 }
                 console.log(this.data)
+                this.total = res.total
+                console.log(this.pagination)
             })
             
         },
         getCategoryArticleList(id) {
             let params = {
-                pageSize: this.pagination.pageSize,
-                pageNum: this.pagination.pageNum
+                pageSize: this.pagination.defaultPageSize,
+                pageNum: this.pagination.defaultCurrent
             }
             categoryArticleList(id, params).then(res => {
+                this.data = []
                 this.data.push(...res.data)
                 this.total = res.total
             })
@@ -120,15 +144,13 @@ export default defineComponent({
 
         getRouteQuery() {
             let route = useRoute() // 第一步
-            let routeQuery = route.query // 第二步
-            return routeQuery
+            this.routeQuery = route.query // 第二步
         },
 
         getArtList() {
-            let query = this.getRouteQuery()
-            if(query.category != undefined) {
+            if(this.routeQuery.category != undefined) {
                 console.log(1111)
-                this.getCategoryArticleList(query.category)
+                this.getCategoryArticleList(this.routeQuery.category)
             } else {
                 console.log(222)
                 this.getArticleList()
@@ -141,6 +163,15 @@ export default defineComponent({
 
 
 <style>
+.list-page {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+.li-main-content:hover{
+    background: #fafafa;
+    cursor: pointer;
+}
 .content {
     margin-top: 30px;
     min-height: 800px !important;
@@ -163,15 +194,16 @@ export default defineComponent({
     /* width: 40%; */
     border-radius: 9px;
     margin: 0 auto;
+    width: 100%;
 }
 .articleList li{
     list-style: none;
 }
 
 .li-main-content{
-    min-height: 200px;
+    /* min-height: 200px; */
     display: flex;
-    padding: 12px 20px 1px 15px;
+    padding: 12px 8px 1px 8px;
     border-bottom: 1px solid rgba(228, 230, 235, 0.5);
 }
 
@@ -214,10 +246,9 @@ export default defineComponent({
     /* padding: 30px 30px 10px 30px !important;
     max-width: 40%;
     margin: 0 auto !important; */
-    margin: 50px auto 0 auto !important;
     text-align: center;
-    bottom:0;
-    transform: translate(-50%,-50%);
+    padding: 10px !important;
+    margin-top: auto !important;
 }
 
 .title a:hover {
@@ -238,6 +269,6 @@ export default defineComponent({
     font-size: 13px;
     line-height: 24px;
     color: #999;
-    min-height: 63%;
+    /* min-height: 63%; */
 }
 </style>
