@@ -15,6 +15,20 @@ func InitRouter() {
 	r.Use(gin.Recovery())
 	r.Use(middleware.Cors())
 
+	r.LoadHTMLGlob("static/admin/index.html")
+	r.Static("admin/static", "static/admin/static")
+
+	r.GET("admin", func(ctx *gin.Context) {
+		ctx.HTML(200, "index.html", nil)
+	})
+
+	r.LoadHTMLGlob("static/front/index.html")
+	r.Static("front/static", "static/front/static")
+
+	r.GET("/", func(ctx *gin.Context) {
+		ctx.HTML(200, "index.html", nil)
+	})
+
 	auth := r.Group("api/v1")
 	auth.Use(middleware.JwtToken())
 	{

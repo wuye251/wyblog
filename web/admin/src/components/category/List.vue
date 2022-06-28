@@ -264,7 +264,7 @@ export default defineComponent({
         // },
 
         editcategory(id) {
-            router.push({path: '/admin/add-category',query: {id:id}})
+            router.push({path: '/add-category',query: {id:id}})
         },
 
         deletecategory(id) {

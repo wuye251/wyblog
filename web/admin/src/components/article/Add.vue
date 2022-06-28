@@ -146,7 +146,7 @@ export default defineComponent({
                 updateArticle(articleInfo.id, data).then(res => {
                     if(res.code == 200) {
                         message.success("发布成功")
-                        router.push('/admin/article-list')
+                        router.push('/article-list')
                     } else {
                         console.log('error')
                         message.error("发布失败")
@@ -157,7 +157,7 @@ export default defineComponent({
                 addArticle(data).then(res => {
                     if(res.code == 200) {
                         message.success("发布成功")
-                        router.push('/admin/article-list')
+                        router.push('/article-list')
                     } else {
                         console.log('error')
                         message.error("发布失败")

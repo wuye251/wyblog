@@ -4,8 +4,7 @@ module.exports = {
   ],
   plugins: [
     [
-      'import', { libraryName: 'ant-design-vue', libraryDirectory: 'es', style: 'css' },
-      'prismjs',{ languages: ['json', 'golang','go'] },
+      'import', { libraryName: 'ant-design-vue', libraryDirectory: 'es', style: 'css' }
     ],     
   ],
 }

@@ -257,11 +257,11 @@ export default defineComponent({
         },
 
         addArticle() {
-            router.push('/admin/add-article')
+            router.push('/add-article')
         },
 
         editArticle(id) {
-            router.push({path: '/admin/add-article',query: {id:id}})
+            router.push({path: '/add-article',query: {id:id}})
         },
 
         deleteArticle(id) {
