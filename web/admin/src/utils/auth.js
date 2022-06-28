@@ -9,7 +9,9 @@ export function getToken() {
 }
 
 export function setToken(token) {
-  return Cookies.set(TokenKey, token, {expires: LiveTime})
+  let seconds = LiveTime
+  let expires = new Date(new Date() * 1 + seconds * 1000)
+  return Cookies.set(TokenKey, token, {expires: expires})
 }
 
 export function removeToken() {
