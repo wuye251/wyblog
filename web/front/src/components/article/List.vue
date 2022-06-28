@@ -8,28 +8,36 @@
             <p>评价：高富帅</p>
         </a-card> -->
         <div class="articleList">
-            <li v-for="(item, index) in data" style="border-style: dashed;">
-                    <div v-if="item.img" class="img">
-                        <img class="img-info" :src="item.img">
-                    </div>
-                    
-                    <div class="main-content">
-                        <div class="main-header">
+            <li v-for="(item, index) in data">
+                    <div class="li-main-content">
+                        <div v-if="item.img" class="img">
+                            <img class="img-info" :src="item.img">
+                        </div>
+                        
+                        <div class="main-content">
                             <div class="title">
                                 <router-link :to="{ path: '/article/info', query: { id: `${item.ID}` }}">
                                     {{ item.title }}
                                 </router-link> 
                             </div>
-                            <div class="main-category">{{item.Category.name}}</div>
-                            <div class="time" style="margin-left: 5px;">{{getTime(item.UpdatedAt)}}</div>
+                            <div class="desc">{{item.desc}}</div>
+                            <div class="main-foot">
+                                <div class="main-category">
+                                    <profile-outlined :style="{fontSize: '20px', color: 'black'}"/> 
+                                    <span style="font-size:15px; margin-top: -2px; margin-left:5px;">{{item.Category.name}}</span>
+                                </div>
+                                <div class="main-time" style="margin-left: 15px;">
+                                    <field-time-outlined :style="{fontSize: '20px', color: 'black'}" /> 
+                                    <span style="font-size:15px; margin-top: -2px; margin-left:5px;">{{getTime(item.UpdatedAt)}}</span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="desc">{{item.desc}}</div>
-    
                     </div>
             </li>
+            <li>
+                <a-pagination @change="" class="myPagination" :showSizeChanger=false v-model:current="current" :total="total" show-less-items />
+            </li>
         </div>
-        <a-pagination @change="" class="myPagination" :showSizeChanger=false v-model:current="current" :total="total" show-less-items />
-        
     </a-layout-content>
 </template>
 
@@ -39,7 +47,10 @@ import router from '../../router'
 import { articleList, categoryArticleList } from '@/api/article.js'
 import { useRoute} from 'vue-router'
 import day from 'dayjs'
-
+import { 
+    FieldTimeOutlined,
+    ProfileOutlined,
+} from '@ant-design/icons-vue';
 // const data = [{
 //     title: '这是第一篇文章标题这是第一篇文章标题',
 //     }, {
@@ -54,6 +65,10 @@ import day from 'dayjs'
 // }
 // ];
 export default defineComponent({
+    components: {
+        FieldTimeOutlined,
+        ProfileOutlined,
+    },
     setup() {
         const pagination = {
             onChange: page => {
@@ -151,26 +166,41 @@ export default defineComponent({
 }
 .articleList li{
     list-style: none;
-    height: 210px;
+}
+
+.li-main-content{
+    min-height: 200px;
     display: flex;
+    padding: 12px 20px 1px 15px;
+    border-bottom: 1px solid rgba(228, 230, 235, 0.5);
 }
 
 .main-content {
     flex: 1;
     flex-direction: column;
     display: flex;
-    margin: 10px;
+    margin: 10px 10px 5px 10px;
 
 }
-.main-header { 
+.main-foot { 
     display: flex;
     margin: 5px;
 }
+.main-category {
+    display: flex;
+}
+.main-time {
+    display: flex;
+}
+.main-category {
+    display: flex;
+}
 .img {
     background-color: beige;
+    margin-top: 14px;
 }
 .img-info {
-    height: 100%;
+    height: 95%;
     width: 230px;
 }
 .ant-list {
@@ -185,10 +215,7 @@ export default defineComponent({
     max-width: 40%;
     margin: 0 auto !important; */
     margin: 50px auto 0 auto !important;
-    justify-content: center;
     text-align: center;
-    position: absolute;
-    left: 50%;
     bottom:0;
     transform: translate(-50%,-50%);
 }
@@ -211,5 +238,6 @@ export default defineComponent({
     font-size: 13px;
     line-height: 24px;
     color: #999;
+    min-height: 63%;
 }
 </style>
