@@ -5,9 +5,15 @@
                 <span>{{data.title}}</span>
             </div>
             <div id="timeInfo">
-               
-                <span class ="timeInfo-block"> <field-time-outlined />{{data.UpdatedAt}}</span>
-                <span class ="timeInfo-block"> <profile-outlined />{{data.Category.name}}</span>
+                <span class ="timeInfo-block"> 
+                    <profile-outlined />
+                    <span>{{data.Category.name}}</span>
+                </span>
+
+                <span class ="timeInfo-block"> 
+                    <field-time-outlined />
+                    <span> {{data.UpdatedAt}}</span>
+                </span>
             </div>
             <div id="desc">
                 <span>{{data.desc}}</span>

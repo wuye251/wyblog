@@ -95,6 +95,12 @@ export default defineComponent({
             routeQuery: ref({}),
         };
     },
+    // mounted () {
+    //     this.$router.afterEach((to,from,next)=>{
+    //         console.log(1111)
+    //         window,scrollTo(0,0)
+    //     })
+    // },
     created() {
         this.getRouteQuery()
         this.getArtList()
@@ -155,6 +161,7 @@ export default defineComponent({
                 console.log(222)
                 this.getArticleList()
             }
+            window.scrollTo(0,0);
         }
     },
 
@@ -228,7 +235,7 @@ export default defineComponent({
     display: flex;
 }
 .img {
-    background-color: beige;
+    /* background-color: beige; */
     margin-top: 14px;
 }
 .img-info {

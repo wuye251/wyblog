@@ -66,10 +66,10 @@ func GetArticles(pageSize, pageNum int, status int) ([]Article, int, int64) {
 	var err error
 
 	if status == 0 { //查全部
-		err = db.Preload("Category").Limit(pageSize).Offset((pageNum - 1) * pageSize).Find(&articleList).Error
+		err = db.Preload("Category").Limit(pageSize).Offset((pageNum - 1) * pageSize).Order("updated_at desc").Find(&articleList).Error
 		db.Model(&articleList).Count(&total)
 	} else { //按照状态查
-		err = db.Preload("Category").Where("status = ?", status).Limit(pageSize).Offset((pageNum - 1) * pageSize).Find(&articleList).Error
+		err = db.Preload("Category").Where("status = ?", status).Order("updated_at desc").Limit(pageSize).Offset((pageNum - 1) * pageSize).Find(&articleList).Error
 		db.Model(&articleList).Where("status = ?", status).Count(&total)
 	}
 
@@ -96,10 +96,10 @@ func GetArticlesByCategoryId(categoryId int, pageSize, pageNum int, status int) 
 	var err error
 
 	if status == 0 {
-		err = db.Preload("Category").Limit(pageSize).Offset((pageNum-1)*pageSize).Where("category_id = ?", categoryId).Find(&articleList).Error
+		err = db.Preload("Category").Limit(pageSize).Offset((pageNum-1)*pageSize).Where("category_id = ?", categoryId).Order("updated_at desc").Find(&articleList).Error
 		db.Model(&articleList).Where("category_id = ?", categoryId).Count(&total)
 	} else {
-		err = db.Preload("Category").Limit(pageSize).Offset((pageNum-1)*pageSize).Where("category_id = ?", categoryId).Where("status = ?", status).Find(&articleList).Error
+		err = db.Preload("Category").Limit(pageSize).Offset((pageNum-1)*pageSize).Where("category_id = ?", categoryId).Where("status = ?", status).Order("updated_at desc").Find(&articleList).Error
 		db.Model(&articleList).Where("category_id = ?", categoryId).Where("status = ?", status).Count(&total)
 	}
 

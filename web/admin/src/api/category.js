@@ -17,6 +17,13 @@ export function userList(data) {
   })
 }
 
+export function add(name) {
+  return request({
+    url: '/api/v1/category/add',
+    method: 'post',
+    data:{name:name},
+  })
+}
 
 export function getUserById(id,) {
   return request({
