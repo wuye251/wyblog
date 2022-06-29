@@ -59,7 +59,6 @@ import { defineComponent, reactive, ref } from 'vue'
 import { getList } from '@/api/category.js'
 import { addArticle, getArticleInfo, updateArticle } from '@/api/article.js'
 import { getToken } from '@/utils/auth.js'
-import { BASE_HOST } from '@/utils/request.js'
 import { message } from 'ant-design-vue';
 import router from '../../router'
 import { useRoute} from 'vue-router'
@@ -116,7 +115,7 @@ export default defineComponent({
         }
 
 
-        const uploadUrl = BASE_HOST + '/api/v1/upload'
+        const uploadUrl = window.g.BASE_URL + '/api/v1/upload'
         const headers = {Authorization: `Bearea-Token ${getToken()}`}
 
         const submit = (() => {

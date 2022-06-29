@@ -1,11 +1,9 @@
 import axios from 'axios'
 import { getToken } from '@/api/auth'
 
-
-const BASE_HOST = 'http://47.93.25.70:3000' // 開發環境
 // 创建一个axios实例
 const service = axios.create({
-  baseURL:BASE_HOST, // api 的 base_url
+  baseURL:window.g.BASE_URL, // api 的 base_url
   // transformRequest: [function (data) {
   //   return qs.stringify(data)
   // }],
@@ -68,4 +66,3 @@ service.interceptors.response.use(
   })
 
 export default service
-export {BASE_HOST}
