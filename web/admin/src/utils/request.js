@@ -2,7 +2,8 @@ import axios from 'axios'
 import { getToken } from '@/utils/auth'
 
 
-const BASE_HOST = 'http://localhost:3000' // 開發環境
+const BASE_HOST = 'http://47.93.25.70:3000' // 開發環境
+
 // 创建一个axios实例
 const service = axios.create({
   baseURL:BASE_HOST, // api 的 base_url
