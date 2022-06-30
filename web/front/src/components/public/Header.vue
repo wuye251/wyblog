@@ -48,11 +48,11 @@ export default defineComponent({
         },
         goToPage(item){
             if(item.key == 0) {
-                console.log("one")
-                this.$router.push('/')
+                console.log("one", item.key)
+                router.push('/')
             } else {
-                console.log("two")
-                this.$router.push('/article?category=' +item.key)
+                console.log("two",item.key)
+                router.push("/article?category="+item.key)
             }
         }
     },

@@ -85,7 +85,7 @@ export default defineComponent({
                 console.log(page);
             },
             defaultPageSize: 5,
-            defaultCurrent: reactive(1),
+            defaultCurrent: ref(1),
         };
 
         return {
