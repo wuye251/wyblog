@@ -10,7 +10,7 @@ import './assets/css/style.css'
 import VMdEditor from '@kangc/v-md-editor/lib/codemirror-editor';
 import '@kangc/v-md-editor/lib/style/codemirror-editor.css';
 //主题
-import githubTheme from '@kangc/v-md-editor/lib/theme/github.js';
+// import githubTheme from '@kangc/v-md-editor/lib/theme/github.js';
 import '@kangc/v-md-editor/lib/theme/style/github.css';
 
 import vuepressTheme from '@kangc/v-md-editor/lib/theme/vuepress.js';
@@ -19,12 +19,12 @@ import Prism from 'prismjs';
 //行号
 import createLineNumbertPlugin from '@kangc/v-md-editor/lib/plugins/line-number/index';
 //高亮
-import createHighlightLinesPlugin from '@kangc/v-md-editor/lib/plugins/highlight-lines/index';
+// import createHighlightLinesPlugin from '@kangc/v-md-editor/lib/plugins/highlight-lines/index';
 import '@kangc/v-md-editor/lib/plugins/highlight-lines/highlight-lines.css';
 //提示
 
 // highlightjs
-import hljs from 'highlight.js';
+// import hljs from 'highlight.js';
 
 // codemirror 编辑器的相关资源
 import Codemirror from 'codemirror';

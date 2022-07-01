@@ -21,4 +21,10 @@ module.exports = defineConfig({
         )
     }
   },
+  // configureWebpack: {
+  //   externals: {
+  //     'vue': 'Vue',
+  //     'ant-design-vue': 'antd',
+  //   }
+  // }
 })

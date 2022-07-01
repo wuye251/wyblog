@@ -2,6 +2,7 @@ package model
 
 import (
 	"fmt"
+	"time"
 	"wyblog/utils"
 
 	"gorm.io/driver/mysql"
@@ -18,7 +19,8 @@ func InitDb() {
 		fmt.Println("数据库连接失败 dsn：", dsn, "\n err:", err)
 	}
 	db.AutoMigrate(&User{}, &Article{}, &Category{})
-	
+
+	sqlDB, _ := db.DB()
 	// db.Migrator().CreateIndex(&Article{}, "Status")
 	// db.Migrator().CreateIndex(&Article{}, "idx_status")
 	// // SetMaxIdleConns 设置空闲连接池中连接的最大数量
@@ -28,5 +30,5 @@ func InitDb() {
 	// db.SetMaxOpenConns(100)
 
 	// // SetConnMaxLifetime 设置了连接可复用的最大时间。
-	// db.SetConnMaxLifetime(10 * time.Second)
+	sqlDB.SetConnMaxLifetime(time.Hour * 4)
 }

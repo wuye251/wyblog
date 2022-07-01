@@ -18,8 +18,7 @@ const routes = [
   {
     path: '/article',
     name: 'Article',
-    component: () =>
-      ArticleList,
+    component: ArticleList,
     // children:[
     //   {path:'info', component: ArticleInfo},
 
