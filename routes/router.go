@@ -6,6 +6,7 @@ import (
 	"wyblog/utils"
 
 	"github.com/gin-contrib/multitemplate"
+	"github.com/gin-gonic/contrib/gzip"
 	"github.com/gin-gonic/gin"
 )
 
@@ -23,7 +24,7 @@ func InitRouter() {
 	r.Use(middleware.Logger())
 	r.Use(gin.Recovery())
 	r.Use(middleware.Cors())
-
+	r.Use(gzip.Gzip(gzip.DefaultCompression))
 	r.Static("/front", "./web/front/dist")
 	r.Static("/admin", "./web/admin/dist")
 	r.StaticFile("/favicon.ico", "./web/front/dist/favicon.ico")
