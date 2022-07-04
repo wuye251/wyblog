@@ -51,20 +51,36 @@
                     </template>
                 </template>
                 <template v-if="column.key === 'action'">
-                    <a-button
+                    <div class="operate">
+                        <a-button
                         type="primary"
-                        style="margin-right: 50px"
                         @click="editArticle(record.ID)"
-                    >
-                        编辑
-                    </a-button>
-                    <a-button
-                        type="danger"
-                        style="margin-right: 50px"
-                        @click="deleteArticle(record.ID)"
-                    >
-                        删除
-                    </a-button>
+                        >
+                            编辑
+                        </a-button>
+                        <!-- <a-button
+                            type="danger"
+                            style="margin-right: 50px"
+                            @click="deleteArticle(record.ID)"
+                        >
+                            删除
+                        </a-button> -->
+                        <a-button v-if="record.status == 1"
+                        type="Primary"
+                        @click="editArticle(record.ID)"
+                        style="margin-top: 16px;"
+                        >
+                                发布
+                        </a-button>
+                        <a-button v-else
+                        type="dashed"
+                        @click="editArticle(record.ID)"
+                        style="margin-top: 16px;"
+                        >
+                            暂存草稿
+                        </a-button>
+
+                    </div>
 
                 </template>
             </template>
@@ -151,6 +167,7 @@ const columns = [
         title: '操作',
         align: 'center',
         key:'action',
+        width: '5%'
     },
 
 ]
@@ -307,5 +324,9 @@ export default defineComponent({
     font-size: 13px;
     line-height: 24px;
     color: #999;
+}
+.operate {
+    display: flex;
+    flex-direction: column;
 }
 </style>
