@@ -80,6 +80,16 @@ func GetArticles(pageSize, pageNum int, status int) ([]Article, int, int64) {
 	return articleList, errmsg.SUCCESS, total
 }
 
+func GetArticleByIdAndStatus(id, status int) (*Article, int) {
+	var article Article
+	err := db.Preload("Category").Where("id = ?", id).Where("status = ?", status).First(&article).Error
+	if err != nil {
+		return nil, errmsg.ERROR_ARTICLE_NOT_EXIST
+	}
+
+	return &article, errmsg.SUCCESS
+}
+
 func GetArticleById(id int) (*Article, int) {
 	var article Article
 	err := db.Preload("Category").Where("id = ?", id).First(&article).Error

@@ -9,14 +9,6 @@ export function getList(data) {
   })
 }
 
-export function userList(data) {
-  return request({
-    url: '/api/v1/user/list',
-    method: 'get',
-    params:data
-  })
-}
-
 export function add(name) {
   return request({
     url: '/api/v1/category/add',
@@ -41,9 +33,9 @@ export function updateUserInfo(id, info) {
   })
 }
 
-export function deleteUserById(id) {
+export function deletecategoryById(id) {
   return request({
-    url: '/api/v1/user/' + id,
+    url: '/api/v1/category/' + id,
     method: 'delete',
     params:'',
   })

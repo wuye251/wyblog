@@ -30,6 +30,9 @@
                 bordered
             >
             <template #bodyCell="{ column, text, record }">
+                <template v-if="column.key === 'desc'">
+                    <span class="desc">{{record.desc}}</span>
+                </template>
                 <template v-if="column.key === 'name'">
                     {{record.Category.name}}
                 </template>
@@ -91,7 +94,7 @@ const columns = [
         title: '分类',
         dataIndex: "Category.name",
         key:'name',
-        width:'15%',
+        width:'5',
         align: 'center',
     },
     {
@@ -105,7 +108,7 @@ const columns = [
         title: '文章描述',
         dataIndex: 'desc',
         key:'desc',
-        width:'10%',
+        width:'20%',
         align: 'center',
     },
     {
@@ -296,3 +299,13 @@ export default defineComponent({
     }
 })
 </script>
+
+
+<style>
+.desc {
+    margin: 0 0 8px;
+    font-size: 13px;
+    line-height: 24px;
+    color: #999;
+}
+</style>

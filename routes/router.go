@@ -2,6 +2,7 @@ package routes
 
 import (
 	v1 "wyblog/api/v1"
+	frontV1 "wyblog/api/v1/front"
 	"wyblog/middleware"
 	"wyblog/utils"
 
@@ -61,6 +62,16 @@ func InitRouter() {
 		auth.POST("upload", v1.Upload)
 	}
 
+	routeFront := r.Group("api/v1/front")
+	{
+		//文章列表
+		routeFront.GET("article/info/:id", frontV1.GetArticle)
+		routeFront.GET("article/list", frontV1.GetArticles)
+		routeFront.GET("article/listByCategory/:id", frontV1.GetArticlesByCategoryId)
+
+		//分类模块路由接口
+		routeFront.GET("category/list", frontV1.GetCategories)
+	}
 	routerV1 := r.Group("api/v1")
 	{
 		//用户模块路由接口

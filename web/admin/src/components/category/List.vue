@@ -61,7 +61,7 @@
     >
       <a-form-model v-model="newCate">
         <a-form-model-item label="分类名称" prop="name">
-          <a-input v-model="newCate.name"></a-input>
+          <a-input v-model:value="newCate.name"></a-input>
         </a-form-model-item>
       </a-form-model>
     </a-modal>
@@ -69,7 +69,7 @@
 
 <script>
 import { inject, createVNode, defineComponent, reactive, computed,ref } from 'vue'
-import { getList,add } from '@/api/category.js'
+import { getList,add, deletecategoryById } from '@/api/category.js'
 import '../../assets/css/style.css'
 import day from 'dayjs'
 import router from '../../router'
@@ -117,49 +117,7 @@ export default defineComponent({
         message,
     },
     setup() {
-
-        // const editUser= ((id) => {
-        //     const info = getUserById(id)
-        //     console.log(info)
-        // })
-
-
-        // const deleteUser = ((id) => {
-        //     const res = deleteUserById(id)
-        //     console.log(res)
-        // })
-
-        // const changePassword = ((id, password) => {
-        //     let param = {
-        //         password: password
-        //     }
-        //     console.log(param)
-        //     const res = updateUserInfo(id, param)
-        //     console.log(res)
-        // })
-
-
-        // const searchUser = ((name) => {
-        //     // // const { defaultCurrent, defaultPageSize } = this.pagination
-        //     // //组装参数
-        //     // let param = {  
-        //     //     pageSize: this.queryParam.pageSize,  
-        //     //     pageNum: this.queryParam.pageNum,
-        //     //     searchname: name,
-        //     // }
-        //     // let res = categoryList(param);
-        //     // const total = res.total
-        //     // const records = res.data
-        //     // this.pagination.total = total  
-        //     // this.data = res.data
-
-        // })
-
         return {
-            // searchUser,
-            // editUser,
-            // deleteUser,
-            // changePassword,
         }
     },
     data() {
@@ -202,10 +160,24 @@ export default defineComponent({
 
     },
     methods: {
+        async list() {
+            const { defaultCurrent, defaultPageSize } = this.pagination
+            //组装参数
+            const param = {  
+                pageSize: defaultPageSize,  
+                pageNum: defaultCurrent,
+            }
+            let res = await getList(param);
+            console.log(res,'res')
+            const total = res.total
+            const records = res.data
+            this.pagination.total = total  
+            this.data = res.data
+            console.log('this.data',this.data)
+        },
+
         // 新增分类
         addCateOk() {
-            console.log("addCateOk")
-            console.log(this.newCate.name)
             add(this.newCate.name).then(res => {
                 if (res.code != 200) return this.$message.error(res.message)
                 this.addcategory = false
@@ -218,6 +190,10 @@ export default defineComponent({
             console.log("addCateCancel")
             this.addcategory = false
             this.$message.info('新增分类已取消')
+        },
+        
+        editcategory(id) {
+            router.push({path: '/add-category',query: {id:id}})
         },
         // 编辑分类
         async editCate(id) {
@@ -235,7 +211,7 @@ export default defineComponent({
                 if (res.status != 200) return this.$message.error(res.message)
                 this.editCateVisible = false
                 this.$message.success('更新分类信息成功')
-                this.getCateList()
+                this.list()
             })
         },
         editCateCancel() {
@@ -243,57 +219,31 @@ export default defineComponent({
             this.editCateVisible = false
             this.$message.info('编辑已取消')
         },
-        async list() {
-            const { defaultCurrent, defaultPageSize } = this.pagination
-            //组装参数
-            const param = {  
-                pageSize: defaultPageSize,  
-                pageNum: defaultCurrent,
-            }
-            let res = await getList(param);
-            console.log(res,'res')
-            const total = res.total
-            const records = res.data
-            this.pagination.total = total  
-            this.data = res.data
-            console.log('this.data',this.data)
-        },
 
-        // addcategory() {
-        //     router.push('/admin/add-category')
-        // },
 
-        editcategory(id) {
-            router.push({path: '/add-category',query: {id:id}})
-        },
 
         deletecategory(id) {
             Modal.confirm({
                 title: '确定删除该分类?',
                 icon: createVNode(ExclamationCircleOutlined),
-                content: createVNode('div', {
-                style: 'color:red;',
-                }, 'Some descriptions'),
+                content: createVNode('div', {style: 'color:red;',}, 'Some descriptions'),
+                cancelText: "取消",
 
                 onOk() {
                     console.log('OK');
-                    // deletecategoryById(id).then(res => {
-                        // if (res.code == 200) {
+                    deletecategoryById(id).then(res => {
+                        if (res.code == 200) {
                             message.success("删除成功");
-                            // inject("reload")
+                        } else {
+                            message.error('删除失败');
+                        }
 
-                            // const reload = inject('reload') //注入刷新事件,这里括号中的参数要对应上前面provide中的第一个参数
-                            // reload()
-                        // } else {
-                        //     message.error('删除失败');
-                        // }
-
-                    // })
+                    })
                 },
-
                 onCancel() {
                     console.log('Cancel');
                 },
+
             });
         },
     }

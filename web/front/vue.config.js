@@ -13,7 +13,7 @@ module.exports = defineConfig({
   },
   transpileDependencies: true,
   lintOnSave: false,
-  publicPath: './front',
+  publicPath: './',
   outputDir:'dist',
   assetsDir:'static',
   configureWebpack: config => {
