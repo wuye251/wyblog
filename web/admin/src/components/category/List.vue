@@ -65,6 +65,21 @@
         </a-form-model-item>
       </a-form-model>
     </a-modal>
+
+    <a-modal
+        closable
+        :visible="editCateVisible"
+        title="修改名称"
+        ok-text="确认"
+        cancel-text="取消"
+        @ok="editCateOk"
+        @cancel="editCateCancel"
+        destroyOnClose
+    >
+        <p>Bla bla ...</p>
+        <p>Bla bla ...</p>
+        <p>Bla bla ...</p>
+    </a-modal>
 </template>
 
 <script>
@@ -152,6 +167,7 @@ export default defineComponent({
             },
             newCate: reactive({name:""}), 
             addcategory: false,
+            editCateVisible: false,
         }
     },
     created() {
@@ -195,7 +211,7 @@ export default defineComponent({
         },
         
         editcategory(id) {
-            router.push({path: '/add-category',query: {id:id}})
+            this.editCateVisible = true
         },
         // 编辑分类
         async editCate(id) {
@@ -205,7 +221,6 @@ export default defineComponent({
             this.CateInfo.id = id
         },
         editCateOk() {
-            this.$refs.addCateRef.validate(async (valid) => {
                 if (!valid) return this.$message.error('参数不符合要求，请重新输入')
                 const { data: res } = await this.$http.put(`category/${this.CateInfo.id}`, {
                 name: this.CateInfo.name,
@@ -217,7 +232,6 @@ export default defineComponent({
             })
         },
         editCateCancel() {
-            this.$refs.addCateRef.resetFields()
             this.editCateVisible = false
             this.$message.info('编辑已取消')
         },
