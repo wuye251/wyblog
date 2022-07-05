@@ -77,3 +77,15 @@ func GetCategories(c *gin.Context) {
 		"total":   total,
 	})
 }
+
+//查询单个category信息
+func GetCategoryById(c *gin.Context) {
+	id, _ := strconv.Atoi(c.Param("id"))
+	data, code := model.GetById(id)
+
+	c.JSON(http.StatusOK, gin.H{
+		"code":    code,
+		"message": errmsg.GetErrMsg(code),
+		"data":    data,
+	})
+}

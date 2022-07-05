@@ -17,17 +17,17 @@ export function add(name) {
   })
 }
 
-export function getUserById(id,) {
+export function getCategoryById(id,) {
   return request({
-    url: '/api/v1/user/' + id,
+    url: '/api/v1/category/' + id,
     method: 'get',
     params:'',
   })
 }
 
-export function updateUserInfo(id, info) {
+export function updateCategoryInfo(id, info) {
   return request({
-    url: '/api/v1/user/' + id,
+    url: '/api/v1/category/' + id,
     method: 'put',
     data:info,
   })

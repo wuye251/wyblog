@@ -45,6 +45,10 @@
     margin: 20px 0;
     padding: 10px 39px;
 }
+
+.vuepress-markdown-body:not(.custom) {
+    padding: 2rem 1.5rem;
+}
 </style>
 
 <script>

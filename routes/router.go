@@ -80,6 +80,7 @@ func InitRouter() {
 		routerV1.POST("login", v1.Login)
 		//分类模块路由接口
 		routerV1.GET("category/list", v1.GetCategories)
+		routerV1.GET("category/:id", v1.GetCategoryById)
 
 		//文章模块路由接口
 		routerV1.GET("article/info/:id", v1.GetArticle)

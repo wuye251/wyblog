@@ -21,6 +21,26 @@ func GetByCategoryName(name string) (code int) {
 	return errmsg.SUCCESS
 }
 
+func GetCategories(pageSize, pageNum int) ([]Category, int64) {
+	var category []Category
+	var total int64
+	err := db.Limit(pageSize).Offset((pageNum - 1) * pageSize).Find(&category).Error
+	db.Model(&category).Count(&total)
+	if err != nil && err != gorm.ErrRecordNotFound {
+		return nil, total
+	}
+	return category, total
+}
+
+func GetById(id int) (*Category, int) {
+	var category Category
+	err := db.Where("id = ?", id).Find(&category).Error
+	if err != nil && err != gorm.ErrRecordNotFound {
+		return nil, errmsg.ERROR_ARTICLE_NOT_EXIST
+	}
+	return &category, errmsg.SUCCESS
+}
+
 func InsertCategory(data *Category) (code int) {
 	err := db.Create(&data).Error
 	if err != nil {
@@ -47,14 +67,4 @@ func UpdateCategory(id int, data *Category) (code int) {
 		return errmsg.ERROR
 	}
 	return errmsg.SUCCESS
-}
-func GetCategories(pageSize, pageNum int) ([]Category, int64) {
-	var category []Category
-	var total int64
-	err := db.Limit(pageSize).Offset((pageNum - 1) * pageSize).Find(&category).Error
-	db.Model(&category).Count(&total)
-	if err != nil && err != gorm.ErrRecordNotFound {
-		return nil, total
-	}
-	return category, total
 }

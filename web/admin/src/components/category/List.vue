@@ -66,25 +66,30 @@
       </a-form-model>
     </a-modal>
 
+
+    <!-- 编辑分类区域 -->
     <a-modal
         closable
         :visible="editCateVisible"
-        title="修改名称"
+        title="编辑分类"
         ok-text="确认"
         cancel-text="取消"
         @ok="editCateOk"
         @cancel="editCateCancel"
         destroyOnClose
+        width="60%"
     >
-        <p>Bla bla ...</p>
-        <p>Bla bla ...</p>
-        <p>Bla bla ...</p>
+      <a-form-model :model="newCate" ref="addCateRef">
+        <a-form-model-item label="分类名称" prop="name">
+          <a-input v-model:value="newCate.name"></a-input>
+        </a-form-model-item>
+      </a-form-model>
     </a-modal>
 </template>
 
 <script>
 import { inject, createVNode, defineComponent, reactive, computed,ref } from 'vue'
-import { getList,add, deletecategoryById } from '@/api/category.js'
+import { getList,add, deletecategoryById, getCategoryById, updateCategoryInfo } from '@/api/category.js'
 import '../../assets/css/style.css'
 import day from 'dayjs'
 import router from '../../router'
@@ -204,35 +209,38 @@ export default defineComponent({
 
         },
         addCateCancel() {
+
             console.log("addCateCancel")
             this.addcategory = false
             this.$message.info('新增分类已取消')
             this.newCate.name = ''
         },
-        
-        editcategory(id) {
-            this.editCateVisible = true
-        },
         // 编辑分类
-        async editCate(id) {
+        editcategory(id) {
+             getCategoryById(id).then(res => {
+                if (res.code != 200) return this.$message.error(res.message)
+                this.newCate = res.data
+                console.log(' this.newCate',this.newCate)
+            })
+
             this.editCateVisible = true
-            const { data: res } = await this.$http.get(`category/${id}`)
-            this.CateInfo = res.data
-            this.CateInfo.id = id
         },
+
         editCateOk() {
-                if (!valid) return this.$message.error('参数不符合要求，请重新输入')
-                const { data: res } = await this.$http.put(`category/${this.CateInfo.id}`, {
-                name: this.CateInfo.name,
-                })
-                if (res.status != 200) return this.$message.error(res.message)
+            let param = {
+                "name": this.newCate.name
+            }
+            updateCategoryInfo(this.newCate.ID, param).then(res => {
+                if (res.code != 200) return this.$message.error(res.message)
                 this.editCateVisible = false
                 this.$message.success('更新分类信息成功')
+                this.newCate = {name:''}
                 this.list()
             })
         },
         editCateCancel() {
             this.editCateVisible = false
+            this.newCate = {name:''}
             this.$message.info('编辑已取消')
         },
 

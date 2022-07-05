@@ -70,7 +70,7 @@
                         @click="editArticle(record.ID)"
                         style="margin-top: 16px;"
                         >
-                                发布
+                            发布
                         </a-button>
                         <a-button v-else
                         type="dashed"
