@@ -182,6 +182,7 @@ export default defineComponent({
                 if (res.code != 200) return this.$message.error(res.message)
                 this.addcategory = false
                 this.$message.success('添加分类成功')
+                this.newCate.name = ''
                 this.list()
             })
 
@@ -190,6 +191,7 @@ export default defineComponent({
             console.log("addCateCancel")
             this.addcategory = false
             this.$message.info('新增分类已取消')
+            this.newCate.name = ''
         },
         
         editcategory(id) {
@@ -223,6 +225,7 @@ export default defineComponent({
 
 
         deletecategory(id) {
+            const that = this // 提前保存this
             Modal.confirm({
                 title: '确定删除该分类?',
                 icon: createVNode(ExclamationCircleOutlined),
@@ -234,6 +237,7 @@ export default defineComponent({
                     deletecategoryById(id).then(res => {
                         if (res.code == 200) {
                             message.success("删除成功");
+                            that.list()
                         } else {
                             message.error('删除失败');
                         }
