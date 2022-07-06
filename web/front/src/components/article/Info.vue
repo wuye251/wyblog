@@ -57,7 +57,7 @@ import { getArticleInfo } from '@/api/article.js'
 import router from '../../router'
 import { useRoute} from 'vue-router'
 import day from 'dayjs'
-import ImageBig from '../common/ImageBig';
+// import ImageBig from '../common/ImageBig';
 import { 
     FieldTimeOutlined,
     ProfileOutlined,
