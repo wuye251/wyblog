@@ -69,7 +69,9 @@ export default defineComponent({
 
 <style>
 .content {
+    margin: auto;
     margin-top: 30px;
+    width: 800px;
 }
 .resume {
     position:absolute; 
@@ -89,10 +91,11 @@ export default defineComponent({
     width: 40%;
     border-radius: 9px;
     margin: 0 auto;
-    /* padding: 10px !important; */
+    padding: 10px !important;
     background-color: #fffefe;
     box-shadow: inset 0 -3em 3em rgb(0 0 0 / 1%), 0 0 0 2px rgb(255 255 255), 0.3em 0.3em 1em rgb(0 0 0 / 20%);
     min-height:80vh;
+    width:100%;
     position: relative;
 }
 

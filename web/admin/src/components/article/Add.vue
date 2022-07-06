@@ -39,7 +39,13 @@
                         </a-upload>
                     </a-form-item>
                     <a-form-item label="文章内容">
-                        <v-md-editor v-model="articleInfo.content"   height="500px"></v-md-editor>
+                        <v-md-editor 
+                          left-toolbar="undo redo | image"
+                          v-model="articleInfo.content"       
+                          :disabled-menus="[]"
+                          @upload-image="handleUploadImage"
+                          height="500px">
+                        </v-md-editor>
                     </a-form-item>
                     <a-form-item>
                         <a-button type="danger" style="margin-right:15px" @click="submit">提交</a-button>
@@ -58,6 +64,7 @@ import { UploadOutlined} from '@ant-design/icons-vue';
 import { defineComponent, reactive, ref } from 'vue'
 import { getList } from '@/api/category.js'
 import { addArticle, getArticleInfo, updateArticle } from '@/api/article.js'
+import { upload } from '@/api/upload.js'
 import { getToken } from '@/utils/auth.js'
 import { message } from 'ant-design-vue';
 import router from '../../router'
@@ -202,6 +209,26 @@ export default defineComponent({
         this.getRouteQuery()
         this.getCateList()
     },
+    methods: {
+        handleUploadImage(event, insertImage, files) {
+            // 拿到 files 之后上传到文件服务器，然后向编辑框中插入对应的内容
+            let getFileInfo = files[0]
+            upload(getFileInfo).then(res => {
+                if(res.code == 200) {
+                    insertImage({
+                        url:
+                            res.data,
+                        desc: getFileInfo.name,
+                        // width: 'auto',
+                        // height: 'auto',
+                    });
+                } else {
+                    message.error("上传失败")
+                }
+                
+            })
 
+        }
+    },
 })
 </script>

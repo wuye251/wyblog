@@ -1,5 +1,5 @@
 <template>
-    <a-layout-content class="content">
+    <a-layout-content>
         <!-- 左边 个人简介 -->
         <!-- <a-card class="resume" title="个人信息">
             <template #extra><a href="#">more</a></template>
@@ -10,12 +10,12 @@
         <div class="list-page">
             <div class="articleList">
                 <li v-for="(item, index) in data">
-                    <div class="li-main-content" @click="goToInfo(item.ID)">
-                        <div v-if="item.img" class="img">
+                    <div class="li-list-main-content" @click="goToInfo(item.ID)">
+                        <!-- <div v-if="item.img" class="img">
                             <img class="img-info" :src="item.img">
-                        </div>
+                        </div> -->
                         
-                        <div class="main-content">
+                        <div class="list-main-content">
                             <div class="title">
                                 <a @click="goToInfo(item.ID)">
                                     {{ item.title }}
@@ -172,17 +172,14 @@ export default defineComponent({
 <style>
 .list-page {
     display: flex;
-    min-height: 100vh;
+    min-height: 80vh;
     flex-direction: column;
 }
-.li-main-content:hover{
+.li-list-main-content:hover{
     background: #fafafa;
     cursor: pointer;
 }
-.content {
-    margin-top: 30px;
-    min-height: 800px !important;
-}
+
 .resume {
     position:absolute; 
     left:100px; 
@@ -207,18 +204,17 @@ export default defineComponent({
     list-style: none;
 }
 
-.li-main-content{
+.li-list-main-content{
     /* min-height: 200px; */
     display: flex;
-    padding: 12px 8px 1px 8px;
     border-bottom: 1px solid rgba(228, 230, 235, 0.5);
 }
 
-.main-content {
+.list-main-content {
     flex: 1;
     flex-direction: column;
     display: flex;
-    margin: 10px 10px 5px 10px;
+    margin: 3px 1px 1px 5px;
 
 }
 .main-foot { 
@@ -255,6 +251,7 @@ export default defineComponent({
     margin: 0 auto !important; */
     text-align: center;
     padding: 10px !important;
+    /*必须auto  列表不满一页 会自动固定到底部*/
     margin-top: auto !important;
 }
 
