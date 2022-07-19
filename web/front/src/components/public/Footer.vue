@@ -1,7 +1,7 @@
 <template>
     <div class="footer">
         <a-layout-footer style="text-align: center">
-            Ant Design ©2018 Created by Ant UED
+            京ICP备2022020887号
           </a-layout-footer>
     </div>
 </template>
