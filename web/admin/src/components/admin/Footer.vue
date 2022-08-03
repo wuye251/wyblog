@@ -1,6 +1,6 @@
 <template>
     <div class="footer">
-        <span> wyblog admin </span>
+        <a href="https://beian.miit.gov.cn/" target="_blank">京ICP备2022020887号</a>
     </div>
 </template>
 
