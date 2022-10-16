@@ -174,6 +174,14 @@ export default defineComponent({
     display: flex;
     min-height: 80vh;
     flex-direction: column;
+    width: 800px;
+    border-radius: 9px;
+    margin: 0 auto;
+    padding: 10px !important;
+    background-color: #fffefe;
+    box-shadow: inset 0 -3em 3em rgb(0 0 0 / 1%), 0 0 0 2px rgb(255 255 255), 0.3em 0.3em 1em rgb(0 0 0 / 20%);
+    min-height: 80vh;
+    position: relative;
 }
 .li-list-main-content:hover{
     background: #fafafa;
