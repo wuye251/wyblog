@@ -4,10 +4,9 @@
             <nav class="article-catalog" v-sticky="{ zIndex: 3 }" style="position: fixed; width: 226px;">
                 <div class="catalog-title">目录</div>
                 <div class="catalog-body">
-                <ul class="catalog-list" ref="catalog">
-                    <li class="item" v-for="anchor in titles" :key="i" :style="{ padding: `10px 0 10px ${anchor.indent * 20}px` }" @click="handleAnchorClick(anchor)">
+                <ul class="catalog-list">
+                    <li class="item" v-for="anchor in titles" :style="{ padding: `10px 0 10px ${anchor.indent * 20}px` }" @click="handleAnchorClick(anchor)">
                         <div class="a-container">
-                            <!-- <a style="cursor: pointer" :style="{'padding-left': (h.level - minLevel) * 16 + 8 + 'px'}" :title="h.text" class="catalog-aTag">{{h.text}}</a> -->
                             <a style="cursor: pointer">{{ anchor.title }}</a>
                         </div>
                     </li>
@@ -18,25 +17,25 @@
         <div id="article-info">
             <div class="summary">
                 <div id="title">
-                    <span>{{data.title}}</span>
+                    <span>{{ articleInfo.title }}</span>
                 </div>
                 <div id="timeInfo">
                     <span class ="timeInfo-block"> 
                         <profile-outlined />
-                        <span>{{data.Category.name}}</span>
+                        <span>{{ articleInfo.Category.name }}</span>
                     </span>
 
                     <span class ="timeInfo-block"> 
                         <field-time-outlined />
-                        <span> {{data.UpdatedAt}}</span>
+                        <span> {{ articleInfo.UpdatedAt }}</span>
                     </span>
                 </div>
                 <div id="desc">
-                    <span>{{data.desc}}</span>
+                    <span>{{ articleInfo.desc }}</span>
                 </div>
             </div>
-            <div id="content">
-                <v-md-preview :text="getContent" ref="preview" />
+            <div id="my-content">
+                <v-md-preview :text="content" ref="preview" />
             </div>
         </div>
     </div>
@@ -45,18 +44,11 @@
 <!-- <el-backtop target=".home-layout-main"></el-backtop> -->
 
 <script>
-import 'bytemd/dist/index.min.css';
 import { defineComponent, ref, reactive } from 'vue';
 import { getArticleInfo } from '@/api/article.js'
 import router from '../../router'
 import { useRoute} from 'vue-router'
 import day from 'dayjs'
-import 'bytemd/dist/index.css'
-import { Viewer } from '@bytemd/vue-next';
-import gfm from '@bytemd/plugin-gfm';
-import highlight from '@bytemd/plugin-highlight-ssr'
-import zhHans from 'bytemd/lib/locales/zh_Hans.json';
-import { getProcessor } from 'bytemd'
 import { visit } from 'unist-util-visit';
 import VueSticky from 'vue-sticky';
 // import ImageBig from '../common/ImageBig';
@@ -64,52 +56,51 @@ import {
     FieldTimeOutlined,
     ProfileOutlined,
 } from '@ant-design/icons-vue';
-const plugins = [
-  highlight(),
-  // Add more plugins here
-]
+
 export default defineComponent({
     components: {
         FieldTimeOutlined,
         ProfileOutlined,
-        Viewer,
     },
     directives: {
         'sticky': VueSticky,
     },
     data() {
         return { 
-            value: '', 
-            plugins, 
-            zhHans, 
-            hast: [], 
             titles: [],
+            content: '',
+            articleInfo: {},
+            id: ref(0),
         }
     },
     mounted() {
-        const anchors = this.$refs.preview.$el.querySelectorAll('h1,h2,h3,h4,h5,h6');
-        const titles = Array.from(anchors).filter((title) => !!title.innerText.trim());
+            console.log(this.$refs, "   refs")
+            console.log(this.$refs.preview, "  preview")
+            console.log(this.$refs.preview.$el, "  el")
+            const anchors = this.$refs.preview.$el.querySelectorAll('h1,h2,h3,h4,h5,h6');
+            const titles = Array.from(anchors).filter((title) => !!title.innerText.trim());
+            console.log(anchors, "  anchors")
+            console.log(titles, "  titles")
 
-        if (!titles.length) {
-            this.titles = [];
-            return;
-        }
+            if (!titles.length) {
+                this.titles = [];
+                return;
+            }
 
-        const hTags = Array.from(new Set(titles.map((title) => title.tagName))).sort();
+            const hTags = Array.from(new Set(titles.map((title) => title.tagName))).sort();
 
-        this.titles = titles.map((el) => ({
-            title: el.innerText,
-            lineIndex: el.getAttribute('data-v-md-line'),
-            indent: hTags.indexOf(el.tagName),
-        }));
+            this.titles = titles.map((el) => ({
+                title: el.innerText,
+                lineIndex: el.getAttribute('data-v-md-line'),
+                indent: hTags.indexOf(el.tagName),
+            })); 
     },
-    setup() {
-        return {
-            data: ref({}),
-            id: ref(0),
-            getContent: ref(""),
-        }
-    },
+    // setup() {
+    //     return {
+    //         articleInfo: ref({}),
+    //         id: ref(0),
+    //     }
+    // },
 
     created() {
         this.getInfo()
@@ -119,9 +110,8 @@ export default defineComponent({
             this.id = this.getRouteQuery()
             getArticleInfo(this.id).then(res => {
                 res.data.UpdatedAt = res.data.UpdatedAt ? day(res.data.UpdatedAt).format('YYYY/MM/DD HH:mm') : '暂无'
-                this.data = res.data
-                this.getContent = res.data.content
-                this.getProcessor()
+                this.articleInfo = res.data
+                this.content = res.data.content
             });
         },
 
@@ -130,44 +120,6 @@ export default defineComponent({
             let routeQuery = route.query // 第二步
             return routeQuery.id
         },
-        handleChange(v) {
-            this.value = v
-        },
-        getProcessor() {
-            const stringifyHeading = function (e) {
-                let result = ''
-                visit(e, (node) => {
-                  if (node.type === 'text') {
-                    result += node.value
-                  }
-                })
-                return result
-            }
-            getProcessor({
-              plugins: [
-               {
-               rehype: (p) => p.use(() => (tree) => {
-                if (tree && tree.children.length) {
-                    const items = [];
-                    tree.children.filter(v => v.type === 'element').forEach((node) => {
-                        if (node.tagName[0] === 'h' && !!node.children.length) {
-                            const i = Number(node.tagName[1])
-                            this.minLevel = Math.min(this.minLevel, i)
-                            items.push({
-                                level: i,
-                                text: stringifyHeading(node),
-                            })
-                        }
-                    })
-                    this.hast = items.filter(v => v.level === 1 || v.level === 2 || v.level === 3);
-                }
-            console.log(this.hast)
-               }),
-              },
-             ],
-            }).processSync(this.getContent);
-        },
-
         // 点击目录进行跳转 锚点
         handleAnchorClick(anchor) {
             const { preview } = this.$refs;
@@ -177,9 +129,9 @@ export default defineComponent({
 
             if (heading) {
                 preview.scrollToTarget({
-                target: heading,
-                scrollContainer: window,
-                top: 60,
+                    target: heading,
+                    scrollContainer: window,
+                    top: 60,
                 });
             }
         },
@@ -273,3 +225,4 @@ export default defineComponent({
 
 
 </style>
+
