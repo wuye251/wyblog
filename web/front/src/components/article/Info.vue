@@ -1,20 +1,20 @@
 <template>
     <div class="article-main">
         <div class="article-toc">
-            <nav class="article-catalog" v-sticky="{ zIndex: 3 }" style="position: fixed; width: 226px;">
+            <nav class="article-catalog" v-sticky="{ zIndex: 3 }" style="position: sticky; width: 226px;top: 22px">
                 <div class="catalog-title">目录</div>
                 <div class="catalog-body">
                 <ul class="catalog-list">
-                    <li class="item" v-for="anchor in titles" :style="{ padding: `10px 0 10px ${anchor.indent * 20}px` }" @click="handleAnchorClick(anchor)">
+                    <li class="item" v-for="(anchor,index) in titles" :style="{ fontSize: `${16 - (anchor.indent)*2}px`, padding: `0px ${anchor.indent * 10}px `}" @click="handleAnchorClick(anchor, index)">
                         <div class="a-container">
-                            <a style="cursor: pointer">{{ anchor.title }}</a>
+                            <a class="catalag-item" :style="{color: catalogActiveIndex === index ? '#1987e1' : '#000000'}">{{ anchor.title }}</a>
                         </div>
                     </li>
                 </ul>
                 </div>
             </nav>
         </div>
-        <div id="article-info">
+        <div id="article-info" v-if="articleInfo">
             <div class="summary">
                 <div id="title">
                     <span>{{ articleInfo.title }}</span>
@@ -34,8 +34,15 @@
                     <span>{{ articleInfo.desc }}</span>
                 </div>
             </div>
-            <div id="my-content">
-                <v-md-preview :text="content" ref="preview" />
+            <div id="my-content" @scroll="onScroll">
+                <v-md-preview  :text="content" ref="preview" />
+            </div>
+            <div style="margin-left: 30px;font-size: 18px;font-weight: 100;background: #f7f8fa;">
+                <span>
+                    如果大家对文章/博客站有建议,欢迎到
+                    <a href="https://github.com/wuye251/wyblog/issues">github/issues</a>
+                    反馈宝贵的意见☕️
+                </span>
             </div>
         </div>
     </div>
@@ -69,31 +76,10 @@ export default defineComponent({
         return { 
             titles: [],
             content: '',
-            articleInfo: {},
+            articleInfo: null,
             id: ref(0),
+            catalogActiveIndex:0,
         }
-    },
-    mounted() {
-            console.log(this.$refs, "   refs")
-            console.log(this.$refs.preview, "  preview")
-            console.log(this.$refs.preview.$el, "  el")
-            const anchors = this.$refs.preview.$el.querySelectorAll('h1,h2,h3,h4,h5,h6');
-            const titles = Array.from(anchors).filter((title) => !!title.innerText.trim());
-            console.log(anchors, "  anchors")
-            console.log(titles, "  titles")
-
-            if (!titles.length) {
-                this.titles = [];
-                return;
-            }
-
-            const hTags = Array.from(new Set(titles.map((title) => title.tagName))).sort();
-
-            this.titles = titles.map((el) => ({
-                title: el.innerText,
-                lineIndex: el.getAttribute('data-v-md-line'),
-                indent: hTags.indexOf(el.tagName),
-            })); 
     },
     // setup() {
     //     return {
@@ -104,6 +90,9 @@ export default defineComponent({
 
     created() {
         this.getInfo()
+        // 注册滚动事件
+        let _this = this
+        window.addEventListener('scroll', _this.onScroll,true);
     },
     methods: {
         getInfo() {
@@ -112,6 +101,26 @@ export default defineComponent({
                 res.data.UpdatedAt = res.data.UpdatedAt ? day(res.data.UpdatedAt).format('YYYY/MM/DD HH:mm') : '暂无'
                 this.articleInfo = res.data
                 this.content = res.data.content
+                this.$nextTick(() =>{
+                    const anchors = this.$refs.preview.$el.querySelectorAll('h1,h2,h3,h4,h5,h6');
+                    const titles = Array.from(anchors).filter((title) => !!title.innerText.trim());
+
+                    if (!titles.length) {
+                        this.titles = [];
+                        return;
+                    }
+
+                    const hTags = Array.from(new Set(titles.map((title) => title.tagName))).sort();
+
+                    this.titles = titles.map((el) => ({
+                        title: el.innerText,
+                        // TODO:这里有行数代表每个目录标题的起始行 是否可以用它来实现自动锚点
+                        lineIndex: el.getAttribute('data-v-md-line'),
+                        indent: hTags.indexOf(el.tagName),
+                    })); 
+                    // console.log("titles",this.titles)
+                })
+                
             });
         },
 
@@ -121,20 +130,34 @@ export default defineComponent({
             return routeQuery.id
         },
         // 点击目录进行跳转 锚点
-        handleAnchorClick(anchor) {
+        handleAnchorClick(anchor, index) {
             const { preview } = this.$refs;
             const { lineIndex } = anchor;
-
             const heading = preview.$el.querySelector(`[data-v-md-line="${lineIndex}"]`);
-
             if (heading) {
                 preview.scrollToTarget({
                     target: heading,
                     scrollContainer: window,
                     top: 60,
+                    // behavior: "smooth"//滚动的速度
                 });
+                this.catalogActiveIndex = index
             }
         },
+        // 目录自动锚点
+        onScroll(e) {
+            let el = e.target.documentElement;
+            const { preview } = this.$refs;
+            let scrollItems = preview.$el.querySelectorAll(`[data-v-md-heading`);
+            let getActiveIndex = 0
+            for (let i = 0; i < scrollItems.length; i++) {
+                // 判断滚动条滚动距离是否大于当前滚动项可滚动距离
+                if (el.scrollTop >= scrollItems[i].offsetTop ) {
+                    getActiveIndex = i
+                }
+            }
+            this.catalogActiveIndex = getActiveIndex
+        },    
     },
 })
 </script>
@@ -223,6 +246,40 @@ export default defineComponent({
         position: relative;
     }
 
+    a:link {
+	    color: gray !important;
+	    text-decoration: none;
+    }
+    /* a:visited {
+        color: blue;
+    } */
 
+    a:hover {
+        text-decoration: underline;
+        color: blue;
+
+    }
+
+    /* a:active {
+        color: pink;
+    } */
+
+    .catalog-list a {
+        color:inherit;
+        display: inline-block;
+        text-decoration: none;
+        width: 100%;
+        padding: 8px;
+    }
+
+    .catalog-list a:hover {
+        color:inherit;
+        text-decoration: none;
+        background-color: #f7f8fa;
+    }
+    /* 图标和字的间距 */
+    .summary span {
+        padding: 0px 3px;
+    }
 </style>
 
