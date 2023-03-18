@@ -35,7 +35,15 @@
                 </div>
             </div>
             <div id="my-content" @scroll="onScroll">
+                <ImageBig
+                    v-if="showImg"
+                    @clickit="viewImg"
+                    :imgSrc="imgSrc"
+                    class="img-big"
+                ></ImageBig>
                 <v-md-preview  :text="content" ref="preview" />
+                <img class="head-img" src="@/assets/logo.png" alt="" />
+                <img src="@/assets/logo.png" alt="" class="tools" />
             </div>
             <div style="margin-left: 30px;font-size: 18px;font-weight: 100;background: #f7f8fa;">
                 <span>
@@ -58,7 +66,7 @@ import { useRoute} from 'vue-router'
 import day from 'dayjs'
 import { visit } from 'unist-util-visit';
 import VueSticky from 'vue-sticky';
-// import ImageBig from '../common/ImageBig';
+import ImageBig from '../common/ImageBig';
 import { 
     FieldTimeOutlined,
     ProfileOutlined,
