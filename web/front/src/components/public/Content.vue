@@ -71,7 +71,6 @@ export default defineComponent({
 .content {
     margin: auto;
     margin-top: 30px;
-    width: 800px;
 }
 .resume {
     position:absolute; 
@@ -82,22 +81,7 @@ export default defineComponent({
     left: 200px;
     width: 300px;
 }
-.content-main {
-    /*有左侧简介时样式*/
-    /* left: 71px;
-    width: 500px;
-    padding: 0 30px 30px 30px;
-    background-color: #f9f9f9; */
-    width: 40%;
-    border-radius: 9px;
-    margin: 0 auto;
-    padding: 10px !important;
-    background-color: #fffefe;
-    box-shadow: inset 0 -3em 3em rgb(0 0 0 / 1%), 0 0 0 2px rgb(255 255 255), 0.3em 0.3em 1em rgb(0 0 0 / 20%);
-    min-height:80vh;
-    width:100%;
-    position: relative;
-}
+
 
 
 </style>
