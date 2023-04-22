@@ -2,13 +2,15 @@ version: '3'
 services:
   wyblog:
     # 根据当前路径的dockerfile文件构建
-    build: .
     # 生成的镜像名称
-    image: wyblog:v1
+    image: wyblog:v6
     # 生成容器中的名称
     container_name: wyblog
     #映射的端口
     ports:
-      - "80:80"
+      - "3000:3000"
+    #可以访问本地
+    network_mode: host
     volumes:
-      - ./log:/go/src/wyblog/log:rw
+      - ./log:/app/log:rw
+      - ./config:/app/config
