@@ -24,7 +24,7 @@ func GetByCategoryName(name string) (code int) {
 func GetCategories(pageSize, pageNum int) ([]Category, int64) {
 	var category []Category
 	var total int64
-	err := db.Limit(pageSize).Offset((pageNum - 1) * pageSize).Find(&category).Error
+	err := db.Limit(pageSize).Offset((pageNum - 1) * pageSize).Order("sort desc").Find(&category).Error
 	db.Model(&category).Count(&total)
 	if err != nil && err != gorm.ErrRecordNotFound {
 		return nil, total

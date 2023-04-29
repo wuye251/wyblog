@@ -1,7 +1,6 @@
 package v1
 
 import (
-	"fmt"
 	"net/http"
 	"strconv"
 	"wyblog/model"
@@ -10,7 +9,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-//添加分类
+// 添加分类
 func AddCategory(c *gin.Context) {
 	var data model.Category
 	_ = c.ShouldBindJSON(&data)
@@ -27,7 +26,7 @@ func AddCategory(c *gin.Context) {
 	})
 }
 
-//删除分类
+// 删除分类
 func DeleteCategory(c *gin.Context) {
 
 	id, _ := strconv.Atoi(c.Param("id"))
@@ -40,7 +39,7 @@ func DeleteCategory(c *gin.Context) {
 	})
 }
 
-//更新分类
+// 更新分类
 func UpdateCategory(c *gin.Context) {
 	id, _ := strconv.Atoi(c.Param("id"))
 	var category model.Category
@@ -58,12 +57,11 @@ func UpdateCategory(c *gin.Context) {
 
 }
 
-//查询分类列表
+// 查询分类列表
 func GetCategories(c *gin.Context) {
 	pageSize, _ := strconv.Atoi(c.Query("pageSize"))
 	pageNum, _ := strconv.Atoi(c.Query("pageNum"))
 
-	fmt.Println("pageSize----", pageSize, " ----- pageNum:", pageNum)
 	code := errmsg.SUCCESS
 	list, total := model.GetCategories(pageSize, pageNum)
 	if list == nil {
@@ -78,7 +76,7 @@ func GetCategories(c *gin.Context) {
 	})
 }
 
-//查询单个category信息
+// 查询单个category信息
 func GetCategoryById(c *gin.Context) {
 	id, _ := strconv.Atoi(c.Param("id"))
 	data, code := model.GetById(id)
