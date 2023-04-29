@@ -128,10 +128,8 @@ export default defineComponent({
 
         getArtList() {
             if(this.routeQuery.category != undefined) {
-                console.log(1111)
                 this.getCategoryArticleList(this.routeQuery.category)
             } else {
-                console.log(222)
                 this.getArticleList()
             }
             window.scrollTo(0,0);
