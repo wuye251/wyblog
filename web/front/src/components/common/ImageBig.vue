@@ -42,7 +42,7 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
+<!-- <style scoped lang="scss">
   .Big_image {
   .fade-enter-active,
   .fade-leave-active {
@@ -82,4 +82,4 @@ export default {
   }
 }
 </style>
-​
+​ -->

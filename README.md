@@ -12,5 +12,5 @@ docker-composer up -d
 
 ### [前端项目打包]
 
-> - yarn dev 运行本地
+> - yarn serve 运行本地
 > - yarn build  构建静态文件
