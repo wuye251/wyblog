@@ -1,7 +1,16 @@
 # wyblog
 
-# 本地启动前端
-yarn serve
+### [后端项目启动]
 
-# 启动后端
-go run main.go
+docker-composer up -d
+
+> go mod tidy
+>
+> go build .
+>
+> nohup ./wyblog &
+
+### [前端项目打包]
+
+> - yarn dev 运行本地
+> - yarn build  构建静态文件

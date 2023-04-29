@@ -26,12 +26,9 @@ func InitRouter() {
 	r.Use(gin.Recovery())
 	r.Use(middleware.Cors())
 	r.Use(gzip.Gzip(gzip.DefaultCompression))
-	r.Static("/front", "./web/front/dist")
-	r.Static("/admin", "./web/admin/dist")
-	r.StaticFile("/favicon.ico", "./web/front/dist/favicon.ico")
-	// r.StaticFile("/admin.js", "./web/admin/dist/config.js")
-	// r.StaticFile("/front.js", "./web/front/dist/config.js")
-	r.StaticFile("/config.js", "./web/admin/dist/config.js")
+
+	// 初始化前端
+	initFeStatic(r)
 
 	r.GET("/", func(c *gin.Context) {
 		c.HTML(200, "front", nil)
@@ -89,4 +86,14 @@ func InitRouter() {
 	}
 
 	r.Run((utils.HttpPort))
+}
+
+func initFeStatic(r *gin.Engine) {
+	// TODO:静态文件移出到static
+	// r.Static("/front", "./static/front")
+	// r.Static("/admin", "./static/admin")
+	r.Static("/front", "./web/front/dist")
+	r.Static("/admin", "./web/admin/dist")
+	r.StaticFile("/favicon.ico", "./static/front/favicon.ico")
+	r.StaticFile("/config.js", "./web/admin/dist/config.js")
 }
