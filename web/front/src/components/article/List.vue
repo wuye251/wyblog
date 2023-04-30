@@ -65,7 +65,7 @@ export default defineComponent({
         return {
             pagination:{
                 defaultCurrent:1,
-                defaultPageSize:5
+                defaultPageSize:6
             },
             data: [],
             total: 0,

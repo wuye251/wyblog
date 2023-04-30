@@ -9,6 +9,7 @@ import (
 type Category struct {
 	gorm.Model
 	Name string `gorm:"type:varchar(20);not null"  json:"name"`
+	Sort string `json:"sort"`
 }
 
 func GetByCategoryName(name string) (code int) {

@@ -78,7 +78,6 @@ export default defineComponent({
         message,
     },
     setup () {
-        
         const articleInfo = reactive({
                 id:0,
                 title:'',
