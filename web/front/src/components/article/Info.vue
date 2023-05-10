@@ -35,15 +35,15 @@
                 </div>
             </div>
             <div id="my-content" @scroll="onScroll">
-                <ImageBig
-                    v-if="showImg"
-                    @clickit="viewImg"
-                    :imgSrc="imgSrc"
-                    class="img-big"
-                ></ImageBig>
-                <v-md-preview  :text="content" ref="preview" />
+                <v-md-preview :text="content" @image-click="imgClick" ref="preview" 
+                />
+                <!-- TODO:不懂这里为什么已删除 scroll就会报错 -->
                 <img class="head-img" src="@/assets/logo.png" alt="" />
                 <img src="@/assets/logo.png" alt="" class="tools" />
+                <!-- 放大图片 -->
+                <div v-if="isShowImg" class="imgPreview"  @click="cancleBigImg">
+                    <img :src="bigImgSrc">
+                </div>
             </div>
             <div style="margin-left: 30px;font-size: 18px;font-weight: 100;background: #f7f8fa;">
                 <span>
@@ -59,14 +59,11 @@
 <!-- <el-backtop target=".home-layout-main"></el-backtop> -->
 
 <script>
-import { defineComponent, ref, reactive } from 'vue';
+import { defineComponent, ref } from 'vue';
 import { getArticleInfo } from '@/api/article.js'
-import router from '../../router'
 import { useRoute} from 'vue-router'
 import day from 'dayjs'
-import { visit } from 'unist-util-visit';
 import VueSticky from 'vue-sticky';
-import ImageBig from '../common/ImageBig';
 import { 
     FieldTimeOutlined,
     ProfileOutlined,
@@ -87,14 +84,10 @@ export default defineComponent({
             articleInfo: null,
             id: ref(0),
             catalogActiveIndex:0,
+            isShowImg:false,
+            bigImgSrc:""
         }
     },
-    // setup() {
-    //     return {
-    //         articleInfo: ref({}),
-    //         id: ref(0),
-    //     }
-    // },
 
     created() {
         this.getInfo()
@@ -103,6 +96,20 @@ export default defineComponent({
         window.addEventListener('scroll', _this.onScroll,true);
     },
     methods: {
+        imgClick(images, currentIndex) {
+            let curImage = images[currentIndex]
+            this.isShowImg = true
+            this.bigImgSrc = curImage 
+            const layerNode = document.querySelector('.imgPreview') 
+            // 蒙层部分始终阻止默认行为
+            document.body.style.overflow = 'hidden';
+        },
+        cancleBigImg() {
+            this.isShowImg = false
+            this.bigImgSrc = ""
+            document.body.style.overflow = '';//出现滚动条
+
+        },
         getInfo() {
             this.id = this.getRouteQuery()
             getArticleInfo(this.id).then(res => {
@@ -288,6 +295,26 @@ export default defineComponent({
     /* 图标和字的间距 */
     .summary span {
         padding: 0px 3px;
+    }
+
+    /* 图片放大 */
+    .imgPreview {
+        top: 0;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 100
+    }
+    .imgPreview img {
+        z-index: 100;
+        width: 55%;
+        height: auto;
+        position: fixed;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        left: 50%;
     }
 </style>
 
