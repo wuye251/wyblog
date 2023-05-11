@@ -29,21 +29,6 @@ export default defineComponent({
       Footer,
       Content,
   },
-  setup() {
-    // // 局部组件刷新
-    // const isRouterAlive = ref(true);
-    // const reload = () => {
-    //   isRouterAlive.value = false;
-    //   nextTick(() => {
-    //     isRouterAlive.value = true;
-    //   });
-    // };
-    // provide("reload", reload);
-
-    // return {
-    //   isRouterAlive,
-    // };
-  },
 })
 </script>
 

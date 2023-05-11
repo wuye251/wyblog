@@ -3,12 +3,14 @@ module.exports = {
     '@vue/cli-plugin-babel/preset'
   ],
   plugins: [
-    // [
-    //   'import', { libraryName: 'ant-design-vue', libraryDirectory: 'es', style: 'true' },
-    //   'prismjs',
-    //   {
-    //     languages: ['json','go', 'golang'],
-    //   },
-    // ],     
-  ],
+    [
+        'prismjs', {
+          // languages: ['go','vue','javascript', 'java', 'css', 'markup', 'python'],
+          languages:allLanguages,
+          plugins: ["line-numbers"],
+          theme: 'solarizedlight',
+          css: true
+        }
+    ]
+  ]
 }
