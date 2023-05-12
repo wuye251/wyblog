@@ -2492,7 +2492,7 @@ babel-plugin-polyfill-regenerator@^0.3.1:
 
 babel-plugin-prismjs@^2.1.0:
   version "2.1.0"
-  resolved "http://mirrors.cloud.tencent.com/npm/babel-plugin-prismjs/-/babel-plugin-prismjs-2.1.0.tgz#ade627896106326ad04d6d77fba92877618de571"
+  resolved "https://registry.npmmirror.com/babel-plugin-prismjs/-/babel-plugin-prismjs-2.1.0.tgz#ade627896106326ad04d6d77fba92877618de571"
   integrity sha512-ehzSKYfeAz4U78zi/sfwsjDPlq0LvDKxNefcZTJ/iKBu+plsHsLqZhUeGf1+82LAcA35UZGbU6ksEx2Utphc/g==
 
 bail@^2.0.0:
