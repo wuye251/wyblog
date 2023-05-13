@@ -12,14 +12,10 @@ type Category struct {
 	Sort string `json:"sort"`
 }
 
-func GetByCategoryName(name string) (code int) {
+func GetByCategoryName(name string) Category {
 	var category Category
 	db.Select("id").Where("name", name).First(&category)
-	if category.ID > 0 {
-		return errmsg.ERROR_CATEGORY_USED
-	}
-
-	return errmsg.SUCCESS
+	return category
 }
 
 func GetCategories(pageSize, pageNum int) ([]Category, int64) {
@@ -62,6 +58,7 @@ func DeleteCategory(id int) (code int) {
 func UpdateCategory(id int, data *Category) (code int) {
 	var info = make(map[string]interface{})
 	info["name"] = data.Name
+	info["sort"] = data.Sort
 
 	err := db.Model(&Category{}).Where("id = ?", id).Updates(info).Error
 	if err != nil {

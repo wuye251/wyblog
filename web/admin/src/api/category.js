@@ -9,11 +9,11 @@ export function getList(data) {
   })
 }
 
-export function add(name) {
+export function add(info) {
   return request({
     url: '/api/v1/category/add',
     method: 'post',
-    data:{name:name},
+    data:info,
   })
 }
 
