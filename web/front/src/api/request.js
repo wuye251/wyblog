@@ -3,7 +3,7 @@ import { getToken } from '@/api/auth'
 
 // 创建一个axios实例
 const service = axios.create({
-  baseURL:window.g.BASE_URL, // api 的 base_url
+  baseURL:'http://localhost:3000', // api 的 base_url
   // transformRequest: [function (data) {
   //   return qs.stringify(data)
   // }],

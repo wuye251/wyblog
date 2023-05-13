@@ -35,7 +35,7 @@
                 </div>
             </div>
             <div id="my-content" @scroll="onScroll">
-                <v-md-preview :text="content" @image-click="imgClick" ref="preview" 
+                <v-md-preview :text="content" @image-click="imgClick" ref="preview" @copy-code-success="handleCopyCodeSuccess"
                 />
                 <!-- TODO:不懂这里为什么已删除 scroll就会报错 -->
                 <img class="head-img" src="@/assets/logo.png" alt="" />
@@ -96,6 +96,10 @@ export default defineComponent({
         window.addEventListener('scroll', _this.onScroll,true);
     },
     methods: {
+        // 复制代码
+        handleCopyCodeSuccess(event) {
+            console.log("copy---",event)
+        },
         imgClick(images, currentIndex) {
             let curImage = images[currentIndex]
             this.isShowImg = true
