@@ -95,5 +95,5 @@ func initFeStatic(r *gin.Engine) {
 	r.Static("/front", "./web/front/dist")
 	r.Static("/admin", "./web/admin/dist")
 	r.StaticFile("/favicon.ico", "./static/front/favicon.ico")
-	r.StaticFile("/config.js", "./web/admin/dist/config.js")
+	r.StaticFile("/config.js", "./web/front/dist/config.js")
 }

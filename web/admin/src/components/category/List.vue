@@ -2,18 +2,6 @@
     <div class="categoryList">
         <a-card>
             <a-row :gutter="20">
-                <!-- <a-col 
-                :span="5"
-                @click="searchUser"
-                >
-                    <a-input-search
-                        v-model="queryParam.categoryname"
-                        placeholder="输入文章名查找"
-                        enter-button
-                        allowClear
-                        @search="searchUser"
-                    />
-                </a-col> -->
                 <a-col :span="4">
                     <a-button type="primary" @click="addcategory=true">
                         <span>新增</span>
@@ -63,12 +51,11 @@
         <a-form-model-item label="分类名称" prop="name">
           <a-input v-model:value="newCate.name"></a-input>
         </a-form-model-item>
+        <a-form-model-item label="序号" prop="sort">
+            <a-input v-model:value="newCate.sort"></a-input>
+          </a-form-model-item>  
       </a-form-model>
-        <!-- <a-form-model-item label="序号" prop="sort">
-          <a-input v-model:value="newCate.sort"></a-input>
-        </a-form-model-item>      -->
     </a-modal>
-
 
     <!-- 编辑分类区域 -->
     <a-modal
@@ -86,10 +73,9 @@
         <a-form-model-item label="分类名称" prop="name">
           <a-input v-model:value="newCate.name"></a-input>
         </a-form-model-item>
-        <!-- <a-form-model-item label="序号" prop="sort">
+        <a-form-model-item label="序号" prop="sort">
             <a-input v-model:value="newCate.sort"></a-input>
-        </a-form-model-item>        -->
-
+        </a-form-model-item>  
       </a-form-model>
     </a-modal>
 </template>
@@ -99,15 +85,14 @@ import { inject, createVNode, defineComponent, reactive, computed,ref } from 'vu
 import { getList,add, deletecategoryById, getCategoryById, updateCategoryInfo } from '@/api/category.js'
 import '../../assets/css/style.css'
 import day from 'dayjs'
-import router from '../../router'
 import { Modal,message } from 'ant-design-vue';
 import { ExclamationCircleOutlined } from '@ant-design/icons-vue';
-
+import MyForm from '@/components/common/MyForm.vue'
 const columns = [
     {
-        title: 'ID',
-        dataIndex: 'ID',
-        key:'ID',
+        title: '权重',
+        dataIndex: 'sort',
+        key:'sort',
         width:'5%',
         align: 'center',
     },
@@ -142,10 +127,7 @@ export default defineComponent({
     name:'',
     components:{
         message,
-    },
-    setup() {
-        return {
-        }
+        MyForm,
     },
     data() {
         return {
@@ -205,7 +187,11 @@ export default defineComponent({
 
         // 新增分类
         addCateOk() {
-            add(this.newCate.name).then(res => {
+            let param = {
+                "name": this.newCate.name,
+                "sort": this.newCate.sort,
+            }
+            add(param).then(res => {
                 if (res.code != 200) return this.$message.error(res.message)
                 this.addcategory = false
                 this.$message.success('添加分类成功')
@@ -234,7 +220,8 @@ export default defineComponent({
 
         editCateOk() {
             let param = {
-                "name": this.newCate.name
+                "name": this.newCate.name,
+                "sort": this.newCate.sort,
             }
             updateCategoryInfo(this.newCate.ID, param).then(res => {
                 if (res.code != 200) return this.$message.error(res.message)

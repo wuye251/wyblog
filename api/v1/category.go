@@ -1,6 +1,7 @@
 package v1
 
 import (
+	"fmt"
 	"net/http"
 	"strconv"
 	"wyblog/model"
@@ -14,8 +15,11 @@ func AddCategory(c *gin.Context) {
 	var data model.Category
 	_ = c.ShouldBindJSON(&data)
 
-	code := model.GetByCategoryName(data.Name)
-	if code == errmsg.SUCCESS {
+	res := model.GetByCategoryName(data.Name)
+	var code int
+	if res.ID != 0 {
+		code = errmsg.ERROR_CATEGORY_USED
+	} else {
 		code = model.InsertCategory(&data)
 	}
 
@@ -44,10 +48,13 @@ func UpdateCategory(c *gin.Context) {
 	id, _ := strconv.Atoi(c.Param("id"))
 	var category model.Category
 	_ = c.ShouldBindJSON(&category)
-	code := model.GetByCategoryName(category.Name)
-	if code == errmsg.SUCCESS {
-		code = model.UpdateCategory(id, &category)
+	fmt.Println(category)
+	res := model.GetByCategoryName(category.Name)
+	var code int
+	if res.ID != 0 && res.ID != uint(id) {
+		code = errmsg.ERROR_CATEGORY_USED
 	}
+	code = model.UpdateCategory(id, &category)
 
 	c.JSON(http.StatusOK, gin.H{
 		"code":    code,

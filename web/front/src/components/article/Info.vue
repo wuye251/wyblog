@@ -37,9 +37,6 @@
             <div id="my-content" @scroll="onScroll">
                 <v-md-preview :text="content" @image-click="imgClick" ref="preview" @copy-code-success="handleCopyCodeSuccess"
                 />
-                <!-- TODO:不懂这里为什么已删除 scroll就会报错 -->
-                <img class="head-img" src="@/assets/logo.png" alt="" />
-                <img src="@/assets/logo.png" alt="" class="tools" />
                 <!-- 放大图片 -->
                 <div v-if="isShowImg" class="imgPreview"  @click="cancleBigImg">
                     <img :src="bigImgSrc">
@@ -68,7 +65,6 @@ import {
     FieldTimeOutlined,
     ProfileOutlined,
 } from '@ant-design/icons-vue';
-
 export default defineComponent({
     components: {
         FieldTimeOutlined,
@@ -97,9 +93,15 @@ export default defineComponent({
     },
     methods: {
         // 复制代码
-        handleCopyCodeSuccess(event) {
-            console.log("copy---",event)
+        handleCopyCodeSuccess(content) {
+            try {
+                navigator.clipboard.writeText(content);
+                console.log("copy success")
+            } catch(e) {
+                console.log("copy failed.e:",e)
+            }
         },
+        
         imgClick(images, currentIndex) {
             let curImage = images[currentIndex]
             this.isShowImg = true
