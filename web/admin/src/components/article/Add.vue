@@ -50,7 +50,7 @@
                     <a-form-item>
                         <a-button type="danger" style="margin-right:15px" @click="submit">提交</a-button>
                         <a-button type="danger" style="margin-right:15px" @click="drafts">保存草稿</a-button>
-                        <a-button type="primary">取消</a-button>
+                        <a-button type="primary" @click="$router.back()">取消</a-button>
 
                     </a-form-item>
                 </a-form-item>
@@ -78,7 +78,6 @@ export default defineComponent({
         message,
     },
     setup () {
-        
         const articleInfo = reactive({
                 id:0,
                 title:'',

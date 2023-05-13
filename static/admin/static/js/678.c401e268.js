@@ -1,2 +1,0 @@
-"use strict";(self["webpackChunkadmin"]=self["webpackChunkadmin"]||[]).push([[678],{57678:function(n,u,a){a.r(u),a.d(u,{default:function(){return i}});var e=a(73396);function t(n,u){const a=(0,e.up)("a-input"),t=(0,e.up)("a-form-item");return(0,e.wg)(),(0,e.j4)(t,null,{default:(0,e.w5)((()=>[(0,e.Wm)(a,{name:"a"}),(0,e.Wm)(a,{name:"b"})])),_:1})}var r=a(40089);const c={},f=(0,r.Z)(c,[["render",t]]);var i=f}}]);
-//# sourceMappingURL=678.c401e268.js.map

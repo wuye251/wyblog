@@ -64,6 +64,9 @@
           <a-input v-model:value="newCate.name"></a-input>
         </a-form-model-item>
       </a-form-model>
+        <!-- <a-form-model-item label="序号" prop="sort">
+          <a-input v-model:value="newCate.sort"></a-input>
+        </a-form-model-item>      -->
     </a-modal>
 
 
@@ -83,6 +86,10 @@
         <a-form-model-item label="分类名称" prop="name">
           <a-input v-model:value="newCate.name"></a-input>
         </a-form-model-item>
+        <!-- <a-form-model-item label="序号" prop="sort">
+            <a-input v-model:value="newCate.sort"></a-input>
+        </a-form-model-item>        -->
+
       </a-form-model>
     </a-modal>
 </template>
@@ -177,8 +184,7 @@ export default defineComponent({
     },
     created() {
         this.list()
-        console.log('created---', this.data)
-
+        // console.log('created---', this.data)
     },
     methods: {
         async list() {

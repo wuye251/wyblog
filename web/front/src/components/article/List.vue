@@ -11,10 +11,6 @@
             <div class="articleList">
                 <li v-for="(item, index) in data">
                     <div class="li-list-main-content" @click="goToInfo(item.ID)">
-                        <!-- <div v-if="item.img" class="img">
-                            <img class="img-info" :src="item.img">
-                        </div> -->
-                        
                         <div class="list-main-content">
                             <div class="title">
                                 <a @click="goToInfo(item.ID)">
@@ -35,9 +31,6 @@
                         </div>
                     </div>
                 </li>
-                <!-- :show-total="total => `Total ${total} items`" -->
-    
-                <!-- <a-pagination @change="" class="myPagination" :showSizeChanger=false :pagination="pagination" show-less-items /> -->
             </div>
             <a-pagination
             class="myPagination"
@@ -61,49 +54,29 @@ import {
     FieldTimeOutlined,
     ProfileOutlined,
 } from '@ant-design/icons-vue';
-// const data = [{
-//     title: '这是第一篇文章标题这是第一篇文章标题',
-//     }, {
-//     title: '这是第一篇文章标题这是第一篇文章标题',
-//     }, {
-//     title: '这是第三篇文章标题',
-//         }, {
-//         title: '这是第四篇文章标题',
-//     },
-//     {
-//     title: '这是第四篇文章标题',
-// }
-// ];
+
+
 export default defineComponent({
     components: {
         FieldTimeOutlined,
         ProfileOutlined,
     },
-    setup() {
-        const pagination = {
-            onChange: page => {
-                console.log(page);
-            },
-            defaultPageSize: 5,
-            defaultCurrent: ref(1),
-        };
-
+    data() {
         return {
-            pagination,
-            data: ref([]),
-            total: ref(0),
-            routeQuery: ref({}),
+            pagination:{
+                defaultCurrent:1,
+                defaultPageSize:6
+            },
+            data: [],
+            total: 0,
+            routeQuery: {},
         };
     },
-    // mounted () {
-    //     this.$router.afterEach((to,from,next)=>{
-    //         console.log(1111)
-    //         window,scrollTo(0,0)
-    //     })
-    // },
+
     created() {
         this.getRouteQuery()
         this.getArtList()
+        
         console.log("created")
     },
     methods: {
@@ -155,10 +128,8 @@ export default defineComponent({
 
         getArtList() {
             if(this.routeQuery.category != undefined) {
-                console.log(1111)
                 this.getCategoryArticleList(this.routeQuery.category)
             } else {
-                console.log(222)
                 this.getArticleList()
             }
             window.scrollTo(0,0);
