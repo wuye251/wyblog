@@ -1,7 +1,5 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-// import ArticleInfo from '../components/article/Info.vue'
-// import ArticleList from '../components/article/List.vue'
-
+import HeaderConst from "@/components/const/Header"
 const ArticleInfo = () => import('../components/article/Info.vue')
 const ArticleList = () => import('../components/article/List.vue')
 
@@ -9,16 +7,28 @@ const routes = [
   { 
     path: "/", 
     component: ArticleList,
+    meta: {
+      keepAlive: true, // 需要被缓存
+      title: '首页' + HeaderConst.HeaderPrefx,
+    }
   },
   {
     path: '/index',
     name: 'Index',
     component: ArticleList,
+    meta: {
+      keepAlive: true, // 需要被缓存
+      title: '文章列表' + HeaderConst.HeaderPrefx,
+    }
   },
   {
     path: '/article',
     name: 'Article',
     component: ArticleList,
+    meta: {
+      keepAlive: true, // 需要被缓存
+      title: '文章列表' + HeaderConst.HeaderPrefx,
+    }
     // children:[
     //   {path:'info', component: ArticleInfo},
 
@@ -29,11 +39,19 @@ const routes = [
     path:'/article/info',
     name: 'ArticleInfo',
     component: ArticleInfo,
+    meta: {
+      keepAlive: true, // 需要被缓存
+      title: '文章详情'+ HeaderConst.HeaderPrefx,
+    }
   },
   {
     path:'/article/list',
     name: 'ArticleList',
-    component: ArticleList
+    component: ArticleList,
+    meta: {
+      keepAlive: true, // 需要被缓存
+      title: '文章列表' + HeaderConst.HeaderPrefx,
+    }
   },
 
 ]
@@ -45,11 +63,9 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from) => {
-  // if (to.name !== 'login') {
-  //   console.log("not login and route name no 'login'")
-  // } else {
-  //   console.log('success login so can access other page!')
-  // }
+  if (to.meta.title) {
+    document.title = to.meta.title
+  }
 })
 
 router.afterEach((to, from, next) => {
