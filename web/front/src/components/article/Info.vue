@@ -56,6 +56,7 @@
 <!-- <el-backtop target=".home-layout-main"></el-backtop> -->
 
 <script>
+import HeaderConst from '@/components/const/Header.js';
 import { defineComponent, ref } from 'vue';
 import { getArticleInfo } from '@/api/article.js'
 import { useRoute} from 'vue-router'
@@ -122,6 +123,7 @@ export default defineComponent({
                 res.data.UpdatedAt = res.data.UpdatedAt ? day(res.data.UpdatedAt).format('YYYY/MM/DD HH:mm') : '暂无'
                 this.articleInfo = res.data
                 this.content = res.data.content
+                document.title = this.articleInfo.title + HeaderConst.HeaderPrefx
                 this.$nextTick(() =>{
                     const anchors = this.$refs.preview.$el.querySelectorAll('h1,h2,h3,h4,h5,h6');
                     const titles = Array.from(anchors).filter((title) => !!title.innerText.trim());
