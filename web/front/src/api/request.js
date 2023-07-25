@@ -3,31 +3,13 @@ import { getToken } from '@/api/auth'
 
 // 创建一个axios实例
 const service = axios.create({
-  // baseURL:window.g.BASE_URL, // api 的 base_url
-  baseURL:'http://localhost:3000',
-  // transformRequest: [function (data) {
-  //   return qs.stringify(data)
-  // }],
+  baseURL:window.g.BASE_URL, // api 的 base_url
   headers: {
     'Content-Type': 'application/json'
   },
   timeout: 60000 // 请求超时
 })
 
-// 请求拦截器
-// service.interceptors.request.use(
-//   config => {
-//     if (getToken()) {
-//       // 让每个请求携带token-- ['X-Litemall-Admin-Token']为自定义key 请根据实际情况自行修改
-//       config.headers['Authorization'] = `Bearea-Token ${getToken()}`
-//     }
-//     return config
-//   },
-//   error => {
-//     console.log(error) // for debug
-//     Promise.reject(error)
-//   }
-// )
 let message = ''
 // 响应拦截器
 service.interceptors.response.use(
@@ -44,7 +26,6 @@ service.interceptors.response.use(
     }else if(res.code === 100 || res.code === '100'){
       return Promise.reject(res);
     }else{
-      // console.log('getApiResponse:',response.data)
       return response.data;
     }
   }, error => {
