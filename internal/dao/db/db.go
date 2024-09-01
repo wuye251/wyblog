@@ -24,3 +24,7 @@ func InitDb() {
 	sqlDB, _ := db.DB()
 	sqlDB.SetConnMaxLifetime(time.Hour * 4)
 }
+
+func GetDb() *gorm.DB {
+	return db
+}
