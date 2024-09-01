@@ -4,20 +4,20 @@ import (
 	"fmt"
 	"net/http"
 	"strconv"
-	"wyblog/model"
+	"wyblog/internal/dao/db"
 	"wyblog/utils/errmsg"
 
 	"github.com/gin-gonic/gin"
 )
 
-//查询分类列表
+// 查询分类列表
 func GetCategories(c *gin.Context) {
 	pageSize, _ := strconv.Atoi(c.Query("pageSize"))
 	pageNum, _ := strconv.Atoi(c.Query("pageNum"))
 
 	fmt.Println("pageSize----", pageSize, " ----- pageNum:", pageNum)
 	code := errmsg.SUCCESS
-	list, total := model.GetCategories(pageSize, pageNum)
+	list, total := db.GetCategories(pageSize, pageNum)
 	if list == nil {
 		code = errmsg.ERROR
 	}

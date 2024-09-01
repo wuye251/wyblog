@@ -1,25 +1,20 @@
-package model
+package db
 
 import (
+	"wyblog/internal/model"
 	"wyblog/utils/errmsg"
 
 	"gorm.io/gorm"
 )
 
-type Category struct {
-	gorm.Model
-	Name string `gorm:"type:varchar(20);not null"  json:"name"`
-	Sort string `json:"sort"`
-}
-
-func GetByCategoryName(name string) Category {
-	var category Category
+func GetByCategoryName(name string) model.Category {
+	var category model.Category
 	db.Select("id").Where("name", name).First(&category)
 	return category
 }
 
-func GetCategories(pageSize, pageNum int) ([]Category, int64) {
-	var category []Category
+func GetCategories(pageSize, pageNum int) ([]model.Category, int64) {
+	var category []model.Category
 	var total int64
 	err := db.Limit(pageSize).Offset((pageNum - 1) * pageSize).Order("sort desc").Find(&category).Error
 	db.Model(&category).Count(&total)
@@ -29,8 +24,8 @@ func GetCategories(pageSize, pageNum int) ([]Category, int64) {
 	return category, total
 }
 
-func GetById(id int) (*Category, int) {
-	var category Category
+func GetById(id int) (*model.Category, int) {
+	var category model.Category
 	err := db.Where("id = ?", id).Find(&category).Error
 	if err != nil && err != gorm.ErrRecordNotFound {
 		return nil, errmsg.ERROR_ARTICLE_NOT_EXIST
@@ -38,7 +33,7 @@ func GetById(id int) (*Category, int) {
 	return &category, errmsg.SUCCESS
 }
 
-func InsertCategory(data *Category) (code int) {
+func InsertCategory(data *model.Category) (code int) {
 	err := db.Create(&data).Error
 	if err != nil {
 		return errmsg.ERROR
@@ -47,7 +42,7 @@ func InsertCategory(data *Category) (code int) {
 }
 
 func DeleteCategory(id int) (code int) {
-	err := db.Delete(&Category{}, id).Error
+	err := db.Delete(&model.Category{}, id).Error
 	if err != nil {
 		return errmsg.ERROR
 	}
@@ -55,12 +50,12 @@ func DeleteCategory(id int) (code int) {
 	return errmsg.SUCCESS
 }
 
-func UpdateCategory(id int, data *Category) (code int) {
+func UpdateCategory(id int, data *model.Category) (code int) {
 	var info = make(map[string]interface{})
 	info["name"] = data.Name
 	info["sort"] = data.Sort
 
-	err := db.Model(&Category{}).Where("id = ?", id).Updates(info).Error
+	err := db.Model(&model.Category{}).Where("id = ?", id).Updates(info).Error
 	if err != nil {
 		return errmsg.ERROR
 	}

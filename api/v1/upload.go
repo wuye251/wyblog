@@ -3,7 +3,7 @@ package v1
 import (
 	"fmt"
 	"net/http"
-	"wyblog/model"
+	"wyblog/internal/model"
 	"wyblog/utils/errmsg"
 
 	"github.com/gin-gonic/gin"
