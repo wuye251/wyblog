@@ -70,7 +70,7 @@ func GetArticlesByCategoryId(c *gin.Context) {
 	pageSize, _ := strconv.Atoi(c.Query("pageSize"))
 	pageNum, _ := strconv.Atoi(c.Query("pageNum"))
 	status, _ := strconv.Atoi(c.Query("status"))
-	data, code, total := db.GetArticlesByCategoryId(categoryId, pageSize, pageNum, status)
+	data, code, total := db.GetArticlesByCategoryId(categoryId, pageSize, pageNum, status, false)
 	c.JSON(http.StatusOK, gin.H{
 		"code":    code,
 		"message": errmsg.GetErrMsg(code),

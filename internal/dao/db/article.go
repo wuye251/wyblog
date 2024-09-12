@@ -90,19 +90,25 @@ func GetArticleById(id int) (*model.Article, int) {
 	return &article, errmsg.SUCCESS
 }
 
-func GetArticlesByCategoryId(categoryId int, pageSize, pageNum int, status int) ([]model.Article, int, int) {
+func GetArticlesByCategoryId(categoryId int, pageSize, pageNum int, status int, withChild bool) ([]model.Article, int, int) {
 	var articleList []model.Article
 	var total int64
 	var err error
 
-	if status == 0 {
-		err = db.Preload("Category").Limit(pageSize).Offset((pageNum-1)*pageSize).Where("category_id = ?", categoryId).Order("updated_at desc").Find(&articleList).Error
-		db.Model(&articleList).Where("category_id = ?", categoryId).Count(&total)
-	} else {
-		err = db.Preload("Category").Limit(pageSize).Offset((pageNum-1)*pageSize).Where("category_id = ?", categoryId).Where("status = ?", status).Order("updated_at desc").Find(&articleList).Error
-		db.Model(&articleList).Where("category_id = ?", categoryId).Where("status = ?", status).Count(&total)
+	dbSession := db.Model(&model.Article{})
+	if status != 0 {
+		dbSession = dbSession.Where("status = ?", status)
+	}
+	if withChild {
+		dbSession = dbSession.Where("category_id = ? or pid = ?", categoryId, categoryId)
+	}
+	dbSession = dbSession.Order("updated_at desc")
+	err = dbSession.Count(&total).Error
+	if err != nil {
+		return nil, errmsg.ERROR_CATEGORY_NOT_EXIST, int(total)
 	}
 
+	err = dbSession.Limit(pageSize).Offset((pageNum - 1) * pageSize).Find(&articleList).Error
 	if err != nil {
 		return nil, errmsg.ERROR_CATEGORY_NOT_EXIST, int(total)
 	}
