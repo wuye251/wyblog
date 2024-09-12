@@ -13,8 +13,8 @@ import (
 
 func createMyRender() multitemplate.Renderer {
 	p := multitemplate.NewRenderer()
-	p.AddFromFiles("admin", "../../web/admin/dist/index.html")
-	p.AddFromFiles("front", "../../web/front/dist/index.html")
+	p.AddFromFiles("admin", "./web/admin/dist/index.html")
+	p.AddFromFiles("front", "./web/front/dist/index.html")
 	return p
 }
 
@@ -92,8 +92,8 @@ func initFeStatic(r *gin.Engine) {
 	// TODO:静态文件移出到static
 	// r.Static("/front", "./static/front")
 	// r.Static("/admin", "./static/admin")
-	r.Static("/front", "../../web/front/dist")
-	r.Static("/admin", "../../web/admin/dist")
+	r.Static("/front", "./web/front/dist")
+	r.Static("/admin", "./web/admin/dist")
 	r.StaticFile("/favicon.ico", "./static/front/favicon.ico")
 	r.StaticFile("/config.js", "./web/front/dist/config.js")
 }
