@@ -1,9 +1,7 @@
 package model
 
-import "gorm.io/gorm"
-
 type Tag struct {
-	gorm.Model
+	Common
 	Name string `gorm:"type:varchar(20);not null"  json:"name"`
 	Sort string `json:"sort"`
 }

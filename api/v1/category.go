@@ -52,7 +52,7 @@ func UpdateCategory(c *gin.Context) {
 	fmt.Println(category)
 	res := db.GetByCategoryName(category.Name)
 	var code int
-	if res.ID != 0 && res.ID != uint(id) {
+	if res.ID != 0 && res.ID != id {
 		code = errmsg.ERROR_CATEGORY_USED
 	}
 	code = db.UpdateCategory(id, &category)

@@ -38,7 +38,7 @@ func convertTagCategory() error {
 	}
 
 	insertTags := []*model.Tag{}
-	tagCategoryMap := map[uint]*model.Tag{}
+	tagCategoryMap := map[int]*model.Tag{}
 	for _, category := range categories {
 		tag := &model.Tag{
 			Name: category.Name,
@@ -55,7 +55,7 @@ func convertTagCategory() error {
 
 	insertTagArticleMap := []*model.ArticleTag{}
 	for _, article := range articles {
-		tagInfo := tagCategoryMap[uint(article.CategoryId)]
+		tagInfo := tagCategoryMap[article.CategoryId]
 		tagArticleMap := model.ArticleTag{
 			ArticleId: int(article.ID),
 			TagId:     int(tagInfo.ID),

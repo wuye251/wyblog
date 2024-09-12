@@ -16,7 +16,7 @@ func GetByCategoryName(name string) model.Category {
 func GetCategories(pageSize, pageNum int) ([]model.Category, int64) {
 	var category []model.Category
 	var total int64
-	err := db.Limit(pageSize).Offset((pageNum - 1) * pageSize).Order("sort desc").Find(&category).Error
+	err := db.Where("deleted_at IS NULL").Limit(pageSize).Offset((pageNum - 1) * pageSize).Order("sort desc").Find(&category).Error
 	db.Model(&category).Count(&total)
 	if err != nil && err != gorm.ErrRecordNotFound {
 		return nil, total
@@ -26,7 +26,7 @@ func GetCategories(pageSize, pageNum int) ([]model.Category, int64) {
 
 func GetById(id int) (*model.Category, int) {
 	var category model.Category
-	err := db.Where("id = ?", id).Find(&category).Error
+	err := db.Where("id = ? AND deleted_at IS NULL", id).Find(&category).Error
 	if err != nil && err != gorm.ErrRecordNotFound {
 		return nil, errmsg.ERROR_ARTICLE_NOT_EXIST
 	}
