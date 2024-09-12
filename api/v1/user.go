@@ -4,14 +4,15 @@ import (
 	"fmt"
 	"net/http"
 	"strconv"
-	"wyblog/model"
+	"wyblog/internal/dao/db"
+	"wyblog/internal/model"
 	"wyblog/utils/errmsg"
 	"wyblog/utils/validate"
 
 	"github.com/gin-gonic/gin"
 )
 
-//添加用户
+// 添加用户
 func AddUser(c *gin.Context) {
 	var code int
 	var msg string
@@ -27,9 +28,9 @@ func AddUser(c *gin.Context) {
 		return
 	}
 
-	code = model.GetByUserName(param.Username)
+	code = db.GetByUserName(param.Username)
 	if code == errmsg.SUCCESS {
-		model.InsertUser(&param)
+		db.InsertUser(&param)
 	}
 
 	c.JSON(http.StatusOK, gin.H{
@@ -39,11 +40,11 @@ func AddUser(c *gin.Context) {
 	})
 }
 
-//删除用户
+// 删除用户
 func DeleteUser(c *gin.Context) {
 
 	userId, _ := strconv.Atoi(c.Param("id"))
-	code := model.DeleteById(userId)
+	code := db.DeleteById(userId)
 	c.JSON(http.StatusOK, gin.H{
 		"code":    code,
 		"message": errmsg.GetErrMsg(code),
@@ -51,16 +52,16 @@ func DeleteUser(c *gin.Context) {
 	})
 }
 
-//更新用户
+// 更新用户
 func UpdateUser(c *gin.Context) {
 	var data model.User
 	id, _ := strconv.Atoi(c.Param("id"))
 	_ = c.ShouldBindJSON(&data)
 
-	code := model.GetByUserName(data.Username)
+	code := db.GetByUserName(data.Username)
 	fmt.Println("getByUserName code:", code)
 	if code == errmsg.SUCCESS {
-		code = model.UpdateById(id, &data)
+		code = db.UpdateById(id, &data)
 	}
 
 	c.JSON(http.StatusOK, gin.H{
@@ -70,14 +71,14 @@ func UpdateUser(c *gin.Context) {
 	})
 }
 
-//查询用户列表
+// 查询用户列表
 func GetUsers(c *gin.Context) {
 	pageSize, _ := strconv.Atoi(c.Query("pageSize"))
 	pageNum, _ := strconv.Atoi(c.Query("pageNum"))
 	username := c.Query("searchname")
 	fmt.Println("pageSize----", pageSize, " ----- pageNum:", pageNum)
 	code := errmsg.SUCCESS
-	list, total := model.GetUsers(pageSize, pageNum, username)
+	list, total := db.GetUsers(pageSize, pageNum, username)
 	if list == nil {
 		code = errmsg.ERROR
 	}
@@ -93,7 +94,7 @@ func GetUsers(c *gin.Context) {
 func GetUserInfo(c *gin.Context) {
 	id, _ := strconv.Atoi(c.Param("id"))
 
-	info, code := model.GetUserById(id)
+	info, code := db.GetUserById(id)
 
 	c.JSON(http.StatusOK, gin.H{
 		"code":    code,

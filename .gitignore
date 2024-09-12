@@ -39,3 +39,4 @@ pnpm-debug.log*
 *.sw?
 
 wyblog*
+cmd/server/log/*

@@ -3,18 +3,19 @@ package v1
 import (
 	"net/http"
 	"strconv"
-	"wyblog/model"
+	"wyblog/internal/dao/db"
+	"wyblog/internal/model"
 	"wyblog/utils/errmsg"
 
 	"github.com/gin-gonic/gin"
 )
 
-//添加文章
+// 添加文章
 func AddArticle(c *gin.Context) {
 	var data model.Article
 	_ = c.ShouldBindJSON(&data)
 
-	code := model.InsertArticle(&data)
+	code := db.InsertArticle(&data)
 
 	c.JSON(http.StatusOK, gin.H{
 		"code":    code,
@@ -23,11 +24,11 @@ func AddArticle(c *gin.Context) {
 	})
 }
 
-//删除文章
+// 删除文章
 func DeleteArticle(c *gin.Context) {
 
 	id, _ := strconv.Atoi(c.Param("id"))
-	code := model.DeleteArticle(id)
+	code := db.DeleteArticle(id)
 
 	c.JSON(http.StatusOK, gin.H{
 		"code":    code,
@@ -36,12 +37,12 @@ func DeleteArticle(c *gin.Context) {
 	})
 }
 
-//更新文章
+// 更新文章
 func UpdateArticle(c *gin.Context) {
 	id, _ := strconv.Atoi(c.Param("id"))
 	var article model.Article
 	_ = c.ShouldBindJSON(&article)
-	code := model.UpdateArticleById(id, &article)
+	code := db.UpdateArticleById(id, &article)
 
 	c.JSON(http.StatusOK, gin.H{
 		"code":    code,
@@ -51,10 +52,10 @@ func UpdateArticle(c *gin.Context) {
 
 }
 
-//todo 查询单个文章
+// todo 查询单个文章
 func GetArticle(c *gin.Context) {
 	id, _ := strconv.Atoi(c.Param("id"))
-	data, code := model.GetArticleById(id)
+	data, code := db.GetArticleById(id)
 
 	c.JSON(http.StatusOK, gin.H{
 		"code":    code,
@@ -63,13 +64,13 @@ func GetArticle(c *gin.Context) {
 	})
 }
 
-//todo 查询分类下文章列表
+// todo 查询分类下文章列表
 func GetArticlesByCategoryId(c *gin.Context) {
 	categoryId, _ := strconv.Atoi(c.Param("id"))
 	pageSize, _ := strconv.Atoi(c.Query("pageSize"))
 	pageNum, _ := strconv.Atoi(c.Query("pageNum"))
 	status, _ := strconv.Atoi(c.Query("status"))
-	data, code, total := model.GetArticlesByCategoryId(categoryId, pageSize, pageNum, status)
+	data, code, total := db.GetArticlesByCategoryId(categoryId, pageSize, pageNum, status)
 	c.JSON(http.StatusOK, gin.H{
 		"code":    code,
 		"message": errmsg.GetErrMsg(code),
@@ -78,12 +79,12 @@ func GetArticlesByCategoryId(c *gin.Context) {
 	})
 }
 
-//查询文章列表
+// 查询文章列表
 func GetArticles(c *gin.Context) {
 	pageSize, _ := strconv.Atoi(c.Query("pageSize"))
 	pageNum, _ := strconv.Atoi(c.Query("pageNum"))
 	status, _ := strconv.Atoi(c.Query("status"))
-	list, code, total := model.GetArticles(pageSize, pageNum, status)
+	list, code, total := db.GetArticles(pageSize, pageNum, status)
 
 	c.JSON(http.StatusOK, gin.H{
 		"code":    code,

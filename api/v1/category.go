@@ -4,7 +4,8 @@ import (
 	"fmt"
 	"net/http"
 	"strconv"
-	"wyblog/model"
+	"wyblog/internal/dao/db"
+	"wyblog/internal/model"
 	"wyblog/utils/errmsg"
 
 	"github.com/gin-gonic/gin"
@@ -15,12 +16,12 @@ func AddCategory(c *gin.Context) {
 	var data model.Category
 	_ = c.ShouldBindJSON(&data)
 
-	res := model.GetByCategoryName(data.Name)
+	res := db.GetByCategoryName(data.Name)
 	var code int
 	if res.ID != 0 {
 		code = errmsg.ERROR_CATEGORY_USED
 	} else {
-		code = model.InsertCategory(&data)
+		code = db.InsertCategory(&data)
 	}
 
 	c.JSON(http.StatusOK, gin.H{
@@ -34,7 +35,7 @@ func AddCategory(c *gin.Context) {
 func DeleteCategory(c *gin.Context) {
 
 	id, _ := strconv.Atoi(c.Param("id"))
-	code := model.DeleteCategory(id)
+	code := db.DeleteCategory(id)
 
 	c.JSON(http.StatusOK, gin.H{
 		"code":    code,
@@ -49,12 +50,12 @@ func UpdateCategory(c *gin.Context) {
 	var category model.Category
 	_ = c.ShouldBindJSON(&category)
 	fmt.Println(category)
-	res := model.GetByCategoryName(category.Name)
+	res := db.GetByCategoryName(category.Name)
 	var code int
-	if res.ID != 0 && res.ID != uint(id) {
+	if res.ID != 0 && res.ID != id {
 		code = errmsg.ERROR_CATEGORY_USED
 	}
-	code = model.UpdateCategory(id, &category)
+	code = db.UpdateCategory(id, &category)
 
 	c.JSON(http.StatusOK, gin.H{
 		"code":    code,
@@ -70,7 +71,7 @@ func GetCategories(c *gin.Context) {
 	pageNum, _ := strconv.Atoi(c.Query("pageNum"))
 
 	code := errmsg.SUCCESS
-	list, total := model.GetCategories(pageSize, pageNum)
+	list, total := db.GetCategories(pageSize, pageNum)
 	if list == nil {
 		code = errmsg.ERROR
 	}
@@ -86,7 +87,7 @@ func GetCategories(c *gin.Context) {
 // 查询单个category信息
 func GetCategoryById(c *gin.Context) {
 	id, _ := strconv.Atoi(c.Param("id"))
-	data, code := model.GetById(id)
+	data, code := db.GetById(id)
 
 	c.JSON(http.StatusOK, gin.H{
 		"code":    code,
