@@ -100,7 +100,16 @@ func GetArticlesByCategoryId(categoryId int, pageSize, pageNum int, status int, 
 		dbSession = dbSession.Where("status = ?", status)
 	}
 	if withChild {
-		dbSession = dbSession.Where("category_id = ? or pid = ?", categoryId, categoryId)
+		var categories []model.Category
+		err = db.Model(&model.Category{}).Where("pid = ?", categoryId).Find(&categories).Error
+		if err != nil {
+			return nil, errmsg.ERROR_CATEGORY_NOT_EXIST, int(total)
+		}
+		categoriesId := make([]int, len(categories))
+		for i, category := range categories {
+			categoriesId[i] = category.ID
+		}
+		dbSession = dbSession.Where("category_id IN (?)", categoriesId)
 	}
 	dbSession = dbSession.Order("updated_at desc")
 	err = dbSession.Count(&total).Error
