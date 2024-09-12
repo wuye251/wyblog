@@ -106,8 +106,9 @@ func GetArticlesByCategoryId(categoryId int, pageSize, pageNum int, status int, 
 			return nil, errmsg.ERROR_CATEGORY_NOT_EXIST, int(total)
 		}
 		categoriesId := make([]int, len(categories))
-		for i, category := range categories {
-			categoriesId[i] = category.ID
+		categoriesId = append(categoriesId, categoryId)
+		for _, item := range categories {
+			categoriesId = append(categoriesId, item.ID)
 		}
 		dbSession = dbSession.Where("category_id IN (?)", categoriesId)
 	}
