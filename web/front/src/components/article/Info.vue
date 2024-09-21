@@ -45,7 +45,7 @@
             <div style="margin-left: 30px;font-size: 18px;font-weight: 100;background: #f7f8fa;">
                 <span>
                     如果大家对文章/博客站有建议,欢迎到
-                    <a href="https://github.com/wuye251/wyblog/issues">github/issues</a>
+                    <a href="https://github.com/wuye251/wyblog/issues" style="color:#3eaf7c">github/issues</a>
                     反馈宝贵的意见☕️
                 </span>
             </div>
@@ -270,7 +270,6 @@ export default defineComponent({
     }
 
     a:link {
-	    color: gray !important;
 	    text-decoration: none;
     }
     /* a:visited {

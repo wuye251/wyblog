@@ -19,7 +19,7 @@ import Header from './components/public/Header'
 import Nav   from './components/public/Nav'
 import Footer from './components/public/Footer'
 import Content from './components/public/Content'
-
+import "./assets/css/style.css"
 
 export default defineComponent({
   name: "App",
