@@ -17,17 +17,17 @@
                                     {{ item.title }}
                                 </a>
                             </div>
-                            <div class="desc">{{item.desc}}</div>
                             <div class="main-foot">
                                 <div class="main-category">
                                     <profile-outlined :style="{fontSize: '20px', color: 'black'}"/> 
                                     <span style="font-size:15px; margin-top: -2px; margin-left:5px;">{{item.Category.name}}</span>
                                 </div>
                                 <div class="main-time" style="margin-left: 15px;">
-                                    <field-time-outlined :style="{fontSize: '20px', color: 'black'}" /> 
+                                    <clock-circle-outlined :style="{fontSize: '20px', color: 'black'}" /> 
                                     <span style="font-size:15px; margin-top: -2px; margin-left:5px;">{{getTime(item.UpdatedAt)}}</span>
                                 </div>
                             </div>
+                            <div class="desc">{{item.desc}}</div>
                         </div>
                     </div>
                 </li>
@@ -51,14 +51,14 @@ import { articleList, categoryArticleList } from '@/api/article.js'
 import { useRoute} from 'vue-router'
 import day from 'dayjs'
 import { 
-    FieldTimeOutlined,
+    ClockCircleOutlined,
     ProfileOutlined,
 } from '@ant-design/icons-vue';
 
 
 export default defineComponent({
     components: {
-        FieldTimeOutlined,
+        ClockCircleOutlined,
         ProfileOutlined,
     },
     data() {
@@ -181,6 +181,7 @@ export default defineComponent({
 }
 .articleList li{
     list-style: none;
+    margin-bottom:10px;
 }
 
 .li-list-main-content{
@@ -202,11 +203,9 @@ export default defineComponent({
 }
 .main-category {
     display: flex;
+    width: 10%;
 }
 .main-time {
-    display: flex;
-}
-.main-category {
     display: flex;
 }
 .img {

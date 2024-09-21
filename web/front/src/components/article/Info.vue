@@ -26,7 +26,7 @@
                     </span>
 
                     <span class ="timeInfo-block"> 
-                        <field-time-outlined />
+                        <clock-circle-outlined />
                         <span> {{ articleInfo.UpdatedAt }}</span>
                     </span>
                 </div>
@@ -63,12 +63,12 @@ import { useRoute} from 'vue-router'
 import day from 'dayjs'
 import VueSticky from 'vue-sticky';
 import { 
-    FieldTimeOutlined,
+    ClockCircleOutlined,
     ProfileOutlined,
 } from '@ant-design/icons-vue';
 export default defineComponent({
     components: {
-        FieldTimeOutlined,
+        ClockCircleOutlined,
         ProfileOutlined,
     },
     directives: {

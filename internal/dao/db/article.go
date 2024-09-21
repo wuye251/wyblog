@@ -95,7 +95,7 @@ func GetArticlesByCategoryId(categoryId int, pageSize, pageNum int, status int, 
 	var total int64
 	var err error
 
-	dbSession := db.Model(&model.Article{})
+	dbSession := db.Preload("Category").Model(&model.Article{})
 	if status != 0 {
 		dbSession = dbSession.Where("status = ?", status)
 	}
