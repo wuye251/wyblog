@@ -135,7 +135,7 @@ export default defineComponent({
             data:[],
             queryParam: {
                 username: '',
-                pagesize: 5,
+                pagesize: 20,
                 pagenum: 1,
                 status:0,
             },
