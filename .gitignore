@@ -40,3 +40,4 @@ pnpm-debug.log*
 
 wyblog*
 cmd/server/log/*
+cmd/server/__debug*
